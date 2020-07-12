@@ -1,0 +1,58 @@
+{% extends 'scraper/bootstrap.html' %}
+
+
+{% block title %}Download Data{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <div class="row" style="margin-top: 2%">
+
+            <div class="col-md-6 text-center">
+                <ul class="list-group">
+
+                    {% for item in file_names %}
+                        <form class="form-inline" action="{% url 'show' %}" method="post">
+                            {% csrf_token %}
+                            <input name="filename" value="{{ item }}" type="hidden"/>
+                            <div class="col-md-6">
+
+                                <li class="list-group-item ">{{ item }}</li>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="btn btn-outline-info my-2 my-sm-0" type="submit" name="download_file" value="Download">
+                                <input class="btn btn-outline-danger my-2 my-sm-0" type="submit" name="delete_file" value="Delete">
+                            </div>
+                        </form>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="cardr">
+                    <div class="card-header">
+                        Instructions
+                    </div>
+                    <div class="card-body">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Please make sure you Pause/Stop the scraping before downloading
+                                or the excel files might become
+                                corrupt
+                            </li>
+                            <li class="list-group-item">Make sure the scraping isn't Paused for long ( 1-3 hour max )
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        Important
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock %}

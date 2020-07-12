@@ -1,0 +1,157 @@
+{% extends 'scraper/bootstrap.html' %}
+
+
+{% block title %}Instagram Scraper{% endblock %}
+
+
+{% block ajax_script %}
+    <script>
+
+
+        function fetchdata() {
+
+            $.ajax({
+
+                data: "row_count",
+                url: '{% url "count" %}',
+                type: 'post',
+
+                success: function (response) {
+                    var count = function () {
+                        return "Number of accounts : " + response;
+                    };
+
+                    document.getElementById("count").innerHTML = count();
+
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            setInterval(fetchdata, 2000);
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $(".list-group .list-group-item").click(function (e) {
+                $(".list-group .list-group-item").removeClass("active");
+                $(e.target).addClass("active");
+                var list_item_value = $(e.target).attr('id');
+                $("#location").val(list_item_value);
+                $("#radius_value").val(list_item_value);
+            });
+
+        });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <div class="row" style="margin-top: 2%">
+
+            <div class="col-md-4">
+                <form action="{% url 'scraper' %}" method="post">
+
+                    {% csrf_token %}
+                    <label for="hashtag">Hastag: </label>
+                    <input id="hashtag" class="form-control" type="text" name="hashtag">
+                    <label for="location">Location: </label>
+                    <input id="location" class="form-control" type="text" name="location">
+                    <!-- added -->
+                    <!-- <labe for="radiusSlider">Radius Slider:</labe> -->
+                    <!-- <input id="radiusSlider" class="form-control" type="range" min=0 max=100 name="range"> -->
+                    <!-- added -->
+                    <label for="zip">Zip: </label>
+                    <p><input id="zip" class="form-control" type="text" name="zip"></p>
+                    <input type="submit" class="btn btn-info" value="Start Scraping" id="startscraping"
+                           name="startscraping">
+                    <input type="submit" class="btn btn-info" value="Check Location/Zip" name="checklocation">
+
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <div class="cardr">
+                    <div class="card-header">
+                        Status
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Instagram Scraper</h5>
+                        {% if running %}
+                            <p class="card-text">Starting scraping for : {{ entry }}</p>
+                            <p class="card-text" id="count">Number of accounts : 0</p>
+                            <form action="{% url 'stop_scrap' %}" method="post">
+                                {% csrf_token %}
+
+
+                                {% if pause_scrap %}
+                                    <input type="submit" name="pause_scrap" class="btn btn-info"
+                                           value="Resume Scraping">
+                                {% else %}
+                                    <input type="submit" name="stop_scrap" class="btn btn-info" value="Stop Scraping">
+                                    <input type="submit" name="pause_scrap" class="btn btn-info" value="Pause Scraping">
+                                {% endif %}
+                            </form>
+                        {% else %}
+                            <p class="card-text">Step 1: Enter values and press 'Check location/ZIP'</p>
+                            <p class="card-text">Step 2: Press Stop Scraping when you are done</p>
+
+                        {% endif %}
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="cardr">
+                    <div class="card-header">
+                        Check/Zip Locations
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% if location_list %}
+                                {% for item in location_list %}
+                                    <form class="form-inline" action="{% url 'show' %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="location_list" value="{{ item }}" type="hidden"/>
+                                        <div class="col-md-12">
+
+                                            <li class="list-group-item " id="{{ item }}">{{ item }}</li>
+                                        </div>
+
+                                    </form>
+                                {% endfor %}
+                            {% else %}
+                                <p>Please press the check/location button to get Locations here.</p>
+                            {% endif %}
+                        </ul>
+
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>Select the location and then press Start Scraping/Check Nearby Cities button</p>
+                        {% if location_list %}
+                            <form class="form-inline my-2 my-lg-0" action="{% url 'radius' %}" method="post">
+                                {% csrf_token %}
+                                <input name="radius_value" value="" type="hidden" id="radius_value"/>
+                                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Check Nearby Cities
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    {% endif %}
+{% endblock %}

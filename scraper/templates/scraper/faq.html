@@ -1,0 +1,62 @@
+{% extends 'scraper/bootstrap.html' %}
+
+
+{% block title %}Download Data{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <div id="accordion" style="margin-top: 2%">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                            How will I know when the scraping is completed?
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        After the web scraping is complete the number of accounts will stop increasing. If you
+                        refresh/reload the page and the scraper stops showing number fo accounts. Then you know scraping
+                        has been completed. If the <i>number of accounts</i> is still showing the there is an error and you should contact
+                        the developer.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                            How should I keep this web app secure?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Only share this web app with trusted people. Currently this website can only be accessed with
+                        only one username and password. If you are reading this you are one of the people who knows the details.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree">
+                            How can I contact the developer?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Feel free to contact me on my email attreya12@gmail.com or contact Adam the owner of this web app.
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

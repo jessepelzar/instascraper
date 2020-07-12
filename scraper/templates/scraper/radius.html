@@ -1,0 +1,70 @@
+{% extends 'scraper/bootstrap.html' %}
+
+
+{% block title %}Instagram Scraper - Status{% endblock %}
+
+{% block ajax_script %}
+
+
+    <script>
+        $(document).ready(function () {
+
+            $(".list-group .list-group-item").click(function (e) {
+                $(".list-group .list-group-item").removeClass("active");
+                $(e.target).addClass("active");
+                var list_item_value = $(e.target).attr('id');
+                $("#location").val(list_item_value);
+                $("#radius_value").val(list_item_value);
+            });
+
+        });
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="row" style="margin-top: 4%">
+
+            <div class="col-md-8">
+                {% if city_list %}
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Place Name</th>
+                            <th scope="col">Distance from {{ city_name_r }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for city,dist in city_list %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ city }}</td>
+                                <td>{{ dist }} kms</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Places within 15 mile (34km) radius
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Copy the place you want and click on Start scraping to go to Home Page</p>
+                        <a href="{% url 'scraper' %}" class="btn btn-info">Start Scraping</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock %}
