@@ -115,26 +115,39 @@ def index(request):
 
         global entry_r
         global choice_r
+        # --------------
+        multiple = False
+        # --------------
         hashtag_r = request.POST.get('hashtag')
         location_r = request.POST.get('location')
         zip_r = request.POST.get('zip')
-        if hashtag_r != "":
-            choice_r = "tag"
-            entry_r = hashtag_r
-        if zip_r != "":
-            choice_r = "zip"
-            entry_r = zip_r
-        if location_r != "":
-            choice_r = "location"
-            entry_r = location_r
+        # added here - jesse
+        # if hashtag_r != "" and zip_r != "" or location_r != "":
+        # --------------
+        if hashtag_r != "" and location_r != "":
+            multiple = True
+            choice_r = "tagAndLocation"
+            entry_r = [hashtag_r, location_r]
+            print("tag and loc")
+        # --------------
+        else:
+            if hashtag_r != "":
+                choice_r = "tag"
+                entry_r = hashtag_r
+            if zip_r != "":
+                choice_r = "zip"
+                entry_r = zip_r
+            if location_r != "":
+                choice_r = "location"
+                entry_r = location_r
 
         if request.POST.get('startscraping'):
             global row_count
             row_count = 0
-            create_text_file(entry_r)
+            create_text_file(entry_r[0] + " " + entry_r[1])
 
             global t1
-
+            
             t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r))
             t1.daemon = True
             t1.start()
@@ -150,13 +163,22 @@ def index(request):
                 return render(request, 'scraper/index.html', context)
 
         elif request.POST.get('checklocation'):
-            if choice_r != "tag":
-                location_list = get_location_list(entry_r, choice_r)
+            if choice_r != "tag" or choice_r != "tagAndLocation":
+                location_list = get_location_list(entry_r[1], choice_r)
                 context = {
                     "location_list": location_list,
-                    "entry": entry_r,
+                    "entry": entry_r[1],
                 }
                 return render(request, 'scraper/index.html', context)
+
+        #  elif request.POST.get('checklocation'):
+        #     if choice_r == "tagAndLocation":
+        #         location_list = get_location_and_tag_list(entry_r[0], entry_r[1], choice_r)
+        #         context = {
+        #             "location_list": location_list,
+        #             "entry": entry_r,
+        #         }
+        #         return render(request, 'scraper/index.html', context)
 
         else:
             pass
@@ -342,13 +364,17 @@ def get_location_name(entry_now):
 
 
 def start_scraping(entry, choice):
+    print(choice)
     global workbook_name
-    workbook_name = entry + ".xlsx"
+    workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
     global row_count
     row_count = 0
     end_cursor = ''
     location_id = None
     abort = False
+    if choice is 'tagAndLocation':
+        print("tag and location chosen")
+        return
     if choice is 'tag':
         print("tag chosen")
     if choice is "location":
