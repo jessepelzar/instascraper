@@ -349,6 +349,8 @@ def start_scraping(entry, choice):
     end_cursor = ''
     location_id = None
     abort = False
+    if choice is 'tag':
+        print("tag chosen")
     if choice is "location":
         location_id = get_location_id(entry)
     if choice is 'zip':
