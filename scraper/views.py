@@ -240,7 +240,7 @@ cookie_value = [
 chosen_cookie = ''
 
 
-def get_user(user_id, user_info, usrcount=0):
+def get_user(user_id, user_info):
     global PROXY, PROXIES
     user_url = "https://i.instagram.com/api/v1/users/" + user_id + "/info/"
     print(user_url)
@@ -310,10 +310,7 @@ def get_user(user_id, user_info, usrcount=0):
         print("not found location")
     
     if "pregnancy" in user_url_data and "new york" in user_url_data:
-        usrcount+=1
-        print("USER COUNT: " + usrcount)
-    else:
-        print("USER COUNT: " + usrcount)
+        return True
 
 
     follower_count = user_data['user']['follower_count']
