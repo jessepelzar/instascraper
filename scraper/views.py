@@ -283,18 +283,18 @@ def get_user(user_id, user_info):
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     
     # response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-    while switch_count < 5:
-        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+    # while switch_count < 5:
+    #     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
 
-        try: 
-            response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
-                                timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-            break
-        except:
-            PROXY = next(PROXIES)
-            switch_count+=1
-    if switch_count == 5:
-        return user_info
+    #     try: 
+    #         response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
+    #                             timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+    #         break
+    #     except:
+    #         PROXY = next(PROXIES)
+    #         switch_count+=1
+    # if switch_count == 5:
+    #     return user_info
         # print(cookie)
 
     # user_url_data_dumps = json.dumps(response_data.text)
@@ -307,7 +307,8 @@ def get_user(user_id, user_info):
     # testurl = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
     # info = json.loads(response_data)
     # info = response_data.json()
-    print(response_data.text)
+    response_data = requests.get(user_url_data)
+    print(response_data.json())
 
     # print(response_data.json())
     # jsonurl = urlopen(user_url_data)
