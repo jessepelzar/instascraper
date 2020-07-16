@@ -292,10 +292,6 @@ def get_user(user_id, user_info):
 
     
     user_url_data = json.loads(response_data.text)
-    if "pregnancy" in user_url_data:
-        print("found")
-    else:
-        print("not found")
     # -------------------------
     # -------------------------
     print("----------------------------------")
@@ -303,6 +299,13 @@ def get_user(user_id, user_info):
     print("----------------------------------")
     # -------------------------
     # -------------------------
+    if "pregnancy" in user_url_data:
+        print("found")
+    else:
+        print("not found")
+    
+
+
     follower_count = user_data['user']['follower_count']
     try:
         public_email = user_data['user']['public_email']
