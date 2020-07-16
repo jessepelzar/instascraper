@@ -260,6 +260,11 @@ def get_user(user_id, user_info):
         return user_info
         # print(cookie)
     user_data = json.loads(response.text)
+    # -------------------------
+    # -------------------------
+    print(user_data)
+    # -------------------------
+    # -------------------------
     username = user_data['user']['username']
     follower_count = user_data['user']['follower_count']
     try:
