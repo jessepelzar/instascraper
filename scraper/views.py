@@ -304,7 +304,8 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    print(user_url_data_loads)
+    print(response_data)
+    
     print("location:")
     # print(user_url_data_loads['location'])
     print("----------------------------------")
