@@ -366,7 +366,10 @@ def get_location_name(entry_now):
 def start_scraping(entry, choice):
     print(choice)
     global workbook_name
-    workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
+    if choice is 'tagAndLocation':
+        workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
+    else:
+        workbook_name = entry + ".xlsx"
     global row_count
     row_count = 0
     end_cursor = ''
