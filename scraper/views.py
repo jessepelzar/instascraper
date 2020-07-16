@@ -240,7 +240,7 @@ cookie_value = [
 chosen_cookie = ''
 
 
-def get_user(user_id, user_info):
+def get_user(user_id, user_info, usrcount=0):
     global PROXY, PROXIES
     user_url = "https://i.instagram.com/api/v1/users/" + user_id + "/info/"
     print(user_url)
