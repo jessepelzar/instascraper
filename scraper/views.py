@@ -291,7 +291,7 @@ def get_user(user_id, user_info):
         # print(cookie)
 
     
-    user_url_data = json.loads(response_data.text)
+    user_url_data = json.dumps(response_data.text)
     # -------------------------
     # -------------------------
     print("----------------------------------")
