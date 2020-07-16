@@ -281,8 +281,7 @@ def get_user(user_id, user_info):
     username = user_data['user']['username']
 
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
-    source = requests.get(user_url_data).json()
-    print(source)
+    
     # response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
     while switch_count < 5:
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
@@ -306,7 +305,8 @@ def get_user(user_id, user_info):
     # -------------------------
     print("----------------------------------")
     # testurl = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-    
+    info = json.loads(response_data.decode("utf-8"))
+    print(info)
 
     # print(response_data.json())
     # jsonurl = urlopen(user_url_data)
