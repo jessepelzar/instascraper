@@ -263,7 +263,7 @@ def get_user(user_id, user_info):
     user_data_string = json.dumps(response.text)
     # -------------------------
     # -------------------------
-    # print(user_data)
+    print(user_data_string)
     if "pregnancy" in user_data_string:
         print("found")
     else:
