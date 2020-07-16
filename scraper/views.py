@@ -7,6 +7,7 @@ import threading
 import time
 from itertools import cycle
 import dload
+import re
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
@@ -308,8 +309,12 @@ def get_user(user_id, user_info):
     # info = json.loads(response_data)
     # info = response_data.json()
     print(user_url_data)
-    response_data = requests.get(user_url_data)
-    print(json.dumps(response_data.text))
+    # response_data = requests.get(user_url_data)
+    resp = requests.get(user_url_data)
+    resp_parsed = re.sub(r'^jsonp\d+\(|\)\s+$', '', resp.text)
+    data = json.loads(resp_parsed)
+    print(data)
+    # print(json.dumps(response_data.text))
     # print(response_data.json())
 
     # print(response_data.json())
