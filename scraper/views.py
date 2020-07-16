@@ -304,7 +304,7 @@ def get_user(user_id, user_info):
     else:
         print("not found tag")
 
-    if "new york" in user_url_data:
+    if "New York" in user_url_data:
         print("found location")
     else:
         print("not found location")
