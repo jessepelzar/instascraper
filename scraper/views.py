@@ -292,25 +292,31 @@ def get_user(user_id, user_info):
 
     
     user_url_data = json.dumps(response_data.text)
+    user_url_data_l = user_url_data.lower()
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    print(user_url_data)
+    print(user_url_data_l)
     print("----------------------------------")
     # -------------------------
     # -------------------------
-    if "pregnancy" in user_url_data:
+    if "pregnancy" in user_url_data_l:
         print("found tag")
     else:
         print("not found tag")
 
-    if "New York" in user_url_data:
+    if "new york" in user_url_data_l:
         print("found location")
     else:
         print("not found location")
+
+    if user_url_data_l.find("new york") != -1:
+        print("found location2")
+    else:
+        print("not found location2")
     
-    if "pregnancy" in user_url_data and "new york" in user_url_data:
-        return True
+    # if "pregnancy" in user_url_data and "new york" in user_url_data:
+    #     return True
 
 
     follower_count = user_data['user']['follower_count']
