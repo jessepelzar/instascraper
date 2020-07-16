@@ -311,9 +311,9 @@ def get_user(user_id, user_info):
     
     if "pregnancy" in user_url_data and "new york" in user_url_data:
         usrcount+=1
-        print("USER COUNT: ", usrcount)
+        print("USER COUNT: " + usrcount)
     else:
-        print("USER COUNT: ", usrcount)
+        print("USER COUNT: " + usrcount)
 
 
     follower_count = user_data['user']['follower_count']
