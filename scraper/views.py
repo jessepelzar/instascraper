@@ -261,6 +261,8 @@ def get_user(user_id, user_info):
         # print(cookie)
     user_data = json.loads(response.text)
     user_data_string = json.dumps(response.text)
+
+    
     # -------------------------
     # -------------------------
     print(user_data)
@@ -271,6 +273,10 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     username = user_data['user']['username']
+
+    user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+    print(user_url_data)
+
     follower_count = user_data['user']['follower_count']
     try:
         public_email = user_data['user']['public_email']
