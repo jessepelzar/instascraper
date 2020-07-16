@@ -144,30 +144,47 @@ def index(request):
         if request.POST.get('startscraping'):
             global row_count
             row_count = 0
-            create_text_file(entry_r[0] + " " + entry_r[1])
-
+            if multiple is True:
+                create_text_file(entry_r[0] + "_" + entry_r[1])
+            else:
+                create_text_file(entry_r)
             global t1
             
             t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r))
             t1.daemon = True
             t1.start()
 
-            if entry_r != "":
-                print(row_count)
-                context = {
-                    "row_count": row_count,
-                    "entry": entry_r,
-                    "running": "True",
-                }
-
+            if multiple is True:
+                if entry_r != "":
+                    print(row_count)
+                    context = {
+                        "row_count": row_count,
+                        "entry0": entry_r[0],
+                        "entry1": entry_r[1],
+                        "running": "True",
+                    }
+            else:
+                if entry_r != "":
+                    print(row_count)
+                    context = {
+                        "row_count": row_count,
+                        "entry": entry_r,
+                        "running": "True",
+                    }
                 return render(request, 'scraper/index.html', context)
 
         elif request.POST.get('checklocation'):
-            if choice_r != "tag" or choice_r != "tagAndLocation":
+            if multiple is True:
                 location_list = get_location_list(entry_r[1], choice_r)
                 context = {
                     "location_list": location_list,
                     "entry": entry_r[1],
+                }
+            else:
+                location_list = get_location_list(entry_r, choice_r)
+                context = {
+                    "location_list": location_list,
+                    "entry": entry_r,
                 }
                 return render(request, 'scraper/index.html', context)
 
