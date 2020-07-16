@@ -260,10 +260,11 @@ def get_user(user_id, user_info):
         return user_info
         # print(cookie)
     user_data = json.loads(response.text)
+    user_data_string = json.loads(response.text)
     # -------------------------
     # -------------------------
     # print(user_data)
-    if "pregnancy" in response.text:
+    if "pregnancy" in user_data_string:
         print("found")
     else:
         print("not found")
