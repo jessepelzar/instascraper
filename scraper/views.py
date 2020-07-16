@@ -275,8 +275,13 @@ def get_user(user_id, user_info):
     username = user_data['user']['username']
 
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+    # -------------------------
+    # -------------------------
+    print("----------------------------------")
     print(user_url_data)
-
+    print("----------------------------------")
+    # -------------------------
+    # -------------------------
     follower_count = user_data['user']['follower_count']
     try:
         public_email = user_data['user']['public_email']
