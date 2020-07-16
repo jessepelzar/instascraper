@@ -265,16 +265,17 @@ def get_user(user_id, user_info):
     
     # -------------------------
     # -------------------------
-    print(user_data_string)
-    if "pregnancy" in user_data_string:
-        print("found")
-    else:
-        print("not found")
+    print("data user str:")
+    # print(user_data_string)
+    # if "pregnancy" in user_data_string:
+    #     print("found")
+    # else:
+    #     print("not found")
 
-    if "New York" in user_data_string:
-        print("found ny")
-    else:
-        print("not found")
+    # if "New York" in user_data_string:
+    #     print("found ny")
+    # else:
+    #     print("not found")
     # -------------------------
     # -------------------------
     username = user_data['user']['username']
@@ -299,11 +300,13 @@ def get_user(user_id, user_info):
     user_url_data_dumps = json.dumps(response_data.text)
     # user_url_data_loads = json.loads(response_data.text)
     # user_url_data_l_loads = user_url_data_loads.lower()
-    user_url_data_l_dumps = user_url_data_dumps.lower()
+    # user_url_data_l_dumps = user_url_data_dumps.lower()
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    # print(user_url_data_dumps)
+    print(user_url_data_dumps)
+    print("location:")
+    print(user_url_data_dumps['location'])
     print("----------------------------------")
     # -------------------------
     # -------------------------
