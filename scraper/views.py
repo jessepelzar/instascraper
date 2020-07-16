@@ -262,9 +262,11 @@ def get_user(user_id, user_info):
     user_data = json.loads(response.text)
     # -------------------------
     # -------------------------
-    print(user_data)
+    # print(user_data)
     if "pregnancy" in response.text:
         print("found")
+    else:
+        print("not found")
     # -------------------------
     # -------------------------
     username = user_data['user']['username']
