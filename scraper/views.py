@@ -6,7 +6,7 @@ import random
 import threading
 import time
 from itertools import cycle
-
+import dload
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
@@ -307,8 +307,12 @@ def get_user(user_id, user_info):
     
 
     # print(response_data.json())
-    jsonurl = urlopen(user_url_data)
-    text = json.loads(jsonurl.read())
+    # jsonurl = urlopen(user_url_data)
+    # text = json.loads(jsonurl.read())
+
+    
+    j = dload.json(user_url_data)
+
     print("location:")
     # print(user_url_data_loads['location'])
     print("----------------------------------")
