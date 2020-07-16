@@ -281,22 +281,22 @@ def get_user(user_id, user_info):
     username = user_data['user']['username']
 
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+    response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value)}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+    # while switch_count < 5:
+    #     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
 
-    while switch_count < 5:
-        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+    #     try: 
+    #         response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
+    #                             timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+    #         break
+    #     except:
+    #         PROXY = next(PROXIES)
+    #         switch_count+=1
+    # if switch_count == 5:
+    #     return user_info
+    #     # print(cookie)
 
-        try: 
-            response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
-                                timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-            break
-        except:
-            PROXY = next(PROXIES)
-            switch_count+=1
-    if switch_count == 5:
-        return user_info
-        # print(cookie)
-
-    
+    print(response_data)
     user_url_data_dumps = json.dumps(response_data.text)
     user_url_data_loads = json.loads(response_data.text)
     # user_url_data_l_loads = user_url_data_loads.lower()
@@ -304,9 +304,9 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    print(user_url_data_dumps)
+    # print(user_url_data_dumps)
     print("location:")
-    print(user_url_data_loads['location'])
+    # print(user_url_data_loads['location'])
     print("----------------------------------")
     # -------------------------
     # -------------------------
