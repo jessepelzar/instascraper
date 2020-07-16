@@ -442,7 +442,7 @@ def start_scraping(entry, choice):
                         start_time2 = time.time()
                         print("test 11")
                         if len(info) != 0:
-                            test("22")
+                            print("22")
                             move_to_excel(info, location, entry)
                             row_count += 1
                             print(row_count)
