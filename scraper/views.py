@@ -265,16 +265,37 @@ def get_user(user_id, user_info):
     
     # -------------------------
     # -------------------------
-    print(user_data)
-    if "pregnancy" in str(user_data):
-        print("found")
-    else:
-        print("not found")
+    # print(user_data)
+    # if "pregnancy" in str(user_data):
+    #     print("found")
+    # else:
+    #     print("not found")
     # -------------------------
     # -------------------------
     username = user_data['user']['username']
 
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+
+    while switch_count < 5:
+        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+
+        try: 
+            response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
+                                timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+            break
+        except:
+            PROXY = next(PROXIES)
+            switch_count+=1
+    if switch_count == 5:
+        return user_info
+        # print(cookie)
+
+    if "pregnancy" in str(user_data):
+        print("found")
+    else:
+        print("not found")
+    user_url_data = json.loads(response_data.text)
+    
     # -------------------------
     # -------------------------
     print("----------------------------------")
