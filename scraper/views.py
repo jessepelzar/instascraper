@@ -440,7 +440,9 @@ def start_scraping(entry, choice):
 
                         print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
                         start_time2 = time.time()
+                        print("test 11")
                         if len(info) != 0:
+                            test("22")
                             move_to_excel(info, location, entry)
                             row_count += 1
                             print(row_count)
