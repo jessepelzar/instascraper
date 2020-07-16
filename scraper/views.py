@@ -291,8 +291,10 @@ def get_user(user_id, user_info):
         # print(cookie)
 
     
-    user_url_data = json.dumps(response_data.text)
-    user_url_data_l = user_url_data.lower()
+    user_url_data_dumps = json.dumps(response_data.text)
+    user_url_data_loads = json.dumps(response_data.text)
+    user_url_data_l_loads = user_url_data_loads.lower()
+    user_url_data_l_dumps = user_url_data_loads.lower()
     # -------------------------
     # -------------------------
     print("----------------------------------")
@@ -300,17 +302,17 @@ def get_user(user_id, user_info):
     print("----------------------------------")
     # -------------------------
     # -------------------------
-    if "pregnancy" in user_url_data_l:
+    if "pregnancy" in user_url_data_l_dumps:
         print("found tag")
     else:
         print("not found tag")
 
-    if "new york" in user_url_data_l:
+    if "new york" in user_url_data_l_loads:
         print("found location")
     else:
         print("not found location")
 
-    if user_url_data_l.find("new york") != -1:
+    if user_url_data_l_loads.find("new york") != -1:
         print("found location2")
     else:
         print("not found location2")
