@@ -309,7 +309,8 @@ def get_user(user_id, user_info):
     # info = response_data.json()
     print(user_url_data)
     response_data = requests.get(user_url_data)
-    print(response_data.json())
+    print(json.loads(response_data.text))
+    # print(response_data.json())
 
     # print(response_data.json())
     # jsonurl = urlopen(user_url_data)
