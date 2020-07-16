@@ -286,7 +286,7 @@ def get_user(user_id, user_info):
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
 
         try: 
-            response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
+            response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value)},
                                 timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
             break
         except:
@@ -296,7 +296,6 @@ def get_user(user_id, user_info):
         return user_info
     #     # print(cookie)
 
-    print(response_data)
     # user_url_data_dumps = json.dumps(response_data.text)
     # user_url_data_loads = json.loads(response_data.text)
     # user_url_data_l_loads = user_url_data_loads.lower()
