@@ -290,12 +290,12 @@ def get_user(user_id, user_info):
         return user_info
         # print(cookie)
 
-    if "pregnancy" in str(user_data):
+    
+    user_url_data = json.loads(response_data.text)
+    if "pregnancy" in user_url_data:
         print("found")
     else:
         print("not found")
-    user_url_data = json.loads(response_data.text)
-    
     # -------------------------
     # -------------------------
     print("----------------------------------")
