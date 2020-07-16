@@ -260,7 +260,7 @@ def get_user(user_id, user_info):
         return user_info
         # print(cookie)
     user_data = json.loads(response.text)
-    user_data_string = json.loads(response.text)
+    user_data_string = json.dumps(response.text)
     # -------------------------
     # -------------------------
     # print(user_data)
