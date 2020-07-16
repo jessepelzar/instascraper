@@ -303,7 +303,7 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    print(json.dumps(response_data.text))
+    print(json.loads(response_data))
 
     print("location:")
     # print(user_url_data_loads['location'])
