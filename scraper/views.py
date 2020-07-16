@@ -263,6 +263,8 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     print(user_data)
+    if "pregnancy" in user_data:
+        print("found")
     # -------------------------
     # -------------------------
     username = user_data['user']['username']
