@@ -297,14 +297,14 @@ def get_user(user_id, user_info):
     #     # print(cookie)
 
  
-    user_url_data_dumps = json.dumps(response_data.text)
+    # user_url_data_dumps = json.dumps(response_data.text)
     user_url_data_loads = json.loads(response_data.text)
     # user_url_data_l_loads = user_url_data_loads.lower()
     # user_url_data_l_dumps = user_url_data_dumps.lower()
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    print(user_url_data_dumps)
+    print(user_url_data_loads)
     print("location:")
     # print(user_url_data_loads['location'])
     print("----------------------------------")
