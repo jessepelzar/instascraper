@@ -292,13 +292,13 @@ def get_user(user_id, user_info):
 
     
     user_url_data_dumps = json.dumps(response_data.text)
-    user_url_data_loads = json.loads(response_data.text)
-    user_url_data_l_loads = user_url_data_loads.lower()
+    # user_url_data_loads = json.loads(response_data.text)
+    # user_url_data_l_loads = user_url_data_loads.lower()
     user_url_data_l_dumps = user_url_data_dumps.lower()
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    print(user_url_data_l_loads)
+    print(user_url_data_l_dumps)
     print("----------------------------------")
     # -------------------------
     # -------------------------
@@ -307,12 +307,12 @@ def get_user(user_id, user_info):
     else:
         print("not found tag")
 
-    if "new york" in user_url_data_l_loads:
+    if "new york" in user_url_data_l_dumps:
         print("found location")
     else:
         print("not found location")
 
-    if user_url_data_l_loads.find("new york") != -1:
+    if user_url_data_l_dumps.find("new york") != -1:
         print("found location2")
     else:
         print("not found location2")
