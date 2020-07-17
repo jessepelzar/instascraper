@@ -287,7 +287,7 @@ def get_user(user_id, user_info):
     driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
     # driver = webdriver.Chrome(chrome_options=options)
     d = driver.get(user_url_data)
-    driver.implicitly_wait(4)
+    driver.implicitly_wait(10)
     r = driver.find_element_by_tag_name('pre').text
     print(r)
     
