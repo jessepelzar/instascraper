@@ -285,7 +285,8 @@ def get_user(user_id, user_info):
     options = webdriver.ChromeOptions()
     options.add_argument('--no-sandbox')
 
-    driver = webdriver.Chrome(chrome_options=options, executable_path='/usr/local/bin/chromedriver')       
+    # driver = webdriver.Chrome(chrome_options=options, executable_path='/usr/local/bin/chromedriver')       
+    driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')       
     d = driver.get(user_url_data)
     driver.implicitly_wait(10)
     r = driver.find_element_by_tag_name('pre').text
