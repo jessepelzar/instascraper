@@ -16,7 +16,8 @@ import re
 from pyvirtualdisplay import Display
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-
+from selenium.webdriver.common.keys import Keys  
+from selenium.webdriver.chrome.options import Options 
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
@@ -279,11 +280,19 @@ def get_user(user_id, user_info):
     username = user_data['user']['username']
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     
+
+
+
+
     display = Display(visible=0, size=(800, 600))
     display.start()
 
-    options = webdriver.ChromeOptions()
-    options.add_argument('--no-sandbox')
+
+    chrome_options = Options()  #2
+    chrome_options.add_argument('--headless') #2
+    driver = webdriver.Chrome(executable_path=os.path.abspath('chromedriver'),   chrome_options=chrome_options) #2 
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('--no-sandbox')
 
     # driver = webdriver.Chrome(chrome_options=options, executable_path='/usr/local/bin/chromedriver')       
     driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')       
@@ -292,6 +301,11 @@ def get_user(user_id, user_info):
     r = driver.find_element_by_tag_name('pre').text
     print(r)
     
+
+
+
+
+
     # -------------------------
     # -------------------------
     print("----------------------------------")
