@@ -9,6 +9,13 @@ from itertools import cycle
 import dload
 import re
 
+# pip3 install selenium
+# pip3 install chromedriver
+# pip3 install webdriver-manager
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
+
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -267,62 +274,19 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     print("data user str:")
-    # print(user_data_string)
-    # if "pregnancy" in user_data_string:
-    #     print("found")
-    # else:
-    #     print("not found")
-
-    # if "New York" in user_data_string:
-    #     print("found ny")
-    # else:
-    #     print("not found")
-    # -------------------------
-    # -------------------------
     username = user_data['user']['username']
-
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     
-    # response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-    # while switch_count < 5:
-    #     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-
-    #     try: 
-    #         response_data = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
-    #                             timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-    #         break
-    #     except:
-    #         PROXY = next(PROXIES)
-    #         switch_count+=1
-    # if switch_count == 5:
-    #     return user_info
-        # print(cookie)
-
-    # user_url_data_dumps = json.dumps(response_data.text)
-    # user_url_data_loads = json.loads(response_data.text)
-    # user_url_data_l_loads = user_url_data_loads.lower()
-    # user_url_data_l_dumps = user_url_data_dumps.lower()
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    d = driver.get(user_url_data)
+    driver.implicitly_wait(4)
+    r = driver.find_element_by_tag_name('pre').text
+    print(r)
+    
     # -------------------------
     # -------------------------
     print("----------------------------------")
-    # testurl = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-    # info = json.loads(response_data)
-    # info = response_data.json()
-    print(user_url_data)
-    # response_data = requests.get(user_url_data)
-    resp = requests.get(user_url_data)
-    resp_parsed = re.sub(r'^jsonp\d+\(|\)\s+$', '', resp.text)
-    data = json.loads(resp_parsed)
-    print(data)
-    # print(json.dumps(response_data.text))
-    # print(response_data.json())
-
-    # print(response_data.json())
-    # jsonurl = urlopen(user_url_data)
-    # text = json.loads(jsonurl.read())
     
-    
-    # j = dload.json(user_url_data)
 
     print("location:")
     # print(user_url_data_loads['location'])
