@@ -12,6 +12,8 @@ import re
 # pip3 install selenium
 # pip3 install chromedriver
 # pip3 install webdriver-manager
+#  pip3 install pyvirtualdisplay
+from pyvirtualdisplay import Display
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -277,7 +279,13 @@ def get_user(user_id, user_info):
     username = user_data['user']['username']
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    display = Display(visible=0, size=(800, 600))
+    display.start()
+    options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')
+    
+    # driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome(chrome_options=options)
     d = driver.get(user_url_data)
     driver.implicitly_wait(4)
     r = driver.find_element_by_tag_name('pre').text
