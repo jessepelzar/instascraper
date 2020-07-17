@@ -290,7 +290,9 @@ def get_user(user_id, user_info):
 
     chrome_options = Options()  #2
     chrome_options.add_argument('--headless') #2
-    driver = webdriver.Chrome(executable_path=os.path.abspath('chromedriver'),   chrome_options=chrome_options) #2 
+    # driver = webdriver.Chrome(executable_path=os.path.abspath('chromedriver'),   chrome_options=chrome_options) #2 
+    driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver',   chrome_options=chrome_options) #2 
+
     # options = webdriver.ChromeOptions()
     # options.add_argument('--no-sandbox')
 
