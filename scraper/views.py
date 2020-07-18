@@ -286,8 +286,12 @@ def get_user(user_id, user_info):
     driver.get(user_url_data)
     WebDriverWait(driver, 10)
     driver.set_page_load_timeout(20)
+
+
+    if "pregnancy" in driver.page_source:
+        print("preg found")
     driver.maximize_window()
-    r = driver.find_element_by_tag_name('pre').text
+    r = driver.find_element_by_tag_name('html').text
     print(r)
 
     # display = Display(visible=0, size=(800, 600))
