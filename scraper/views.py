@@ -281,7 +281,7 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     print("data user str:")
-    print(user_data)
+    # print(user_data)
 
 
     url = "https://i.instagram.com/api/v1/tags/pregnancy/media/recent?/client_id=" + user_id + "/info/"
