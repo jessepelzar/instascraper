@@ -18,6 +18,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys  
 from selenium.webdriver.chrome.options import Options 
+from selenium.webdriver.support.ui import WebDriverWait
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
@@ -283,7 +284,9 @@ def get_user(user_id, user_info):
     driver = webdriver.Firefox()
     driver.implicitly_wait(10)
     driver.get(user_url_data)
+    WebDriverWait(driver, 10)
     driver.set_page_load_timeout(20)
+    driver.maximize_window()
     r = driver.find_element_by_tag_name('pre').text
     print(r)
 
