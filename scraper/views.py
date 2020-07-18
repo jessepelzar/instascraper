@@ -287,7 +287,7 @@ def get_user(user_id, user_info):
     url = "https://i.instagram.com/api/v1/tags/pregnancy/media/recent?/client_id=" + user_id + "/info/"
     
     response2 = requests.get(url, timeout=10)
-    data = json.loads(response2.text)
+    data = json.dumps(response2.text)
     print(data)
     # username = user_data['user']['username']
     # user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
