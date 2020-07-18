@@ -281,8 +281,11 @@ def get_user(user_id, user_info):
     # -------------------------
     # -------------------------
     print("data user str:")
-    username = user_data['user']['username']
-    user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+    print(user_data)
+    # username = user_data['user']['username']
+    # user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+    # print(user_url_data)
+
     '''
     driver = webdriver.Firefox()
     driver.implicitly_wait(10)
@@ -300,21 +303,21 @@ def get_user(user_id, user_info):
     driver.quit()
     '''
 
-    driver = webdriver.Firefox()
-    driver.get(user_url_data)
-    driver.implicitly_wait(4)
-    delay = 15 # seconds
-    try:
-        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.TAG_NAME, 'pre')))
-        print ("Page is ready!")
-    except TimeoutException:
-        print ("Loading took too much time!")
+    # driver = webdriver.Firefox()
+    # driver.get(user_url_data)
+    # driver.implicitly_wait(4)
+    # delay = 15 # seconds
+    # try:
+    #     myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.TAG_NAME, 'pre')))
+    #     print ("Page is ready!")
+    # except TimeoutException:
+    #     print ("Loading took too much time!")
 
-    # if "pregnancy" in driver.page_source:
-    #     print("preg found")
-    # driver.maximize_window()
-    r = driver.find_element_by_tag_name('pre').text
-    print(r)
+    # # if "pregnancy" in driver.page_source:
+    # #     print("preg found")
+    # # driver.maximize_window()
+    # r = driver.find_element_by_tag_name('pre').text
+    # print(r)
 
     # display = Display(visible=0, size=(800, 600))
     # display.start()
