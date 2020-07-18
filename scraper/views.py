@@ -288,7 +288,7 @@ def get_user(user_id, user_info):
     
     response2 = requests.get(url, timeout=10)
     data = json.dumps(response2.text)
-    print(data)
+    print(response2.json())
     # username = user_data['user']['username']
     # user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     # print(user_url_data)
