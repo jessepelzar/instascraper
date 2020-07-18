@@ -304,7 +304,7 @@ def get_user(user_id, user_info):
     driver.get(user_url_data)
     delay = 3 # seconds
     try:
-        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.TAG, 'pre')))
+        myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.TAG_NAME, 'pre')))
         print ("Page is ready!")
     except TimeoutException:
         print ("Loading took too much time!")
