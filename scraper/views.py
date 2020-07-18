@@ -291,7 +291,7 @@ def get_user(user_id, user_info):
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
     # print all of the page source that was loaded
-    print driver.page_source.encode("utf-8")
+    print(driver.page_source.encode("utf-8"))
 
     # quit and close browser
     driver.quit()
