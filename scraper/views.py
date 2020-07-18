@@ -287,12 +287,20 @@ def get_user(user_id, user_info):
     WebDriverWait(driver, 10)
     driver.set_page_load_timeout(20)
 
+    for _ in range(100):
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-    if "pregnancy" in driver.page_source:
-        print("preg found")
-    driver.maximize_window()
-    r = driver.find_element_by_tag_name('html').text
-    print(r)
+    # print all of the page source that was loaded
+    print driver.page_source.encode("utf-8")
+
+    # quit and close browser
+    driver.quit()
+    
+    # if "pregnancy" in driver.page_source:
+    #     print("preg found")
+    # driver.maximize_window()
+    # r = driver.find_element_by_tag_name('pre').text
+    # print(r)
 
     # display = Display(visible=0, size=(800, 600))
     # display.start()
