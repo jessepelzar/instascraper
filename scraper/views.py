@@ -288,7 +288,7 @@ def get_user(user_id, user_info):
     driver.set_page_load_timeout(20)
 
     for _ in range(100):
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
     # print all of the page source that was loaded
     print driver.page_source.encode("utf-8")
