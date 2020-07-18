@@ -280,29 +280,25 @@ def get_user(user_id, user_info):
     username = user_data['user']['username']
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     
-
-
-
-
-    display = Display(visible=0, size=(800, 600))
-    display.start()
-
-
-    chrome_options = Options()  #2
-    chrome_options.add_argument('--headless') #2
-    # driver = webdriver.Chrome(executable_path=os.path.abspath('chromedriver'),   chrome_options=chrome_options) #2 
-    # driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver',   chrome_options=chrome_options) #2 
-    driver = webdriver.Chrome('/usr/local/bin/chromedriver') #2 
-
-    # options = webdriver.ChromeOptions()
-    # options.add_argument('--no-sandbox')
-
-    # driver = webdriver.Chrome(chrome_options=options, executable_path='/usr/local/bin/chromedriver')       
-    # driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')       
-    d = driver.get(user_url_data)
+    driver = webdriver.Firefox()
     driver.implicitly_wait(10)
+    driver.get(user_url_data)
     r = driver.find_element_by_tag_name('pre').text
     print(r)
+
+    # display = Display(visible=0, size=(800, 600))
+    # display.start()
+    # chrome_options = Options()  #3
+    # # chrome_options.add_argument('--headless') #3
+    # options.add_argument('--headless')
+    # options.add_argument('--no-sandbox')
+    # # driver = webdriver.Chrome(executable_path=os.path.abspath('chromedriver'),   chrome_options=chrome_options) #2 
+    # # driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver',   chrome_options=chrome_options) #2 
+    # driver = webdriver.Chrome('/usr/local/bin/chromedriver') #3     
+    # d = driver.get(user_url_data) #3  
+    # driver.implicitly_wait(10) #3  
+    # r = driver.find_element_by_tag_name('pre').text #3  
+    # print(r) #3  
     
 
 
