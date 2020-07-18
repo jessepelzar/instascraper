@@ -305,9 +305,9 @@ def get_user(user_id, user_info):
     delay = 3 # seconds
     try:
         myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.TAG, 'pre')))
-        print "Page is ready!"
+        print ("Page is ready!")
     except TimeoutException:
-        print "Loading took too much time!"
+        print ("Loading took too much time!")
 
     # if "pregnancy" in driver.page_source:
     #     print("preg found")
