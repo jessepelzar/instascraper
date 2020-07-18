@@ -281,10 +281,9 @@ def get_user(user_id, user_info):
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     
     driver = webdriver.Firefox()
-    
-    driver.get(user_url_data)
     driver.implicitly_wait(10)
-    r = driver.find_element_by_tag_name('pre').text
+    driver.get(user_url_data)
+    r = driver.find_element_by_tag_name('body')[0].text
     print(r)
 
     # display = Display(visible=0, size=(800, 600))
