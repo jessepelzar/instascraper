@@ -302,7 +302,8 @@ def get_user(user_id, user_info):
 
     driver = webdriver.Firefox()
     driver.get(user_url_data)
-    delay = 3 # seconds
+    driver.implicitly_wait(4)
+    delay = 15 # seconds
     try:
         myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.TAG_NAME, 'pre')))
         print ("Page is ready!")
