@@ -283,7 +283,8 @@ def get_user(user_id, user_info):
     driver = webdriver.Firefox()
     driver.implicitly_wait(10)
     driver.get(user_url_data)
-    r = driver.find_element_by_tag_name('body').text
+    driver.set_page_load_timeout(20)
+    r = driver.find_element_by_tag_name('pre').text
     print(r)
 
     # display = Display(visible=0, size=(800, 600))
