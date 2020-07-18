@@ -283,7 +283,7 @@ def get_user(user_id, user_info):
     driver = webdriver.Firefox()
     driver.implicitly_wait(10)
     driver.get(user_url_data)
-    r = driver.find_element_by_tag_name('body')[0].text
+    r = driver.find_element_by_tag_name('body').text
     print(r)
 
     # display = Display(visible=0, size=(800, 600))
