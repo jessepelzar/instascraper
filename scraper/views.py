@@ -19,6 +19,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys  
 from selenium.webdriver.chrome.options import Options 
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
@@ -280,7 +283,7 @@ def get_user(user_id, user_info):
     print("data user str:")
     username = user_data['user']['username']
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
-    
+    '''
     driver = webdriver.Firefox()
     driver.implicitly_wait(10)
     driver.get(user_url_data)
@@ -295,12 +298,22 @@ def get_user(user_id, user_info):
 
     # quit and close browser
     driver.quit()
-    
+    '''
+
+    driver = webdriver.Firefox()
+    driver.get(user_url_data)
+    delay = 3 # seconds
+    try:
+        myElem = WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.TAG, 'pre')))
+        print "Page is ready!"
+    except TimeoutException:
+        print "Loading took too much time!"
+
     # if "pregnancy" in driver.page_source:
     #     print("preg found")
     # driver.maximize_window()
-    # r = driver.find_element_by_tag_name('pre').text
-    # print(r)
+    r = driver.find_element_by_tag_name('pre').text
+    print(r)
 
     # display = Display(visible=0, size=(800, 600))
     # display.start()
