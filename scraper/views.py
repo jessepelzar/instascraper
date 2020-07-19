@@ -302,6 +302,9 @@ def get_user(user_id, user_info):
     user_data_response = json.loads(data_response.text)
     print(user_data_response)
 
+    data_collected = user_data_response.lower()
+    if "new york" in data_collected:
+        return True
     # response2 = requests.get(url, timeout=10)
     # data = json.dumps(response2.text)
     # print(response2.json())
