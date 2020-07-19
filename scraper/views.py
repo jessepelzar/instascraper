@@ -278,7 +278,7 @@ def get_user(user_id, user_info):
     user_data_string = json.dumps(response.text)
 
 
-    sleep(4)
+    sleep(10)
     
     # -------------------------
     # -------------------------
@@ -286,7 +286,7 @@ def get_user(user_id, user_info):
     
     username = user_data['user']['username']
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
-
+    switch_count = 0
     while switch_count < 5:
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
         try: 
