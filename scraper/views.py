@@ -8,7 +8,7 @@ import time
 from itertools import cycle
 import dload
 import re
-
+from time import sleep
 # pip3 install selenium
 # pip3 install chromedriver
 # pip3 install webdriver-manager
@@ -277,21 +277,35 @@ def get_user(user_id, user_info):
     user_data = json.loads(response.text)
     user_data_string = json.dumps(response.text)
 
+
+    sleep(3)
     
     # -------------------------
     # -------------------------
     print("data user str:")
-    # print(user_data)
-
-
-    url = "https://i.instagram.com/api/v1/tags/pregnancy/media/recent?/client_id=" + user_id + "/info/"
     
-    response2 = requests.get(url, timeout=10)
-    data = json.dumps(response2.text)
-    print(response2.json())
-    # username = user_data['user']['username']
-    # user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
-    # print(user_url_data)
+    username = user_data['user']['username']
+    user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+
+    while switch_count < 5:
+        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+        try: 
+            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
+                                timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+            break
+        except:
+            PROXY = next(PROXIES)
+            switch_count+=1
+    if switch_count == 5:
+        return user_info
+        # print(cookie)
+    user_data_response = json.loads(data_response.text)
+    print(user_data_response)
+
+    # response2 = requests.get(url, timeout=10)
+    # data = json.dumps(response2.text)
+    # print(response2.json())
+
 
     '''
     driver = webdriver.Firefox()
