@@ -290,7 +290,6 @@ def get_user(user_id, user_info):
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
         try: 
             data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-            # data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
             break
         except:
             PROXY = next(PROXIES)
@@ -298,6 +297,7 @@ def get_user(user_id, user_info):
     if switch_count == 5:
         return user_info
         # print(cookie)
+    print(data_response.status_code)
     user_data_response = json.loads(data_response.text)
     # user_data_response_str = json.dumps(user_data_response).lower()
     print(user_data_response)
