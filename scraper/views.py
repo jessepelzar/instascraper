@@ -298,7 +298,6 @@ def get_user(user_id, user_info):
     if switch_count == 5:
         return user_info
         # print(cookie)
-    print(data_response.text)
     user_data_response = json.loads(data_response.text)
     # user_data_response_str = json.dumps(user_data_response).lower()
     print(user_data_response)
