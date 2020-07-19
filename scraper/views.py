@@ -251,6 +251,10 @@ cookie_value = [
     # 'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
 
     'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=pSG9zxxfGiKOoIBROaQ0Vjhh3G0azvYm; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=17855852863; sessionid=17855852863%3AFRDcbz6lTN6mnk%3A2',
+
+    'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=MYrMXkGnAnty2cHn9zutv66CKxWhhN6b; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=314946530; sessionid=314946530%3AyO17zHD7llrrxR%3A2',
+
+    'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=HRQOCJpHe3TBkMae1jsG52yfzRn2FFyM; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=28514517496; sessionid=28514517496%3AZjT1Qhdswi7mwH%3A1',
 ]
 
 
@@ -280,7 +284,7 @@ def get_user(user_id, user_info):
     user_data_string = json.dumps(response.text)
 
 
-    sleep(4)
+    sleep(3)
     
     # -------------------------
     # -------------------------
@@ -303,14 +307,16 @@ def get_user(user_id, user_info):
     user_data_response = json.loads(data_response.text)
     # user_data_response_str = json.dumps(user_data_response).lower()
     print(user_data_response)
-    # if "#pregnancy" in dataString:
-    #     print(True)
-    #     return
+    if "#pregnancy" in dataString:
+        print(True)
+        return
+    else:
+        print(False)
 
     # -------------------------
     # -------------------------
 
-
+    sleep(3)
 
 
 
