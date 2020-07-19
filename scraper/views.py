@@ -300,96 +300,17 @@ def get_user(user_id, user_info):
         return user_info
         # print(cookie)
     user_data_response = json.loads(data_response.text)
-    print(user_data_response)
-    print(user_data_response['location'])
-
-    # data_collected = user_data_response.lower()
-    # if "new york" in data_collected:
-    #     return True
-    # response2 = requests.get(url, timeout=10)
-    # data = json.dumps(response2.text)
-    # print(response2.json())
-
-
-    '''
-    driver = webdriver.Firefox()
-    driver.implicitly_wait(10)
-    driver.get(user_url_data)
-    WebDriverWait(driver, 10)
-    driver.set_page_load_timeout(20)
-
-    for _ in range(100):
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-    # print all of the page source that was loaded
-    print(driver.page_source.encode("utf-8"))
-
-    # quit and close browser
-    driver.quit()
-    '''
-
-    # driver = webdriver.Firefox()
-    # driver.get(user_url_data)
-    # driver.implicitly_wait(4)
-    # delay = 15 # seconds
-    # try:
-    #     myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.TAG_NAME, 'pre')))
-    #     print ("Page is ready!")
-    # except TimeoutException:
-    #     print ("Loading took too much time!")
-
-    # # if "pregnancy" in driver.page_source:
-    # #     print("preg found")
-    # # driver.maximize_window()
-    # r = driver.find_element_by_tag_name('pre').text
-    # print(r)
-
-    # display = Display(visible=0, size=(800, 600))
-    # display.start()
-    # chrome_options = Options()  #3
-    # # chrome_options.add_argument('--headless') #3
-    # options.add_argument('--headless')
-    # options.add_argument('--no-sandbox')
-    # # driver = webdriver.Chrome(executable_path=os.path.abspath('chromedriver'),   chrome_options=chrome_options) #2 
-    # # driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver',   chrome_options=chrome_options) #2 
-    # driver = webdriver.Chrome('/usr/local/bin/chromedriver') #3     
-    # d = driver.get(user_url_data) #3  
-    # driver.implicitly_wait(10) #3  
-    # r = driver.find_element_by_tag_name('pre').text #3  
-    # print(r) #3  
-    
-
-
-
-
+    user_data_response_str = json.dumps(user_data_response).lower()
+    print(user_data_response_str)
+    if "#pregnancy" in dataString:
+        print(True)
+        return
 
     # -------------------------
     # -------------------------
-    print("----------------------------------")
-    
 
-    print("location:")
-    # print(user_url_data_loads['location'])
-    print("----------------------------------")
-    # -------------------------
-    # -------------------------
-    if "pregnancy" in user_url_data_dumps:
-        print("found tag")
-    else:
-        print("not found tag")
 
-    # if "new york" in user_url_data_dumps:
-    #     print("found location")
-    # else:
-    #     print("not found location")
 
-    # if user_url_data_l_dumps.find("new york") != -1:
-    #     print("found location2")
-    # else:
-    #     print("not found location2")
-    
-    # if "pregnancy" in user_url_data and "new york" in user_url_data:
-    #     return True
 
 
     follower_count = user_data['user']['follower_count']
