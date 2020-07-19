@@ -278,7 +278,7 @@ def get_user(user_id, user_info):
     user_data_string = json.dumps(response.text)
 
 
-    sleep(3)
+    sleep(4)
     
     # -------------------------
     # -------------------------
