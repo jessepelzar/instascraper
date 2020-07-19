@@ -246,9 +246,11 @@ cookie_value = [
 
     # 'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
 
-    'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
+    # 'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
 
     # 'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
+
+    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=pSG9zxxfGiKOoIBROaQ0Vjhh3G0azvYm; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=17855852863; sessionid=17855852863%3AFRDcbz6lTN6mnk%3A2',
 ]
 
 
@@ -264,8 +266,7 @@ def get_user(user_id, user_info):
     while switch_count < 5:
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
 
-        try: 
-            # 
+        try:
             response = requests.get(user_url, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
                                 timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
             break
