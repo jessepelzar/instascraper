@@ -266,7 +266,7 @@ def get_user(user_id, user_info):
 
         try: 
             # random.choice(cookie_value)
-            response = requests.get(user_url, headers={"cookie": cookie_value[1], 'User-Agent': user_agent},
+            response = requests.get(user_url, headers={"cookie": cookie_value[2], 'User-Agent': user_agent},
                                 timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
             break
         except:
@@ -290,7 +290,7 @@ def get_user(user_id, user_info):
     while switch_count < 5:
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
         try: 
-            data_response = requests.get(user_url_data, headers={"cookie": cookie_value[1], 'User-Agent': user_agent}, timeout=10)
+            data_response = requests.get(user_url_data, headers={"cookie": cookie_value[2], 'User-Agent': user_agent}, timeout=10)
             break
         except:
             PROXY = next(PROXIES)
