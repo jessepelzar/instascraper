@@ -278,20 +278,19 @@ def get_user(user_id, user_info):
     user_data_string = json.dumps(response.text)
 
 
-    sleep(10)
+    sleep(3)
     
     # -------------------------
     # -------------------------
     print("data user str:")
-    
     username = user_data['user']['username']
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
     switch_count = 0
     while switch_count < 5:
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
         try: 
-            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
-                                timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+            # data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
             break
         except:
             PROXY = next(PROXIES)
@@ -300,11 +299,11 @@ def get_user(user_id, user_info):
         return user_info
         # print(cookie)
     user_data_response = json.loads(data_response.text)
-    user_data_response_str = json.dumps(user_data_response).lower()
-    print(user_data_response_str)
-    if "#pregnancy" in dataString:
-        print(True)
-        return
+    # user_data_response_str = json.dumps(user_data_response).lower()
+    print(user_data_response)
+    # if "#pregnancy" in dataString:
+    #     print(True)
+    #     return
 
     # -------------------------
     # -------------------------
