@@ -307,7 +307,7 @@ def get_user(user_id, user_info):
     user_data_response = json.loads(data_response.text)
     user_data_response_str = json.dumps(user_data_response).lower()
     print(user_data_response_str)
-    if "#pregnancy" in user_data_response_str:
+    if "new york" in user_data_response_str:
         print(True)
         return
     else:
