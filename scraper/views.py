@@ -136,36 +136,46 @@ def index(request):
         hashtag_r = request.POST.get('hashtag')
         location_r = request.POST.get('location')
         zip_r = request.POST.get('zip')
+        filename_r = request.POST.get('filename')
+        hashtag_list_r = request.POST.get('hashtag-list')
+        hashtag_list_r = str(hashtag_list_r)
+        hashtag_list_r = hashtag_list_r.split(',')
+        print(hashtag_list_r)
+        
+        print("number of hashtags:", len(hashtag_list_r))
+        
         # added here - jesse
         # if hashtag_r != "" and zip_r != "" or location_r != "":
         # --------------
-        if hashtag_r != "" and location_r != "":
+        if hashtag_list_r > 0 and location_r != "":
             multiple = True
             choice_r = "tagAndLocation"
-            entry_r = [hashtag_r, location_r]
+            entry_r = [hashtag_list_r, location_r]
             print("tag and loc")
         # --------------
         else:
-            if hashtag_r != "":
+            if len(hashtag_list_r) > 0:
                 choice_r = "tag"
-                entry_r = hashtag_r
+                # entry_r = hashtag_r
+                entry_r = [hashtag_list_r]
             if zip_r != "":
                 choice_r = "zip"
-                entry_r = zip_r
+                entry_r = [zip_r]
             if location_r != "":
                 choice_r = "location"
-                entry_r = location_r
+                entry_r = [location_r]
 
         if request.POST.get('startscraping'):
             global row_count
             row_count = 0
-            if multiple is True:
-                create_text_file(entry_r[0] + "_" + entry_r[1])
-            else:
-                create_text_file(entry_r)
+            create_text_file(filename_r)
+            # if multiple is True:
+            #     create_text_file(entry_r[0] + "_" + entry_r[1])
+            # else:
+            #     create_text_file(entry_r)
             global t1
             
-            t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r))
+            t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r, filename_r))
             t1.daemon = True
             t1.start()
 
@@ -174,8 +184,7 @@ def index(request):
                     print(row_count)
                     context = {
                         "row_count": row_count,
-                        "entry0": entry_r[0],
-                        "entry1": entry_r[1],
+                        "entry": entry_r[0],
                         "running": "True",
                     }
             else:
@@ -283,14 +292,16 @@ def get_user(user_id, user_info):
     user_data = json.loads(response.text)
     user_data_string = json.dumps(response.text)
 
-
+    print(user_data)
+    return
     sleep(3)
     
-    # -------------------------
-    # -------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
     print("data user str:")
     username = user_data['user']['username']
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+
     switch_count = 0
     while switch_count < 5:
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
@@ -305,13 +316,26 @@ def get_user(user_id, user_info):
         # print(cookie)
     print(data_response.status_code)
     user_data_response = json.loads(data_response.text)
-    user_data_response_str = json.dumps(user_data_response).lower()
-    print(user_data_response_str)
-    if "new york" in user_data_response_str:
-        print(True)
-        return
-    else:
-        print(False)
+
+    # username - get from api request
+    # userEmail - get from api request
+    userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
+    userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
+    # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
+    numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
+    # igURL = 'https://www.instagram.com/' + username + '/'
+    externalURL = user_data_response['graphql']['user']['external_url']
+    followers = user_data_response['graphql']['user']['edge_followed_by']['count']
+    following = user_data_response['graphql']['user']['edge_follow']['count']
+    posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
+    timestamp = posts[10]['node']['taken_at_timestamp'] # converts epoch number into date and time
+    # user_data_response_str = json.dumps(user_data_response).lower()
+    # print(user_data_response_str)
+    # if "new york" in user_data_response_str:
+    #     print(True)
+    #     return
+    # else:
+    #     print(False)
 
     # -------------------------
     # -------------------------
@@ -439,13 +463,14 @@ def get_location_name(entry_now):
     return None
 
 
-def start_scraping(entry, choice):
+def start_scraping(entry, choice, filename_r):
     print(choice)
     global workbook_name
-    if choice is 'tagAndLocation':
-        workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
-    else:
-        workbook_name = entry + ".xlsx"
+    workbook_name = filename_r + ".xlsx"
+    # if choice is 'tagAndLocation':
+    #     workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
+    # else:
+    #     workbook_name = entry + ".xlsx"
     global row_count
     row_count = 0
     end_cursor = ''
@@ -453,34 +478,33 @@ def start_scraping(entry, choice):
     abort = False
     if choice is 'tagAndLocation':
         print("tag and location chosen")
-        return
     if choice is 'tag':
         print("tag chosen")
     if choice is "location":
-        location_id = get_location_id(entry)
+        location_id = get_location_id(entry[0])
     if choice is 'zip':
-        location_name = get_location_name(entry)
+        location_name = get_location_name(entry[0])
         if location_name is None:
             abort = True
             print('Zipcode 404')
-
         if abort is False:
             location_id = get_location_id(location_name)
 
+
     if abort is False:
         for page in range(num_of_pages):
-
+            entryChosen = random.choice(entry)
             try:
                 if page == 0:
                     if choice is "tag":
-                        url = "https://www.instagram.com/explore/tags/" + entry + "/?__a=1"
+                        url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1"
 
                     else:
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1"
 
                 else:
                     if choice is "tag":
-                        url = "https://www.instagram.com/explore/tags/" + entry + "/?__a=1&max_id=" + end_cursor
+                        url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1&max_id=" + end_cursor
                     else:
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
 
@@ -522,7 +546,7 @@ def start_scraping(entry, choice):
                         print("test 11")
                         if len(info) != 0:
                             print("22")
-                            move_to_excel(info, location, entry)
+                            move_to_excel(info, location, entryChosen)
                             row_count += 1
                             print(row_count)
 

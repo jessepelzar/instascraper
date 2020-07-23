@@ -61,14 +61,75 @@
                     {% csrf_token %}
                     <label for="hashtag">Hastag: </label>
                     <input id="hashtag" class="form-control" type="text" name="hashtag">
+                    <!-- field to post data as array -->
+                    <input id="hashtag-list" class="form-control" type="text" name="hashtag-list" style="display: none;"> 
+                    <!-- <br> -->
+                    <div>
+                        <ul id="tag-list" class="list-unstyled tag-list-class"></ul>
+                    </div>
+                    <br>
+                    <script>
+                        let exportList = [];
+                        function addTag() {  
+                            
+                            let tagList = document.getElementById('tag-list');
+                            let tag = document.getElementById('hashtag').value;
+                            // check if field is empty
+                            if (tag === "") {
+                                alert("Please add a Hashtag in the Text Field")
+                                return;
+                            }
+                            // create li element with added hashtag
+                            var newlistelement = document.createElement('li');
+                            newlistelement.innerHTML = `${tag} <input type="button" style="height:3vh; width:5vw; padding:0; margin:0; font-size:1vw;" value="delete" class="btn btn-danger" onclick='deleteTag($(this.parentElement).index())'>`
+                            tagList.appendChild(newlistelement);
+
+
+                            const listItems = document.querySelectorAll('.tag-list-class li');
+                            exportList = [];
+                            for (let i = 0; i < listItems.length; i++) {
+                                exportList.push(listItems[i].textContent)
+                            }
+                            document.getElementById('hashtag-list').value = exportList;
+                            console.log(exportList);
+                            
+                            
+                        }
+                        function deleteTag(node) {
+                            // remove tag from ul and array
+                            let list = document.getElementById('tag-list');
+                            list.removeChild(list.childNodes[node]);
+                            exportList.splice(node, 1);
+
+                            // recreate ul otherwise when element 0 is deleted, it doesnt update the ul
+                            let tagList = document.getElementById('tag-list');
+                            tagList.innerHTML = "";
+                            for (let i = 0; i < exportList.length; i++) {
+                                var newlistelement = document.createElement('li');
+                                newlistelement.innerHTML = `${exportList[i]} <input type="button" style="height:3vh; width:5vw; padding:0; margin:0; font-size:1vw;" value="delete" class="btn btn-danger" onclick='deleteTag($(this.parentElement).index())'>`
+                                tagList.appendChild(newlistelement);
+                            }
+
+                            // update the array that will be sent upon post request
+                            document.getElementById('hashtag-list').value = exportList;
+                        }
+                    </script>
+                    <input type="button" id="add-hashag" class="btn btn-success" value="Add Hashtag" onclick="addTag()">
+                    
+                    <br><br>
                     <label for="location">Location: </label>
                     <input id="location" class="form-control" type="text" name="location">
+
+                    
                     <!-- added -->
                     <!-- <labe for="radiusSlider">Radius Slider:</labe> -->
                     <!-- <input id="radiusSlider" class="form-control" type="range" min=0 max=100 name="range"> -->
                     <!-- added -->
                     <label for="zip">Zip: </label>
                     <p><input id="zip" class="form-control" type="text" name="zip"></p>
+
+                    <label for="filename">File Name: </label>
+                    <p><input id="filename" class="form-control" type="text" name="filename" required></p>
                     <input type="submit" class="btn btn-info" value="Start Scraping" id="startscraping"
                            name="startscraping">
                     <input type="submit" class="btn btn-info" value="Check Location/Zip" name="checklocation">
