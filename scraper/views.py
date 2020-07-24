@@ -157,7 +157,7 @@ def index(request):
             if len(hashtag_list_r) > 0:
                 choice_r = "tag"
                 # entry_r = hashtag_r
-                entry_r = [hashtag_list_r]
+                entry_r = hashtag_list_r
             if zip_r != "":
                 choice_r = "zip"
                 entry_r = [zip_r]
@@ -174,13 +174,13 @@ def index(request):
             # else:
             #     create_text_file(entry_r)
             global t1
-            
+            # return
             t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r, filename_r))
             t1.daemon = True
             t1.start()
-
+            
             if multiple is True:
-                if entry_r != "":
+                if len(entry_r) > 0:
                     print(row_count)
                     context = {
                         "row_count": row_count,
@@ -188,27 +188,27 @@ def index(request):
                         "running": "True",
                     }
             else:
-                if entry_r != "":
+                if len(entry_r) > 0:
                     print(row_count)
                     context = {
                         "row_count": row_count,
-                        "entry": entry_r,
+                        "entry": entry_r[0],
                         "running": "True",
                     }
                 return render(request, 'scraper/index.html', context)
 
         elif request.POST.get('checklocation'):
             if multiple is True:
-                location_list = get_location_list(entry_r[1], choice_r)
+                location_list = get_location_list(entry_r[0], choice_r)
                 context = {
                     "location_list": location_list,
-                    "entry": entry_r[1],
+                    "entry": entry_r[0],
                 }
             else:
-                location_list = get_location_list(entry_r, choice_r)
+                location_list = get_location_list(entry_r[0], choice_r)
                 context = {
                     "location_list": location_list,
-                    "entry": entry_r,
+                    "entry": entry_r[0],
                 }
                 return render(request, 'scraper/index.html', context)
 
