@@ -414,7 +414,7 @@ def start_scraping(entry, choice, filename_r, request):
 
                 # print(r.text)
                 data = json.loads(r.text)
-                return render(request, 'scraper/index.html', str(data))
+                return render(request, 'scraper/index.html', data)
                 
                 if choice is "tag":
                     edges = data['graphql']['hashtag']['edge_hashtag_to_media']['edges']  # list with posts
