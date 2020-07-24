@@ -298,8 +298,25 @@ def get_user(user_id, user_info):
     
     # ---------------------------------------------------------------------------
     # ---------------------------------------------------------------------------
-    print("data user str:")
     username = user_data['user']['username']
+
+    follower_count = user_data['user']['follower_count']
+    try:
+        public_email = user_data['user']['public_email']
+    except:
+        public_email = ' '
+    full_name = user_data['user']['full_name']
+
+    user_info.extend([username, public_email, full_name])
+    return user_info, username
+        # print(
+        #     "ID: " + user_id + " " + "Username : " + username + " " + str(score))
+
+
+
+def get_future_date(username, user_info):
+     print("data user str:")
+    
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
 
     switch_count = 0
@@ -323,39 +340,131 @@ def get_user(user_id, user_info):
     userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
     # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
     numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
-    # igURL = 'https://www.instagram.com/' + username + '/'
+    igURL = 'https://www.instagram.com/' + username + '/'
     externalURL = user_data_response['graphql']['user']['external_url']
     followers = user_data_response['graphql']['user']['edge_followed_by']['count']
     following = user_data_response['graphql']['user']['edge_follow']['count']
     posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
     timestamp = posts[10]['node']['taken_at_timestamp'] # converts epoch number into date and time
-    # user_data_response_str = json.dumps(user_data_response).lower()
-    # print(user_data_response_str)
-    # if "new york" in user_data_response_str:
-    #     print(True)
-    #     return
-    # else:
-    #     print(False)
-
+    
+    
+    
+    user_info.extend([followers, following, numberOfPosts, igURL, external_url])
+    return user_info
+    
     # -------------------------
     # -------------------------
 
     sleep(3)
 
+def start_scraping(entry, choice, filename_r):
+    print(choice)
+    global workbook_name
+    workbook_name = filename_r + ".xlsx"
+    # if choice is 'tagAndLocation':
+    #     workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
+    # else:
+    #     workbook_name = entry + ".xlsx"
+    global row_count
+    row_count = 0
+    end_cursor = ''
+    location_id = None
+    abort = False
+    if choice is 'tagAndLocation':
+        print("tag and location chosen")
+    if choice is 'tag':
+        print("tag chosen")
+    if choice is "location":
+        location_id = get_location_id(entry[0])
+    if choice is 'zip':
+        location_name = get_location_name(entry[0])
+        if location_name is None:
+            abort = True
+            print('Zipcode 404')
+        if abort is False:
+            location_id = get_location_id(location_name)
 
 
-    follower_count = user_data['user']['follower_count']
-    try:
-        public_email = user_data['user']['public_email']
-    except:
-        public_email = ' '
-    full_name = user_data['user']['full_name']
+    if abort is False:
+        for page in range(num_of_pages):
+            entryChosen = random.choice(entry)
+            entryChosen = entryChosen.replace(" ", "")
 
-    user_info.extend([username, follower_count, public_email, full_name])
-    return user_info
-        # print(
-        #     "ID: " + user_id + " " + "Username : " + username + " " + str(score))
+            try:
+                if page == 0:
+                    if choice is "tag":
+                        url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1"
 
+                    else:
+                        url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1"
+
+                else:
+                    if choice is "tag":
+                        url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1&max_id=" + end_cursor
+                    else:
+                        url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
+
+                print(url)
+                r = requests.get(url, headers={"cookie": random.choice(cookie_value), "User-Agent": user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+
+                if r.status_code != 200:
+                    print(r.status_code)
+                    print("No Posts found. Please Stop scraping before starting a new search")
+                    continue
+
+                # print(r.text)
+                data = json.loads(r.text)
+                f= open("guru99.txt","w+")
+                f.write(data)
+                if choice is "tag":
+                    edges = data['graphql']['hashtag']['edge_hashtag_to_media']['edges']  # list with posts
+                else:
+                    edges = data['graphql']['location']['edge_location_to_media']['edges']  # list with posts
+
+                for item in edges:
+                    if stop_thread is True:
+                        return
+                    while pause_thread:
+                        pass
+
+                    try:
+                        start_time1 = time.time()
+                        post = (item['node'])
+                        owner = post['owner']
+                        user_id = owner['id']
+                        shortcode = post['shortcode']
+                        location = get_location(shortcode)
+
+                        user_info = []
+                        info, username = get_user(user_id, user_info)
+                        additional_info = get_future_date(username, info)
+
+                        print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
+                        start_time2 = time.time()
+                        print("test 11")
+                        if len(info) != 0:
+                            print("22")
+                            move_to_excel(info, location, entryChosen)
+                            row_count += 1
+                            print(row_count)
+
+                        print("--- %s seconds --- | Excel time" % round(time.time() - start_time2, 2))
+
+                    except Exception as e:
+                        print(e)
+
+                if choice is "tag":
+                    end_cursor = data['graphql']['hashtag']['edge_hashtag_to_media']['page_info'][
+                        'end_cursor']  # value for the next page
+                else:
+                    end_cursor = data['graphql']['location']['edge_location_to_media']['page_info'][
+                        'end_cursor']  # value for the next page
+                if end_cursor is None or end_cursor == "":
+                    stop_scraping()
+                    return
+
+            except Exception as e:
+                print(e)
 
 def get_location(shortcode):
     r = ""
@@ -461,115 +570,6 @@ def get_location_name(entry_now):
                     return row["primary_city"]
             line_count += 1
     return None
-
-
-def start_scraping(entry, choice, filename_r):
-    print(choice)
-    global workbook_name
-    workbook_name = filename_r + ".xlsx"
-    # if choice is 'tagAndLocation':
-    #     workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
-    # else:
-    #     workbook_name = entry + ".xlsx"
-    global row_count
-    row_count = 0
-    end_cursor = ''
-    location_id = None
-    abort = False
-    if choice is 'tagAndLocation':
-        print("tag and location chosen")
-    if choice is 'tag':
-        print("tag chosen")
-    if choice is "location":
-        location_id = get_location_id(entry[0])
-    if choice is 'zip':
-        location_name = get_location_name(entry[0])
-        if location_name is None:
-            abort = True
-            print('Zipcode 404')
-        if abort is False:
-            location_id = get_location_id(location_name)
-
-
-    if abort is False:
-        for page in range(num_of_pages):
-            entryChosen = random.choice(entry)
-            entryChosen = entryChosen.replace(" ", "")
-            
-            try:
-                if page == 0:
-                    if choice is "tag":
-                        url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1"
-
-                    else:
-                        url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1"
-
-                else:
-                    if choice is "tag":
-                        url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1&max_id=" + end_cursor
-                    else:
-                        url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
-
-                print(url)
-                r = requests.get(url, headers={"cookie": random.choice(cookie_value), "User-Agent": user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-
-                if r.status_code != 200:
-                    print(r.status_code)
-                    print("No Posts found. Please Stop scraping before starting a new search")
-                    continue
-
-                # print(r.text)
-                data = json.loads(r.text)
-
-                if choice is "tag":
-                    edges = data['graphql']['hashtag']['edge_hashtag_to_media']['edges']  # list with posts
-                else:
-                    edges = data['graphql']['location']['edge_location_to_media']['edges']  # list with posts
-
-                for item in edges:
-                    if stop_thread is True:
-                        return
-                    while pause_thread:
-                        pass
-
-                    try:
-                        start_time1 = time.time()
-                        post = (item['node'])
-                        owner = post['owner']
-                        user_id = owner['id']
-                        shortcode = post['shortcode']
-                        location = get_location(shortcode)
-
-                        user_info = []
-                        info = get_user(user_id, user_info)
-
-                        print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
-                        start_time2 = time.time()
-                        print("test 11")
-                        if len(info) != 0:
-                            print("22")
-                            move_to_excel(info, location, entryChosen)
-                            row_count += 1
-                            print(row_count)
-
-                        print("--- %s seconds --- | Excel time" % round(time.time() - start_time2, 2))
-
-                    except Exception as e:
-                        print(e)
-
-                if choice is "tag":
-                    end_cursor = data['graphql']['hashtag']['edge_hashtag_to_media']['page_info'][
-                        'end_cursor']  # value for the next page
-                else:
-                    end_cursor = data['graphql']['location']['edge_location_to_media']['page_info'][
-                        'end_cursor']  # value for the next page
-                if end_cursor is None or end_cursor == "":
-                    stop_scraping()
-                    return
-
-            except Exception as e:
-                print(e)
-
 
 def get_location_list(entry, choice):
     location = entry
