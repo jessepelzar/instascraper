@@ -494,7 +494,8 @@ def start_scraping(entry, choice, filename_r):
     if abort is False:
         for page in range(num_of_pages):
             entryChosen = random.choice(entry)
-            entryChosen.replace(" ", "")
+            entryChosen = entryChosen.replace(" ", "")
+            
             try:
                 if page == 0:
                     if choice is "tag":
