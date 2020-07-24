@@ -175,7 +175,7 @@ def index(request):
             #     create_text_file(entry_r)
             global t1
             # return
-            t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r, filename_r))
+            t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r, filename_r, request))
             t1.daemon = True
             t1.start()
             
@@ -357,7 +357,7 @@ def get_future_date(username, user_info):
 
     sleep(3)
 
-def start_scraping(entry, choice, filename_r):
+def start_scraping(entry, choice, filename_r, request):
     print(choice)
     global workbook_name
     workbook_name = filename_r + ".xlsx"
