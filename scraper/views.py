@@ -147,7 +147,7 @@ def index(request):
         # added here - jesse
         # if hashtag_r != "" and zip_r != "" or location_r != "":
         # --------------
-        if hashtag_list_r > 0 and location_r != "":
+        if len(hashtag_list_r) > 0 and location_r != "":
             multiple = True
             choice_r = "tagAndLocation"
             entry_r = [hashtag_list_r, location_r]
