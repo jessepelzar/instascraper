@@ -329,7 +329,7 @@ def get_user(user_id, user_info):
     # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
     numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
     igURL = 'https://www.instagram.com/' + username + '/'
-    externalURL = user_data_response['graphql']['user']['external_url']
+    external_url = user_data_response['graphql']['user']['external_url']
     followers = user_data_response['graphql']['user']['edge_followed_by']['count']
     following = user_data_response['graphql']['user']['edge_follow']['count']
     # posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
