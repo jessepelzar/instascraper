@@ -440,25 +440,25 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                         location = get_location(shortcode)
 
                         user_info = []
-                        info, username = get_user(user_id, user_info)
+                        # info, username = get_user(user_id, user_info)
 
-                        if choice is "tag" or choice is "tagAndLocation":
-                            print("tag or tag and loc")
-                            # if tag_num_switch_r is "true":
-                            #     print("tag switch true")
-                            #     future_date = get_future_date(shortcode, entryChosen)
-                                # info.append(future_date)
-                        print(info)
-                        print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
-                        start_time2 = time.time()
-                        print("test 11")
-                        if len(info) != 0:
-                            print("22")
-                            move_to_excel(info, location, entryChosen)
-                            row_count += 1
-                            print(row_count)
+                        # if choice is "tag" or choice is "tagAndLocation":
+                        #     print("tag or tag and loc")
+                        #     if tag_num_switch_r is "true":
+                        #         print("tag switch true")
+                        #         future_date = get_future_date(shortcode, entryChosen)
+                        #         info.append(future_date)
+                        # print(info)
+                        # print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
+                        # start_time2 = time.time()
+                        # print("test 11")
+                        # if len(info) != 0:
+                        #     print("22")
+                        #     move_to_excel(info, location, entryChosen)
+                        #     row_count += 1
+                        #     print(row_count)
 
-                        print("--- %s seconds --- | Excel time" % round(time.time() - start_time2, 2))
+                        # print("--- %s seconds --- | Excel time" % round(time.time() - start_time2, 2))
 
                     except Exception as e:
                         print(e)
