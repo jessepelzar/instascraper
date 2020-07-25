@@ -484,7 +484,7 @@ def get_future_date(shortcode, tagwithnumber):
 
     print("get future date")
     user_url_data = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
-
+    daysTotalPregnant = 280
     # switch_count = 0
     # while switch_count < 5:
     # print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
@@ -519,7 +519,7 @@ def get_future_date(shortcode, tagwithnumber):
 
     daysSincePost = todayDayOfYear - postDayOfYear
     daysPreg = daysSincePost + tagDays
-    daysLeft = 252 - daysPreg
+    daysLeft = daysTotalPregnant - daysPreg
     fomatedDaysLeft = datetime.timedelta(days=daysLeft)
 
     dueDate = todaysDate + fomatedDaysLeft
