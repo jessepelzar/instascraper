@@ -482,7 +482,7 @@ def get_future_date(shortcode, tagwithnumber):
 
     # switch_count = 0
     # while switch_count < 5:
-    print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+    # print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
     try: 
         data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
         # break
