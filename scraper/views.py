@@ -441,7 +441,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                         user_info = []
                         info, username = get_user(user_id, user_info)
 
-                        if choice is tag or choice is tagAndLocation:
+                        if choice is "tag" or choice is "tagAndLocation":
                             if tag_num_switch_r is "true":
                                 future_date = get_future_date(shortcode, entryChosen)
                                 info.append(future_date)
