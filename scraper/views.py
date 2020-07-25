@@ -37,10 +37,11 @@ from .utils import create_text_file
 
 
 PROXIES = [
-    'p.webshare.io:20012',
-    'p.webshare.io:20013',
-    'p.webshare.io:20014',
-    'p.webshare.io:20015',
+    'p.webshare.io:19999',
+    # 'p.webshare.io:20012',
+    # 'p.webshare.io:20013',
+    # 'p.webshare.io:20014',
+    # 'p.webshare.io:20015',
     ]
 PROXIES = cycle(PROXIES)
 PROXY = next(PROXIES)
