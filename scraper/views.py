@@ -37,11 +37,11 @@ from .utils import create_text_file
 
 
 PROXIES = [
-    'p.webshare.io:19999',
-    # 'p.webshare.io:20012',
-    # 'p.webshare.io:20013',
-    # 'p.webshare.io:20014',
-    # 'p.webshare.io:20015',
+    # 'p.webshare.io:19999',
+    'p.webshare.io:20012',
+    'p.webshare.io:20013',
+    'p.webshare.io:20014',
+    'p.webshare.io:20015',
     ]
 PROXIES = cycle(PROXIES)
 PROXY = next(PROXIES)
@@ -325,8 +325,8 @@ def get_user(user_id, user_info):
 
     # username - get from api request
     # userEmail - get from api request
-    # userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
-    # userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
+    userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
+    userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
     # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
     numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
     igURL = 'https://www.instagram.com/' + username + '/'
@@ -353,7 +353,7 @@ def get_user(user_id, user_info):
         public_email = ' '
     full_name = user_data['user']['full_name']
 
-    user_info.extend([username, full_name, public_email, followers, following, external_url, numberOfPosts, igURL])
+    user_info.extend([username, userFirstName, userLastName, public_email, followers, following, external_url, numberOfPosts, igURL])
     return user_info, username
         # print(
         #     "ID: " + user_id + " " + "Username : " + username + " " + str(score))
@@ -577,20 +577,20 @@ def move_to_excel(data, location, tag):
     try:
         data.insert(0, location)
 
-        # split the full name
-        name_arr = data[4].split(" ", 1)
-        first = name_arr[0]
-        last = name_arr[1] if len(name_arr) > 1 else ""
-        # remove the fullname element and add fname and lname
-        data.pop()
-        data.append(first)
-        data.append(last)
-        print(data)
-        save_data.append(data)
+        # # split the full name
+        # name_arr = data[4].split(" ", 1)
+        # first = name_arr[0]
+        # last = name_arr[1] if len(name_arr) > 1 else ""
+        # # remove the fullname element and add fname and lname
+        # data.pop()
+        # data.append(first)
+        # data.append(last)
+        # print(data)
+        # save_data.append(data)
         if row_count % 100 == 0:
 
             print("Storing data in bulk YOLO")
-            headers = ['Location', 'Username', 'Followers', 'Email', 'First name', 'Last name']
+            headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External Email', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
 
             if row_count % 100000 == 0 and row_count > 0:
                 global counter
@@ -613,10 +613,17 @@ def move_to_excel(data, location, tag):
                 sheet.append(d)
 
             sheet.column_dimensions['A'].width = 30
-            sheet.column_dimensions['B'].width = 20
+            sheet.column_dimensions['B'].width = 30
+            sheet.column_dimensions['C'].width = 30
             sheet.column_dimensions['D'].width = 30
-            sheet.column_dimensions['E'].width = 20
-            sheet.column_dimensions['F'].width = 20
+            sheet.column_dimensions['E'].width = 30
+            sheet.column_dimensions['F'].width = 30
+            sheet.column_dimensions['G'].width = 30
+            sheet.column_dimensions['H'].width = 30
+            sheet.column_dimensions['I'].width = 30
+            sheet.column_dimensions['J'].width = 30
+            sheet.column_dimensions['K'].width = 30
+            sheet.column_dimensions['L'].width = 30
 
             wb.save(filename=workbook_name)
             save_data.clear()
