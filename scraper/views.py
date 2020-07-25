@@ -586,7 +586,7 @@ def move_to_excel(data, location, tag):
         # data.append(first)
         # data.append(last)
         # print(data)
-        # save_data.append(data)
+        save_data.append(data)
         if row_count % 100 == 0:
 
             print("Storing data in bulk YOLO")
