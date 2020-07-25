@@ -303,37 +303,37 @@ def get_user(user_id, user_info):
     # ---------------------------------------------------------------------------
     username = user_data['user']['username']
 
-#     print("data user str:")
+    print("data user str:")
     
-#     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+    user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
 
-#     switch_count = 0
-#     while switch_count < 5:
-#         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-#         try: 
-#             data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
-#             break
-#         except:
-#             PROXY = next(PROXIES)
-#             switch_count+=1
-#     if switch_count == 5:
-#         return user_info
-#         # print(cookie)
-#     print(data_response.status_code)
-#     user_data_response = json.loads(data_response.text)
+    switch_count = 0
+    while switch_count < 5:
+        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+        try: 
+            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
+            break
+        except:
+            PROXY = next(PROXIES)
+            switch_count+=1
+    if switch_count == 5:
+        return user_info
+        # print(cookie)
+    print(data_response.status_code)
+    user_data_response = json.loads(data_response.text)
 
-#     # username - get from api request
-#     # userEmail - get from api request
-#     userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
-#     userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
-#     # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
-#     numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
-#     igURL = 'https://www.instagram.com/' + username + '/'
-#     externalURL = user_data_response['graphql']['user']['external_url']
-#     followers = user_data_response['graphql']['user']['edge_followed_by']['count']
-#     following = user_data_response['graphql']['user']['edge_follow']['count']
-#     posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
-#     timestamp = posts[10]['node']['taken_at_timestamp'] # converts epoch number into date and time
+    # username - get from api request
+    # userEmail - get from api request
+    # userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
+    # userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
+    # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
+    numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
+    igURL = 'https://www.instagram.com/' + username + '/'
+    externalURL = user_data_response['graphql']['user']['external_url']
+    followers = user_data_response['graphql']['user']['edge_followed_by']['count']
+    following = user_data_response['graphql']['user']['edge_follow']['count']
+    # posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
+    # timestamp = posts[10]['node']['taken_at_timestamp'] # converts epoch number into date and time
     
     
     
@@ -352,7 +352,7 @@ def get_user(user_id, user_info):
         public_email = ' '
     full_name = user_data['user']['full_name']
 
-    user_info.extend([username, full_name, public_email])
+    user_info.extend([username, full_name, public_email, followers, following, external_url, numberOfPosts, igURL])
     return user_info, username
         # print(
         #     "ID: " + user_id + " " + "Username : " + username + " " + str(score))
