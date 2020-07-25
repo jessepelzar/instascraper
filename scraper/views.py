@@ -9,6 +9,8 @@ from itertools import cycle
 import dload
 import re
 from time import sleep
+# import time
+import datetime
 # pip3 install selenium
 # pip3 install chromedriver
 # pip3 install webdriver-manager
@@ -138,6 +140,8 @@ def index(request):
         zip_r = request.POST.get('zip')
         filename_r = request.POST.get('filename')
         hashtag_list_r = request.POST.get('hashtag-list')
+        tag_num_switch_r = request.POST.get('tagwithnumberswitch')
+        print(tag_num_switch_r)
         hashtag_list_r = str(hashtag_list_r)
         hashtag_list_r = hashtag_list_r.split(',')
         print(hashtag_list_r)
@@ -175,7 +179,7 @@ def index(request):
             #     create_text_file(entry_r)
             global t1
             # return
-            t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r, filename_r, request))
+            t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r, filename_r, tag_num_switch_r))
             t1.daemon = True
             t1.start()
             
@@ -292,13 +296,54 @@ def get_user(user_id, user_info):
     user_data = json.loads(response.text)
     user_data_string = json.dumps(response.text)
 
-    print(user_data)
-    return
+    # print(user_data)
     sleep(3)
     
     # ---------------------------------------------------------------------------
     # ---------------------------------------------------------------------------
     username = user_data['user']['username']
+
+#     print("data user str:")
+    
+#     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
+
+#     switch_count = 0
+#     while switch_count < 5:
+#         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+#         try: 
+#             data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
+#             break
+#         except:
+#             PROXY = next(PROXIES)
+#             switch_count+=1
+#     if switch_count == 5:
+#         return user_info
+#         # print(cookie)
+#     print(data_response.status_code)
+#     user_data_response = json.loads(data_response.text)
+
+#     # username - get from api request
+#     # userEmail - get from api request
+#     userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
+#     userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
+#     # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
+#     numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
+#     igURL = 'https://www.instagram.com/' + username + '/'
+#     externalURL = user_data_response['graphql']['user']['external_url']
+#     followers = user_data_response['graphql']['user']['edge_followed_by']['count']
+#     following = user_data_response['graphql']['user']['edge_follow']['count']
+#     posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
+#     timestamp = posts[10]['node']['taken_at_timestamp'] # converts epoch number into date and time
+    
+    
+    
+#     user_info.extend([followers, following, numberOfPosts, igURL, external_url])
+#     return user_info
+    
+#     # -------------------------
+#     # -------------------------
+
+#     sleep(3)
 
     follower_count = user_data['user']['follower_count']
     try:
@@ -314,50 +359,7 @@ def get_user(user_id, user_info):
 
 
 
-def get_future_date(username, user_info):
-    print("data user str:")
-    
-    user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
-
-    switch_count = 0
-    while switch_count < 5:
-        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-        try: 
-            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
-            break
-        except:
-            PROXY = next(PROXIES)
-            switch_count+=1
-    if switch_count == 5:
-        return user_info
-        # print(cookie)
-    print(data_response.status_code)
-    user_data_response = json.loads(data_response.text)
-
-    # username - get from api request
-    # userEmail - get from api request
-    userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
-    userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
-    # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
-    numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
-    igURL = 'https://www.instagram.com/' + username + '/'
-    externalURL = user_data_response['graphql']['user']['external_url']
-    followers = user_data_response['graphql']['user']['edge_followed_by']['count']
-    following = user_data_response['graphql']['user']['edge_follow']['count']
-    posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
-    timestamp = posts[10]['node']['taken_at_timestamp'] # converts epoch number into date and time
-    
-    
-    
-    user_info.extend([followers, following, numberOfPosts, igURL, external_url])
-    return user_info
-    
-    # -------------------------
-    # -------------------------
-
-    sleep(3)
-
-def start_scraping(entry, choice, filename_r, request):
+def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     print(choice)
     global workbook_name
     workbook_name = filename_r + ".xlsx"
@@ -414,8 +416,9 @@ def start_scraping(entry, choice, filename_r, request):
 
                 # print(r.text)
                 data = json.loads(r.text)
-                return render(request, 'scraper/index.html', data)
                 
+                f= open("guru99.txt","w+")
+                f.write(str(data))
                 if choice is "tag":
                     edges = data['graphql']['hashtag']['edge_hashtag_to_media']['edges']  # list with posts
                 else:
@@ -437,8 +440,12 @@ def start_scraping(entry, choice, filename_r, request):
 
                         user_info = []
                         info, username = get_user(user_id, user_info)
-                        additional_info = get_future_date(username, info)
 
+                        if choice is tag or choice is tagAndLocation:
+                            if tag_num_switch_r is "true":
+                                future_date = get_future_date(shortcode, entryChosen)
+                                info.append(future_date)
+                        print(info)
                         print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
                         start_time2 = time.time()
                         print("test 11")
@@ -465,6 +472,68 @@ def start_scraping(entry, choice, filename_r, request):
 
             except Exception as e:
                 print(e)
+
+
+def get_future_date(shortcode, tagwithnumber):
+
+    
+    user_url_data = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
+
+    switch_count = 0
+    while switch_count < 5:
+        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+        try: 
+            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
+            break
+        except:
+            PROXY = next(PROXIES)
+            switch_count+=1
+    if switch_count == 5:
+        return user_info
+        # print(cookie)
+
+    data = json.loads(data_response.text)
+    timestamp = data['graphql']['shortcode_media']['taken_at_timestamp']
+
+    numberStr = ""
+    for i in range(len(tagwithnumber)):
+        if tagwithnumber[i].isdigit():
+            numberStr += tagwithnumber[i]
+
+    tagWeek = int(numberStr)
+    tagDays = tagWeek * 7
+
+    postDate = datetime.datetime.fromtimestamp(timestamp)
+    postDateList = [postDate.month, postDate.day, postDate.year]
+    postDayOfYear = dayOfYear(postDateList[0], postDateList[1], postDateList[2])
+
+    todaysDate = datetime.datetime.today()
+    todayDayList = [todaysDate.month, todaysDate.day, todaysDate.year]
+    todayDayOfYear = dayOfYear(todayDayList[0], todayDayList[1], todayDayList[2])
+
+    daysSincePost = todayDayOfYear - postDayOfYear
+    daysPreg = daysSincePost + tagDays
+    daysLeft = 252 - daysPreg
+    fomatedDaysLeft = datetime.timedelta(days=daysLeft)
+
+    dueDate = todaysDate + fomatedDaysLeft
+    # projectedDueDayOfYear = todayDayOfYear + daysLeft
+    print(todayDayOfYear)
+    print(postDayOfYear)
+    print(daysPreg)
+    print(daysLeft)
+    print(dueDate.date())
+    print()
+    print('day of year', todayDayOfYear)
+    
+    
+    # user_info.extend([dueDate])
+    return dueDate
+    
+    # -------------------------
+    # -------------------------
+
+    sleep(3)
 
 def get_location(shortcode):
     r = ""

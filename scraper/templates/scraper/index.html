@@ -113,8 +113,23 @@
                             // update the array that will be sent upon post request
                             document.getElementById('hashtag-list').value = exportList;
                         }
+
+                        function toggleSwitch() {
+                            if (document.getElementById('tagwithnumberswitch').value === "true") {
+                                document.getElementById('tagwithnumberswitch').value = "false";
+                            } else {
+                                document.getElementById('tagwithnumberswitch').value = "true";
+                            }
+                        }
                     </script>
                     <input type="button" id="add-hashag" class="btn btn-success" value="Add Hashtag" onclick="addTag()">
+                    <p>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" name="tagwithnumberswitch" id="tagwithnumberswitch" value="false" onclick="toggleSwitch(); console.log(this.value)">
+                        <label class="custom-control-label" for="tagwithnumberswitch">Toggle when searching tags containing a number for pregnancy weeks</label>
+                    </div>
+                    </p>
+  
                     
                     <br><br>
                     <label for="location">Location: </label>
