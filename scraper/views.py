@@ -361,6 +361,7 @@ def get_user(user_id, user_info):
 
 def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     print(choice)
+    print(tag_num_switch_r)
     global workbook_name
     workbook_name = filename_r + ".xlsx"
     # if choice is 'tagAndLocation':
@@ -442,7 +443,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                         info, username = get_user(user_id, user_info)
 
                         if choice is "tag" or choice is "tagAndLocation":
+                            print("tag or tag and loc")
                             if tag_num_switch_r is "true":
+                                print("tag switch true")
                                 future_date = get_future_date(shortcode, entryChosen)
                                 info.append(future_date)
                         print(info)
@@ -476,7 +479,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
 def get_future_date(shortcode, tagwithnumber):
 
-    
+    print("get future date")
     user_url_data = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
 
     switch_count = 0
