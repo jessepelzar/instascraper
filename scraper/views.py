@@ -528,7 +528,7 @@ def get_future_date(shortcode, tagwithnumber):
     
     
     # user_info.extend([dueDate])
-    return dueDate.date()
+    return str(dueDate.date())
     
     # -------------------------
     # -------------------------
