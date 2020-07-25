@@ -393,9 +393,10 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
             
 
             try:
-                print("entry in start scraping", entry)
+                
                 entryChosen = random.choice(entry)
                 entryChosen = entryChosen.replace(" ", "")
+                print("entry in start scraping", entryChosen)
                 if page == 0:
                     if choice is "tag":
                         url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1"
