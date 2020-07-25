@@ -524,20 +524,20 @@ def get_future_date(shortcode, tagwithnumber):
     print(daysPreg)
     print(daysLeft)
     print(dueDate.date())
-    print()
     print('day of year', todayDayOfYear)
     
     
     # user_info.extend([dueDate])
-    return dueDate
+    return dueDate.date()
     
     # -------------------------
     # -------------------------
 
 def dayOfYear(month, day, year):
-    date = '%s-%s-%s' % (year, month, day)
+    # date = '%s-%s-%s' % (year, month, day)
     days = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-    d = list(map(int,date.split("-")))
+    # d = list(map(int, date.split("-")))
+    d = [year, month, day]
     if d[0] % 400 == 0:
         days[2]+=1
     elif d[0]%4 == 0 and d[0]%100!=0:
