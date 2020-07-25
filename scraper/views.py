@@ -444,7 +444,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
                         if choice is "tag" or choice is "tagAndLocation":
                             print("tag or tag and loc")
-                            if str(tag_num_switch_r) is "true":
+                            if str(tag_num_switch_r) == "true":
                                 print("tag switch true")
                                 future_date = get_future_date(shortcode, entryChosen)
                                 info.append(future_date)
