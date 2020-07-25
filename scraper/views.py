@@ -487,7 +487,7 @@ def get_future_date(shortcode, tagwithnumber):
     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
     try: 
         data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
-        break
+        # break
     except:
         PROXY = next(PROXIES)
     #     switch_count+=1
