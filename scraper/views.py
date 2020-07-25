@@ -361,7 +361,7 @@ def get_user(user_id, user_info):
 
 def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     print(choice)
-    print(tag_num_switch_r)
+    print("switch", tag_num_switch_r)
     global workbook_name
     workbook_name = filename_r + ".xlsx"
     # if choice is 'tagAndLocation':
@@ -482,17 +482,17 @@ def get_future_date(shortcode, tagwithnumber):
     print("get future date")
     user_url_data = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
 
-    switch_count = 0
-    while switch_count < 5:
-        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-        try: 
-            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
-            break
-        except:
-            PROXY = next(PROXIES)
-            switch_count+=1
-    if switch_count == 5:
-        return user_info
+    # switch_count = 0
+    # while switch_count < 5:
+    print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+    try: 
+        data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
+        break
+    except:
+        PROXY = next(PROXIES)
+    #     switch_count+=1
+    # if switch_count == 5:
+    #     return None
         # print(cookie)
 
     data = json.loads(data_response.text)
@@ -536,7 +536,7 @@ def get_future_date(shortcode, tagwithnumber):
     # -------------------------
     # -------------------------
 
-    sleep(3)
+   
 
 def get_location(shortcode):
     r = ""
