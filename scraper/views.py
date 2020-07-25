@@ -447,7 +447,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                             if tag_num_switch_r is "true":
                                 print("tag switch true")
                                 future_date = get_future_date(shortcode, entryChosen)
-                                info.append(future_date)
+                                # info.append(future_date)
                         print(info)
                         print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
                         start_time2 = time.time()
