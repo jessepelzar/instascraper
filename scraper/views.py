@@ -184,7 +184,7 @@ def index(request):
                 thread_list.append(thread)
             
             for thread in thread_list:
-                thread.daemon = True
+                # thread.daemon = True
                 thread.start()
 
             if multiple is True:
