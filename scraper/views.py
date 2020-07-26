@@ -107,9 +107,10 @@ def stop_scrap(request):
     if request.method == 'POST':
         if request.POST.get('stop_scrap'):
             stop_scraping()
-            if t1.is_alive():
-                print("thread still alive man. Fuck")
-                return render(request, 'scraper/index.html')
+            for thread in thread_list:
+                if thread.is_alive():
+                    print("thread still alive man. Fuck")
+                    return render(request, 'scraper/index.html')
         else:
             global pause_value
             pause_value = pause_scraping()  # stop the scraper
@@ -696,7 +697,7 @@ def stop_scraping():
 
     try:
 
-        headers = ['Location', 'Username', 'Followers', 'Email', 'First name', 'Last name']
+        headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External URL', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
 
         global wb
         if os.path.isfile(workbook_name):
@@ -713,10 +714,17 @@ def stop_scraping():
             sheet.append(d)
 
         sheet.column_dimensions['A'].width = 30
-        sheet.column_dimensions['B'].width = 20
-        sheet.column_dimensions['D'].width = 30
-        sheet.column_dimensions['E'].width = 20
-        sheet.column_dimensions['F'].width = 20
+        sheet.column_dimensions['B'].width = 30
+        sheet.column_dimensions['C'].width = 20
+        sheet.column_dimensions['D'].width = 20
+        sheet.column_dimensions['E'].width = 30
+        sheet.column_dimensions['F'].width = 10
+        sheet.column_dimensions['G'].width = 10
+        sheet.column_dimensions['H'].width = 30
+        sheet.column_dimensions['I'].width = 10
+        sheet.column_dimensions['J'].width = 30
+        sheet.column_dimensions['K'].width = 30
+        sheet.column_dimensions['L'].width = 30
 
         wb.save(filename=workbook_name)
         save_data.clear()
