@@ -127,7 +127,7 @@ def stop_scrap(request):
 
         return render(request, 'scraper/index.html')
 
-
+thread_list = []
 def index(request):
     if request.method == 'POST':
 
