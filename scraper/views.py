@@ -140,7 +140,7 @@ def index(request):
         hashtag_r = request.POST.get('hashtag')
         location_r = request.POST.get('location')
         zip_r = request.POST.get('zip')
-        # filename_r = request.POST.get('filename')
+        filename_r = request.POST.get('filename')
         hashtag_list_r = request.POST.get('hashtag-list')
         tag_num_switch_r = request.POST.get('tagwithnumberswitch')
         print(tag_num_switch_r)
@@ -174,12 +174,12 @@ def index(request):
         if request.POST.get('startscraping'):
             global row_count
             row_count = 0
-            
+            create_text_file(filename_r)
            
             # global thread
             global thread_list
             for tag in entry_r:
-                create_text_file(tag)
+                
                 thread = threading.Thread(target=start_scraping, args=(tag, choice_r, tag, tag_num_switch_r))
                 thread_list.append(thread)
             
