@@ -690,7 +690,8 @@ def get_location_list(entry, choice):
 
 def stop_scraping():
     
-    
+    global stop_thread
+    stop_thread = True
 
     # deleting the location file - location.txt
     if os.path.isfile('entry.txt'):
@@ -729,14 +730,11 @@ def stop_scraping():
 
         wb.save(filename=workbook_name)
         save_data.clear()
-        time.sleep(5)
-        pill2kill.set()
+        # time.sleep(5)
+        # pill2kill.set()
         for thread in thread_list:
-            global stop_thread
-            stop_thread = True
-            time.sleep(5)
             thread.join()
-            stop_thread = False
+        stop_thread = False
         thread_list = []
     except:
         print("Save failed")
