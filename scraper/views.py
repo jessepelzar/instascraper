@@ -106,6 +106,9 @@ pause_thread = False
 def stop_scrap(request):
     if request.method == 'POST':
         if request.POST.get('stop_scrap'):
+            for thread in thread_list:
+                thread.join()
+            thread_list.clear()
             stop_scraping()
             for thread in thread_list:
                 if thread.is_alive():
@@ -732,10 +735,10 @@ def stop_scraping():
         save_data.clear()
         # time.sleep(5)
         # pill2kill.set()
-        for thread in thread_list:
-            thread.join()
+        # for thread in thread_list:
+        #     thread.join()
         stop_thread = False
-        thread_list = []
+        # thread_list = []
     except:
         print("Save failed")
 
