@@ -106,9 +106,7 @@ pause_thread = False
 def stop_scrap(request):
     if request.method == 'POST':
         if request.POST.get('stop_scrap'):
-            for thread in thread_list:
-                thread.join()
-            thread_list.clear()
+            
             stop_scraping()
             # for thread in thread_list:
             #     if thread.is_alive():
@@ -180,8 +178,8 @@ def index(request):
             create_text_file(filename_r)
            
             # global thread
-            global thread_list
-            global pill2kill
+            # global thread_list
+            # global pill2kill
             pill2kill = threading.Event()
             for tag in entry_r:                
                 thread = threading.Thread(target=start_scraping, args=(tag, choice_r, filename_r, tag_num_switch_r))
@@ -695,7 +693,9 @@ def stop_scraping():
     
     global stop_thread
     stop_thread = True
-
+    for thread in thread_list:
+        thread.join()
+    thread_list.clear()
     # deleting the location file - location.txt
     if os.path.isfile('entry.txt'):
         os.remove("entry.txt")
