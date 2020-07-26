@@ -135,6 +135,8 @@ def index(request):
 
         global entry_r
         global choice_r
+
+        entry_r = []
         # --------------
         multiple = False
         # --------------
@@ -167,10 +169,10 @@ def index(request):
                 entry_r = hashtag_list_r
             if zip_r != "":
                 choice_r = "zip"
-                entry_r = [zip_r]
+                entry_r.append(zip_r)
             if location_r != "":
                 choice_r = "location"
-                entry_r = [location_r]
+                entry_r.append(location_r)
 
         if request.POST.get('startscraping'):
             global row_count
