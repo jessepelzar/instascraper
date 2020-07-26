@@ -384,16 +384,16 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     if choice is 'tag':
         print("tag chosen")
     if choice is "location":
-        location_id = get_location_id(entry[0])
+        location_id = get_location_id(entry)
     if choice is 'zip':
-        location_name = get_location_name(entry[0])
+        location_name = get_location_name(entry)
         if location_name is None:
             abort = True
             print('Zipcode 404')
         if abort is False:
             location_id = get_location_id(location_name)
 
-    sys.exit()
+    # sys.exit()
     if abort is False:
         for page in range(num_of_pages):
             entryChosen = ""
