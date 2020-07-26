@@ -394,10 +394,10 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     if abort is False:
         for page in range(num_of_pages):
             
-            number_of_entries = len(entry)
+            # number_of_entries = len(entry)
             try:
-                entryChosen = entry[i % number_of_entries]
-                entryChosen = entryChosen.replace(" ", "")
+                # entryChosen = entry[i % number_of_entries]
+                entryChosen = entry.replace(" ", "")
                 print("entry in start scraping", entryChosen)
                 if page == 0:
                     if choice is "tag":
