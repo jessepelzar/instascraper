@@ -2,6 +2,7 @@ import csv
 import glob
 import json
 import os
+import sys
 import random
 import threading
 import time
@@ -376,6 +377,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     row_count = 0
     end_cursor = ''
     location_id = None
+    sys.exit()
     abort = False
     if choice is 'tagAndLocation':
         print("tag and location chosen")
