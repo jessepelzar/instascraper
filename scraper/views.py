@@ -385,6 +385,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
         print("tag chosen")
     if choice is "location":
         location_id = get_location_id(entry)
+        print("location id", location_id)
     if choice is 'zip':
         location_name = get_location_name(entry)
         if location_name is None:
