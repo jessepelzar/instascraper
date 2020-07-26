@@ -737,6 +737,7 @@ def stop_scraping():
             time.sleep(5)
             thread.join()
             stop_thread = False
+        thread_list = []
     except:
         print("Save failed")
 
