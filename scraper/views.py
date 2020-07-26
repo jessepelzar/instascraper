@@ -377,10 +377,10 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     row_count = 0
     end_cursor = ''
     location_id = None
-    sys.exit()
+    # sys.exit()
     abort = False
-    if choice is 'tagAndLocation':
-        print("tag and location chosen")
+    # if choice is 'tagAndLocation':
+    #     print("tag and location chosen")
     if choice is 'tag':
         print("tag chosen")
     if choice is "location":
