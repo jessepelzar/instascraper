@@ -157,23 +157,23 @@ def index(request):
         # added here - jesse
         # if hashtag_r != "" and zip_r != "" or location_r != "":
         # --------------
-        if len(hashtag_list_r) > 0 and location_r != "":
-            multiple = True
-            choice_r = "tagAndLocation"
-            entry_r = [hashtag_list_r, location_r]
-            print("tag and loc")
+        # if len(hashtag_list_r) > 0 and location_r != "":
+        #     multiple = True
+        #     choice_r = "tagAndLocation"
+        #     entry_r = [hashtag_list_r, location_r]
+        #     print("tag and loc")
         # --------------
-        else:
-            if len(hashtag_list_r) != 0:
-                choice_r = "tag"
-                # entry_r = hashtag_r
-                entry_r = hashtag_list_r
-            if zip_r != "":
-                choice_r = "zip"
-                entry_r.append(zip_r)
-            if location_r != "":
-                choice_r = "location"
-                entry_r.append(location_r)
+        # else:
+        if len(hashtag_list_r) != 0:
+            choice_r = "tag"
+            # entry_r = hashtag_r
+            entry_r = hashtag_list_r
+        if zip_r != "":
+            choice_r = "zip"
+            entry_r.append(zip_r)
+        if location_r != "":
+            choice_r = "location"
+            entry_r.append(location_r)
 
         if request.POST.get('startscraping'):
             global row_count
