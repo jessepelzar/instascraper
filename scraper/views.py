@@ -180,7 +180,7 @@ def index(request):
             global thread_list
             for tag in entry_r:
                 
-                thread = threading.Thread(target=start_scraping, args=(tag, choice_r, tag, tag_num_switch_r))
+                thread = threading.Thread(target=start_scraping, args=(tag, choice_r, filename_r, tag_num_switch_r))
                 thread_list.append(thread)
             
             for thread in thread_list:
