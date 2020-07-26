@@ -110,10 +110,10 @@ def stop_scrap(request):
                 thread.join()
             thread_list.clear()
             stop_scraping()
-            for thread in thread_list:
-                if thread.is_alive():
-                    print("thread still alive man. Fuck")
-                    return render(request, 'scraper/index.html')
+            # for thread in thread_list:
+            #     if thread.is_alive():
+            #         print("thread still alive man. Fuck")
+            return render(request, 'scraper/index.html')
         else:
             global pause_value
             pause_value = pause_scraping()  # stop the scraper
