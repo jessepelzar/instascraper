@@ -481,6 +481,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
             except Exception as e:
                 print(e)
+                stop_scraping()
 
 
 def get_future_date(shortcode, tagwithnumber):
