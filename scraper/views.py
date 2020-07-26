@@ -167,12 +167,15 @@ def index(request):
         if len(hashtag_list_r) != 0:
             choice_r = "tag"
             # entry_r = hashtag_r
+            entry_r.clear()
             entry_r = hashtag_list_r
         if zip_r != "":
             choice_r = "zip"
+            entry_r.clear()
             entry_r.append(zip_r)
         if location_r != "":
             choice_r = "location"
+            entry_r.clear()
             entry_r.append(location_r)
 
         if request.POST.get('startscraping'):
@@ -211,13 +214,13 @@ def index(request):
                 location_list = get_location_list(entry_r[0], choice_r)
                 context = {
                     "location_list": location_list,
-                    "entry": entry_r[0],
+                    "entry": filename_r,
                 }
             else:
                 location_list = get_location_list(entry_r[0], choice_r)
                 context = {
                     "location_list": location_list,
-                    "entry": entry_r[0],
+                    "entry": filename_r,
                 }
                 return render(request, 'scraper/index.html', context)
 
@@ -426,8 +429,6 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                 # print(r.text)
                 data = json.loads(r.text)
                 
-                f= open("guru99.txt","w+")
-                f.write(str(data))
                 if choice is "tag":
                     edges = data['graphql']['hashtag']['edge_hashtag_to_media']['edges']  # list with posts
                 else:
