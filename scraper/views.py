@@ -173,11 +173,12 @@ def index(request):
         if request.POST.get('startscraping'):
             global row_count
             row_count = 0
-            create_text_file(filename_r)
+            
            
             # global thread
             global thread_list
             for tag in entry_r:
+                create_text_file(tag)
                 thread = threading.Thread(target=start_scraping, args=(tag, choice_r, tag, tag_num_switch_r))
                 thread_list.append(thread)
             
