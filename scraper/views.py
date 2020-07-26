@@ -176,7 +176,7 @@ def index(request):
             create_text_file(filename_r)
            
             # global thread
-            global thread_list = []
+            global thread_list
             for tag in entry_r:
                 thread = threading.Thread(target=start_scraping, args=(tag, choice_r, tag, tag_num_switch_r))
                 thread_list.append(thread)
@@ -721,7 +721,7 @@ def stop_scraping():
         save_data.clear()
         for thread in thread_list:
             thread.join()
-            
+
         stop_thread = False
     except:
         print("Save failed")
