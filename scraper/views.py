@@ -161,7 +161,7 @@ def index(request):
             print("tag and loc")
         # --------------
         else:
-            if len(hashtag_list_r) > 0:
+            if len(hashtag_list_r) != 0:
                 choice_r = "tag"
                 # entry_r = hashtag_r
                 entry_r = hashtag_list_r
@@ -177,12 +177,8 @@ def index(request):
             row_count = 0
             create_text_file(filename_r)
            
-            # global thread
-            # global thread_list
-            # global pill2kill
-            pill2kill = threading.Event()
-            for tag in entry_r:                
-                thread = threading.Thread(target=start_scraping, args=(tag, choice_r, filename_r, tag_num_switch_r))
+            for entry in entry_r:                
+                thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r))
                 thread_list.append(thread)
             
             for thread in thread_list:
@@ -396,14 +392,12 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
     if abort is False:
         for page in range(num_of_pages):
-            
-            # number_of_entries = len(entry)
             try:
-                # entryChosen = entry[i % number_of_entries]
-                entryChosen = entry.replace(" ", "")
+                
                 print("entry in start scraping", entryChosen)
                 if page == 0:
                     if choice is "tag":
+                        entryChosen = entry.replace(" ", "")
                         url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1"
 
                     else:
@@ -411,6 +405,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
                 else:
                     if choice is "tag":
+                        entryChosen = entry.replace(" ", "")
                         url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1&max_id=" + end_cursor
                     else:
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
@@ -580,16 +575,6 @@ def get_location(shortcode):
 def move_to_excel(data, location, tag):
     try:
         data.insert(0, location)
-
-        # # split the full name
-        # name_arr = data[4].split(" ", 1)
-        # first = name_arr[0]
-        # last = name_arr[1] if len(name_arr) > 1 else ""
-        # # remove the fullname element and add fname and lname
-        # data.pop()
-        # data.append(first)
-        # data.append(last)
-        # print(data)
         save_data.append(data)
         if row_count % 100 == 0:
 
@@ -733,12 +718,7 @@ def stop_scraping():
 
         wb.save(filename=workbook_name)
         save_data.clear()
-        # time.sleep(5)
-        # pill2kill.set()
-        # for thread in thread_list:
-        #     thread.join()
         stop_thread = False
-        # thread_list = []
     except:
         print("Save failed")
 
