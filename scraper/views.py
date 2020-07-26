@@ -377,7 +377,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     row_count = 0
     end_cursor = ''
     location_id = None
-    # sys.exit()
+    
     abort = False
     # if choice is 'tagAndLocation':
     #     print("tag and location chosen")
@@ -393,7 +393,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
         if abort is False:
             location_id = get_location_id(location_name)
 
-
+    sys.exit()
     if abort is False:
         for page in range(num_of_pages):
             entryChosen = ""
