@@ -139,7 +139,7 @@ def index(request):
         hashtag_r = request.POST.get('hashtag')
         location_r = request.POST.get('location')
         zip_r = request.POST.get('zip')
-        filename_r = request.POST.get('filename')
+        # filename_r = request.POST.get('filename')
         hashtag_list_r = request.POST.get('hashtag-list')
         tag_num_switch_r = request.POST.get('tagwithnumberswitch')
         print(tag_num_switch_r)
@@ -174,16 +174,17 @@ def index(request):
             global row_count
             row_count = 0
             create_text_file(filename_r)
-            # if multiple is True:
-            #     create_text_file(entry_r[0] + "_" + entry_r[1])
-            # else:
-            #     create_text_file(entry_r)
-            global t1
-            # return
-            t1 = threading.Thread(target=start_scraping, args=(entry_r, choice_r, filename_r, tag_num_switch_r))
-            t1.daemon = True
-            t1.start()
+           
+            # global thread
+            global thread_list = []
+            for tag in entry_r:
+                thread = threading.Thread(target=start_scraping, args=(tag, choice_r, tag, tag_num_switch_r))
+                thread_list.append(thread)
             
+            for thread in thread_list:
+                thread.daemon = True
+                thread.start()
+
             if multiple is True:
                 if len(entry_r) > 0:
                     print(row_count)
@@ -392,10 +393,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     if abort is False:
         for page in range(num_of_pages):
             
-
+            number_of_entries = len(entry)
             try:
-                
-                entryChosen = random.choice(entry)
+                entryChosen = entry[i % number_of_entries]
                 entryChosen = entryChosen.replace(" ", "")
                 print("entry in start scraping", entryChosen)
                 if page == 0:
@@ -590,7 +590,7 @@ def move_to_excel(data, location, tag):
         if row_count % 100 == 0:
 
             print("Storing data in bulk YOLO")
-            headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External Email', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
+            headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External URL', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
 
             if row_count % 100000 == 0 and row_count > 0:
                 global counter
@@ -614,13 +614,13 @@ def move_to_excel(data, location, tag):
 
             sheet.column_dimensions['A'].width = 30
             sheet.column_dimensions['B'].width = 30
-            sheet.column_dimensions['C'].width = 30
-            sheet.column_dimensions['D'].width = 30
+            sheet.column_dimensions['C'].width = 20
+            sheet.column_dimensions['D'].width = 20
             sheet.column_dimensions['E'].width = 30
-            sheet.column_dimensions['F'].width = 30
-            sheet.column_dimensions['G'].width = 30
+            sheet.column_dimensions['F'].width = 10
+            sheet.column_dimensions['G'].width = 10
             sheet.column_dimensions['H'].width = 30
-            sheet.column_dimensions['I'].width = 30
+            sheet.column_dimensions['I'].width = 10
             sheet.column_dimensions['J'].width = 30
             sheet.column_dimensions['K'].width = 30
             sheet.column_dimensions['L'].width = 30
@@ -719,8 +719,9 @@ def stop_scraping():
 
         wb.save(filename=workbook_name)
         save_data.clear()
-
-        t1.join()
+        for thread in thread_list:
+            thread.join()
+            
         stop_thread = False
     except:
         print("Save failed")
