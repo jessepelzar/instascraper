@@ -16,8 +16,6 @@ import datetime
 # pip3 install chromedriver
 # pip3 install webdriver-manager
 #  pip3 install pyvirtualdisplay
-from pyvirtualdisplay import Display
-from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys  
 from selenium.webdriver.chrome.options import Options 
