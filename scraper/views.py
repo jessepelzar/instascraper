@@ -261,29 +261,29 @@ user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebK
 
 cookie_value = [
 
-    # 'ig_did=E47FEC0C-30C6-472F-A9FC-0C1123F77B15; csrftoken=4NYlt3ps9weBjjQdupkFy7uGu3SYDImC; rur=ATN; mid=Xi9XzAALAAGmbiNZxhWMQWvdXAyw; ds_user_id=28683127656; sessionid=28683127656%3Arncw1sq26MLYf3%3A13',
+    'ig_did=E47FEC0C-30C6-472F-A9FC-0C1123F77B15; csrftoken=4NYlt3ps9weBjjQdupkFy7uGu3SYDImC; rur=ATN; mid=Xi9XzAALAAGmbiNZxhWMQWvdXAyw; ds_user_id=28683127656; sessionid=28683127656%3Arncw1sq26MLYf3%3A13',
 
-    # 'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
+    'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
 
-    # 'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
+    'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
 
-    # 'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
+    'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
 
-    # 'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
+    'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
 
-    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=pSG9zxxfGiKOoIBROaQ0Vjhh3G0azvYm; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=17855852863; sessionid=17855852863%3AFRDcbz6lTN6mnk%3A2',
+    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=pSG9zxxfGiKOoIBROaQ0Vjhh3G0azvYm; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=17855852863; sessionid=17855852863%3AFRDcbz6lTN6mnk%3A2',
 
-    # 'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=MYrMXkGnAnty2cHn9zutv66CKxWhhN6b; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=314946530; sessionid=314946530%3AyO17zHD7llrrxR%3A2',
+    'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=MYrMXkGnAnty2cHn9zutv66CKxWhhN6b; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=314946530; sessionid=314946530%3AyO17zHD7llrrxR%3A2',
 
-    # 'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=HRQOCJpHe3TBkMae1jsG52yfzRn2FFyM; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=28514517496; sessionid=28514517496%3AZjT1Qhdswi7mwH%3A1',
+    'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=HRQOCJpHe3TBkMae1jsG52yfzRn2FFyM; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=28514517496; sessionid=28514517496%3AZjT1Qhdswi7mwH%3A1',
 
-    # 'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=l7uoJRhWNt5nbsfzeTSGIcVBLyFjC5xW; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18070511049; sessionid=18070511049%3Av2Jbmp7Aw7A58R%3A22',
+    'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=l7uoJRhWNt5nbsfzeTSGIcVBLyFjC5xW; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18070511049; sessionid=18070511049%3Av2Jbmp7Aw7A58R%3A22',
 
-    # 'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=5A34F528-75F7-4AD8-A12F-18170196F9A6; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18262161604; sessionid=18262161604%3Ah2E6yqnpMFDrD6%3A22',
+    'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=5A34F528-75F7-4AD8-A12F-18170196F9A6; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18262161604; sessionid=18262161604%3Ah2E6yqnpMFDrD6%3A22',
 
-    # 'ig_did=9B7995CC-5C24-4DF0-B9B7-1A28F251BF65; csrftoken=tdaenDZToxyAxJoZ0KTCiBz9gksye07Y; rur=ATN; mid=Xx4V5QAEAAEjeo-av5JgbF3VQfnJ; ds_user_id=18096204756; sessionid=18096204756%3AcuFRPIzYIM8eYh%3A7',
+    'ig_did=9B7995CC-5C24-4DF0-B9B7-1A28F251BF65; csrftoken=tdaenDZToxyAxJoZ0KTCiBz9gksye07Y; rur=ATN; mid=Xx4V5QAEAAEjeo-av5JgbF3VQfnJ; ds_user_id=18096204756; sessionid=18096204756%3AcuFRPIzYIM8eYh%3A7',
 
-    # 'ig_did=81AB47FF-F146-46C7-9FF9-79B8B937BAF9; csrftoken=9BPcjalXIC7uqOfZg3lVJBNSxuo3NSMJ; rur=ATN; mid=Xx4WcQAEAAF6wRWyp2IAzgtRj_E2; ds_user_id=18093461285; sessionid=18093461285%3AaRAeg11INfixvN%3A4',
+    'ig_did=81AB47FF-F146-46C7-9FF9-79B8B937BAF9; csrftoken=9BPcjalXIC7uqOfZg3lVJBNSxuo3NSMJ; rur=ATN; mid=Xx4WcQAEAAF6wRWyp2IAzgtRj_E2; ds_user_id=18093461285; sessionid=18093461285%3AaRAeg11INfixvN%3A4',
 
     'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=gvAz0jv5BBE6jRX24D322cK9VEjz6NYA; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=11835832380; sessionid=11835832380%3A47jCf5oZ5bPgTL%3A16',
 
@@ -302,12 +302,13 @@ cookie_value = [
     'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
 ]
 
-
+COOKIES = cycle(cookie_value)
+COOKIE = next(COOKIES)
 chosen_cookie = ''
 
 
 def get_user(user_id, user_info):
-    global PROXY, PROXIES
+    global PROXY, PROXIES, COOKIES, COOKIE
     user_url = "https://i.instagram.com/api/v1/users/" + user_id + "/info/"
     print(user_url)
     switch_count = 0
@@ -316,7 +317,7 @@ def get_user(user_id, user_info):
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
 
         try:
-            response = requests.get(user_url, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent},
+            response = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent},
                                 timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
             break
         except:
@@ -333,6 +334,7 @@ def get_user(user_id, user_info):
     
     # ---------------------------------------------------------------------------
     # ---------------------------------------------------------------------------
+
     username = user_data['user']['username']
 
     print("data user str:")
@@ -343,7 +345,7 @@ def get_user(user_id, user_info):
     while switch_count < 5:
         print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
         try: 
-            data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
+            data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
             break
         except:
             PROXY = next(PROXIES)
@@ -443,7 +445,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
                 print(url)
                 
-                r = requests.get(url, headers={"cookie": random.choice(cookie_value), "User-Agent": user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+                r = requests.get(url, headers={"cookie": COOKIE, "User-Agent": user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
 
                 if r.status_code != 200:
                     print(r.status_code)
@@ -519,7 +521,7 @@ def get_future_date(shortcode, tagwithnumber):
     # while switch_count < 5:
     # print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
     try: 
-        data_response = requests.get(user_url_data, headers={"cookie": random.choice(cookie_value), 'User-Agent': user_agent}, timeout=10)
+        data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
         # break
     except:
         PROXY = next(PROXIES)
@@ -586,7 +588,7 @@ def get_location(shortcode):
     try:
         url = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
         try:
-            r = requests.get(url, headers={"cookie": random.choice(cookie_value)}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+            r = requests.get(url, headers={"cookie": COOKIE}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
         except Exception as e:
             print(e)
             get_location(shortcode)
@@ -660,7 +662,7 @@ def move_to_excel(data, location, tag):
 def get_location_id(entry):
     location_id = None
     get_location_id_url = "https://www.instagram.com/web/search/topsearch/?context=blended&query=" + entry + "&rank_token=0.20850940886082237&include_reel=true"
-    req = requests.get(get_location_id_url, headers={"cookie": random.choice(cookie_value)}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+    req = requests.get(get_location_id_url, headers={"cookie": COOKIE}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
 
     location_data = json.loads(req.text)
     places = location_data['places']
@@ -691,7 +693,7 @@ def get_location_list(entry, choice):
             return None
 
     get_location_id_url = "https://www.instagram.com/web/search/topsearch/?context=blended&query=" + location + "&rank_token=0.20850940886082237&include_reel=true"
-    req = requests.get(get_location_id_url, headers={"cookie": random.choice(cookie_value)}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+    req = requests.get(get_location_id_url, headers={"cookie": COOKIE}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
 
     location_data = json.loads(req.text)
     places = location_data['places']
