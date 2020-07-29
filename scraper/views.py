@@ -16,13 +16,13 @@ import datetime
 # pip3 install chromedriver
 # pip3 install webdriver-manager
 #  pip3 install pyvirtualdisplay
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.keys import Keys  
-from selenium.webdriver.chrome.options import Options 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
+# from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver.common.keys import Keys  
+# from selenium.webdriver.chrome.options import Options 
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.by import By
+# from selenium.common.exceptions import TimeoutException
 
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
