@@ -334,7 +334,7 @@ cookie_value = [
 ]
 
 COOKIES = cycle(cookie_value)
-COOKIE = next(COOKIES)
+# COOKIE = next(COOKIES)
 chosen_cookie = ''
 
 
