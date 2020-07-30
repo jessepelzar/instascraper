@@ -390,7 +390,7 @@ def get_user(user_id, user_info):
 def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     # print(choice)
     # print("switch", tag_num_switch_r)
-    global workbook_name
+    global workbook_name, COOKIE
     workbook_name = filename_r + ".xlsx"
     # if choice is 'tagAndLocation':
     #     workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
