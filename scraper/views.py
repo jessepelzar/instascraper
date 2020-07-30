@@ -145,7 +145,7 @@ def index(request):
         filename_r = request.POST.get('filename')
         hashtag_list_r = request.POST.get('hashtag-list')
         tag_num_switch_r = request.POST.get('tagwithnumberswitch')
-        print(tag_num_switch_r)
+        # print(tag_num_switch_r)
         hashtag_list_r = str(hashtag_list_r)
         hashtag_list_r = hashtag_list_r.split(',')
         print(hashtag_list_r)
@@ -192,7 +192,7 @@ def index(request):
 
             if multiple is True:
                 if len(entry_r) > 0:
-                    print(row_count)
+                    # print(row_count)
                     context = {
                         "row_count": row_count,
                         "entry": entry_r[0],
@@ -200,7 +200,7 @@ def index(request):
                     }
             else:
                 if len(entry_r) > 0:
-                    print(row_count)
+                    # print(row_count)
                     context = {
                         "row_count": row_count,
                         "entry": entry_r[0],
@@ -260,45 +260,45 @@ user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebK
 
 cookie_value = [
 
-    'ig_did=E47FEC0C-30C6-472F-A9FC-0C1123F77B15; csrftoken=4NYlt3ps9weBjjQdupkFy7uGu3SYDImC; rur=ATN; mid=Xi9XzAALAAGmbiNZxhWMQWvdXAyw; ds_user_id=28683127656; sessionid=28683127656%3Arncw1sq26MLYf3%3A13',
+    # 'ig_did=E47FEC0C-30C6-472F-A9FC-0C1123F77B15; csrftoken=4NYlt3ps9weBjjQdupkFy7uGu3SYDImC; rur=ATN; mid=Xi9XzAALAAGmbiNZxhWMQWvdXAyw; ds_user_id=28683127656; sessionid=28683127656%3Arncw1sq26MLYf3%3A13',
 
-    'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
+    # 'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
 
-    'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
+    # 'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
 
-    'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
+    # 'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
 
-    'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
+    # 'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
 
-    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=pSG9zxxfGiKOoIBROaQ0Vjhh3G0azvYm; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=17855852863; sessionid=17855852863%3AFRDcbz6lTN6mnk%3A2',
+    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=pSG9zxxfGiKOoIBROaQ0Vjhh3G0azvYm; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=17855852863; sessionid=17855852863%3AFRDcbz6lTN6mnk%3A2',
 
-    'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=MYrMXkGnAnty2cHn9zutv66CKxWhhN6b; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=314946530; sessionid=314946530%3AyO17zHD7llrrxR%3A2',
+    # 'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=MYrMXkGnAnty2cHn9zutv66CKxWhhN6b; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=314946530; sessionid=314946530%3AyO17zHD7llrrxR%3A2',
 
-    'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=HRQOCJpHe3TBkMae1jsG52yfzRn2FFyM; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=28514517496; sessionid=28514517496%3AZjT1Qhdswi7mwH%3A1',
+    # 'ig_did=F32CCF72-711B-4250-ABEB-31278AE63465; csrftoken=HRQOCJpHe3TBkMae1jsG52yfzRn2FFyM; rur=ASH; mid=XxSkyQAEAAESIBtGIhWAPB-2URjQ; ds_user_id=28514517496; sessionid=28514517496%3AZjT1Qhdswi7mwH%3A1',
 
-    'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=l7uoJRhWNt5nbsfzeTSGIcVBLyFjC5xW; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18070511049; sessionid=18070511049%3Av2Jbmp7Aw7A58R%3A22',
+    # 'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=l7uoJRhWNt5nbsfzeTSGIcVBLyFjC5xW; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18070511049; sessionid=18070511049%3Av2Jbmp7Aw7A58R%3A22',
 
-    'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=5A34F528-75F7-4AD8-A12F-18170196F9A6; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18262161604; sessionid=18262161604%3Ah2E6yqnpMFDrD6%3A22',
+    # 'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=5A34F528-75F7-4AD8-A12F-18170196F9A6; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18262161604; sessionid=18262161604%3Ah2E6yqnpMFDrD6%3A22',
 
-    'ig_did=9B7995CC-5C24-4DF0-B9B7-1A28F251BF65; csrftoken=tdaenDZToxyAxJoZ0KTCiBz9gksye07Y; rur=ATN; mid=Xx4V5QAEAAEjeo-av5JgbF3VQfnJ; ds_user_id=18096204756; sessionid=18096204756%3AcuFRPIzYIM8eYh%3A7',
+    # 'ig_did=9B7995CC-5C24-4DF0-B9B7-1A28F251BF65; csrftoken=tdaenDZToxyAxJoZ0KTCiBz9gksye07Y; rur=ATN; mid=Xx4V5QAEAAEjeo-av5JgbF3VQfnJ; ds_user_id=18096204756; sessionid=18096204756%3AcuFRPIzYIM8eYh%3A7',
 
-    'ig_did=81AB47FF-F146-46C7-9FF9-79B8B937BAF9; csrftoken=9BPcjalXIC7uqOfZg3lVJBNSxuo3NSMJ; rur=ATN; mid=Xx4WcQAEAAF6wRWyp2IAzgtRj_E2; ds_user_id=18093461285; sessionid=18093461285%3AaRAeg11INfixvN%3A4',
+    # 'ig_did=81AB47FF-F146-46C7-9FF9-79B8B937BAF9; csrftoken=9BPcjalXIC7uqOfZg3lVJBNSxuo3NSMJ; rur=ATN; mid=Xx4WcQAEAAF6wRWyp2IAzgtRj_E2; ds_user_id=18093461285; sessionid=18093461285%3AaRAeg11INfixvN%3A4',
 
-    'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=gvAz0jv5BBE6jRX24D322cK9VEjz6NYA; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=11835832380; sessionid=11835832380%3A47jCf5oZ5bPgTL%3A16',
+    # 'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=gvAz0jv5BBE6jRX24D322cK9VEjz6NYA; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=11835832380; sessionid=11835832380%3A47jCf5oZ5bPgTL%3A16',
 
-    'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=v6ZbVq1pb41E8XV1HSPpvTIyhexxRCYF; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=28878069841; sessionid=28878069841%3APA0kmzqWJbpSCZ%3A21',
+    # 'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=v6ZbVq1pb41E8XV1HSPpvTIyhexxRCYF; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=28878069841; sessionid=28878069841%3APA0kmzqWJbpSCZ%3A21',
 
-    'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=kJ2458JIdA65hs0riqQPBAo2CpzXEIKH; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=28694253617; sessionid=28694253617%3AXGSiJ9JyauHk6h%3A1',
+    # 'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=kJ2458JIdA65hs0riqQPBAo2CpzXEIKH; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=28694253617; sessionid=28694253617%3AXGSiJ9JyauHk6h%3A1',
 
-    'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=sVmflcfyctbPkhIm8r2EjZ8y8VBed26X; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=29067884570; sessionid=29067884570%3Ajxg4qRl8v94uuh%3A19',
+    # 'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=sVmflcfyctbPkhIm8r2EjZ8y8VBed26X; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=29067884570; sessionid=29067884570%3Ajxg4qRl8v94uuh%3A19',
 
-    'ig_did=8F870CEE-1D2F-4D17-BE3A-02B2DFED542F; csrftoken=Jz4GWwnyJP3KsmZ8lkGonuQlMKHWBXbC; rur=FRC; mid=Xx8C6gAEAAGQznzPWuufxy_y5ATA; ds_user_id=29099456467; sessionid=29099456467%3AGNymkgrSfvhUxN%3A21',
+    # 'ig_did=8F870CEE-1D2F-4D17-BE3A-02B2DFED542F; csrftoken=Jz4GWwnyJP3KsmZ8lkGonuQlMKHWBXbC; rur=FRC; mid=Xx8C6gAEAAGQznzPWuufxy_y5ATA; ds_user_id=29099456467; sessionid=29099456467%3AGNymkgrSfvhUxN%3A21',
 
-    'ig_did=93637582-93A6-435E-B4FE-FB76B9CDB5E3; csrftoken=QKtF4LOElTNWF8Cs712ulpw3IvDAAfiw; rur=PRN; mid=Xx8DegAEAAEvi7UxslepSBPZTkUn; ds_user_id=29076243614; sessionid=29076243614%3AJjYOGcdwhtjdyV%3A22',
+    # 'ig_did=93637582-93A6-435E-B4FE-FB76B9CDB5E3; csrftoken=QKtF4LOElTNWF8Cs712ulpw3IvDAAfiw; rur=PRN; mid=Xx8DegAEAAEvi7UxslepSBPZTkUn; ds_user_id=29076243614; sessionid=29076243614%3AJjYOGcdwhtjdyV%3A22',
 
-    'ig_did=46D8A77C-C7E6-4D62-A53E-538D40EA40F1; csrftoken=AeoWPxHtEqnfD3543JaJmtiskPjZ9vZW; rur=VLL; mid=Xx8D5gAEAAFUEHF6rt4Si4Tqw320; ds_user_id=28514517496; sessionid=28514517496%3AXEs5EHVxct6eFq%3A10',
+    # 'ig_did=46D8A77C-C7E6-4D62-A53E-538D40EA40F1; csrftoken=AeoWPxHtEqnfD3543JaJmtiskPjZ9vZW; rur=VLL; mid=Xx8D5gAEAAFUEHF6rt4Si4Tqw320; ds_user_id=28514517496; sessionid=28514517496%3AXEs5EHVxct6eFq%3A10',
 
-    'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
+    # 'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
 
 
     'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=CW8as8P0qcxbF2gKiebKs4KEtnCfF9Sc; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=18070511049; sessionid=18070511049%3AE4dnz7ZO7jA3Ax%3A27',
@@ -341,23 +341,7 @@ chosen_cookie = ''
 def get_user(user_id, user_info):
     global PROXY, PROXIES
     user_url = "https://i.instagram.com/api/v1/users/" + user_id + "/info/"
-    print(user_url)
-    # switch_count = 0
-    # # print('SWITCH COUNT SWITCH COUNT')
-    # while switch_count < 5:
-    #     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-
-    #     try:
-    #         response = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent},
-    #                             timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-    #         break
-    #     except:
-    #         PROXY = next(PROXIES)
-    #         switch_count+=1
-    # if switch_count == 5:
-    #     return user_info
-    #     print(cookie)
-
+   
     try:
         response = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
     except:
@@ -365,60 +349,27 @@ def get_user(user_id, user_info):
     user_data = json.loads(response.text)
     user_data_string = json.dumps(response.text)
 
-    # print(user_data)
-    sleep(3)
-    
     # ---------------------------------------------------------------------------
     # ---------------------------------------------------------------------------
 
     username = user_data['user']['username']
+    user_url_data = "https://www.instagram.com/" + username + "/?__a=1" 
+    COOKIE = next(COOKIES)
 
-    print("data user str:")
-    
-    user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
-
-    # switch_count = 0
-    # while switch_count < 5:
-    #     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-    #     try: 
-    #         data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
-    #         break
-    #     except:
-    #         PROXY = next(PROXIES)
-    #         switch_count+=1
-    # if switch_count == 5:
-    #     return user_info
-    #     # print(cookie)
-    
     try: 
         data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
     except:
         PROXY = next(PROXIES)
-    print(data_response.status_code)
+    # print(data_response.status_code)
     user_data_response = json.loads(data_response.text)
-
-    # username - get from api request
-    # userEmail - get from api request
     userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
     userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
-    # locationOfPost - get from https://www.instagram.com/p/ shortcode /?__a=1
     numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
     igURL = 'https://www.instagram.com/' + username + '/'
     external_url = user_data_response['graphql']['user']['external_url']
     followers = user_data_response['graphql']['user']['edge_followed_by']['count']
     following = user_data_response['graphql']['user']['edge_follow']['count']
-    # posts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['edges']
-    # timestamp = posts[10]['node']['taken_at_timestamp'] # converts epoch number into date and time
-    
-    
-    
-#     user_info.extend([followers, following, numberOfPosts, igURL, external_url])
-#     return user_info
-    
-#     # -------------------------
-#     # -------------------------
 
-#     sleep(3)
 
     follower_count = user_data['user']['follower_count']
     try:
@@ -435,8 +386,8 @@ def get_user(user_id, user_info):
 
 
 def start_scraping(entry, choice, filename_r, tag_num_switch_r):
-    print(choice)
-    print("switch", tag_num_switch_r)
+    # print(choice)
+    # print("switch", tag_num_switch_r)
     global workbook_name
     workbook_name = filename_r + ".xlsx"
     # if choice is 'tagAndLocation':
@@ -468,7 +419,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     if abort is False:
         for page in range(num_of_pages):
             COOKIE = next(COOKIES)
-            print(COOKIE)
+            # print(COOKIE)
             entryChosen = ""
             try:
                 if page == 0:
@@ -486,7 +437,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                     else:
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
 
-                print(url)
+                # print(url)
                 
                 r = requests.get(url, headers={"cookie": COOKIE, "User-Agent": user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
 
@@ -523,18 +474,18 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                         info, username = get_user(user_id, user_info)
 
                         if choice is "tag" or choice is "tagAndLocation":
-                            print("tag or tag and loc")
+                            # print("tag or tag and loc")
                             if str(tag_num_switch_r) == "true":
-                                print("tag switch true")
+                                # print("tag switch true")
                                 future_date = get_future_date(shortcode, entryChosen)
                                 info.extend([future_date, entryChosen])
                                 
                         print(info)
                         print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
                         start_time2 = time.time()
-                        print("test 11")
+                        # print("test 11")
                         if len(info) != 0:
-                            print("22")
+                            # print("22")
                             move_to_excel(info, location, entryChosen)
                             row_count += 1
                             print(row_count)
@@ -601,12 +552,12 @@ def get_future_date(shortcode, tagwithnumber):
 
     dueDate = todaysDate + fomatedDaysLeft
     # projectedDueDayOfYear = todayDayOfYear + daysLeft
-    print(todayDayOfYear)
-    print(postDayOfYear)
-    print(daysPreg)
-    print(daysLeft)
-    print(dueDate.date())
-    print('day of year', todayDayOfYear)
+    # print(todayDayOfYear)
+    # print(postDayOfYear)
+    # print(daysPreg)
+    # print(daysLeft)
+    # print(dueDate.date())
+    # print('day of year', todayDayOfYear)
     
     
     # user_info.extend([dueDate])
@@ -656,7 +607,7 @@ def move_to_excel(data, location, tag):
         save_data.append(data)
         if row_count % 100 == 0:
 
-            print("Storing data in bulk YOLO")
+            # print("Storing data in bulk YOLO")
             headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External URL', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
 
             if row_count % 100000 == 0 and row_count > 0:
