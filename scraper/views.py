@@ -167,15 +167,16 @@ def index(request):
             # entry_r = hashtag_r
             entry_r.clear()
             entry_r = hashtag_list_r
-        if zip_r != "":
+        elif zip_r != "":
             choice_r = "zip"
             entry_r.clear()
             entry_r.append(zip_r)
-        if location_r != "":
+        elif location_r != "":
             choice_r = "location"
             entry_r.clear()
             entry_r.append(location_r)
-
+        else:
+            return
         if request.POST.get('startscraping'):
             global row_count
             row_count = 0
@@ -298,6 +299,38 @@ cookie_value = [
     'ig_did=46D8A77C-C7E6-4D62-A53E-538D40EA40F1; csrftoken=AeoWPxHtEqnfD3543JaJmtiskPjZ9vZW; rur=VLL; mid=Xx8D5gAEAAFUEHF6rt4Si4Tqw320; ds_user_id=28514517496; sessionid=28514517496%3AXEs5EHVxct6eFq%3A10',
 
     'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
+
+
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=CW8as8P0qcxbF2gKiebKs4KEtnCfF9Sc; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=18070511049; sessionid=18070511049%3AE4dnz7ZO7jA3Ax%3A27',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=VXtk0he5e2szTN2CfXVO28WiJLBj2tCB; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=18262161604; sessionid=18262161604%3AJsYudrYQQoZk0u%3A5',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=OZ8NSndnxPDH6r3jWefl9lGuo22eXL8e; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=18096204756; sessionid=18096204756%3ACeruR35ml0RRER%3A4',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=1PGOieyCYaTB3gGBAKfKHFJIyTCqf91n; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=18093461285; sessionid=18093461285%3Adplflhi2jpxBW5%3A10',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=TbKAVW0UxUhB3HY9WwqJS6vKBmjaXS0W; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=11835832380; sessionid=11835832380%3AMoTz7jzWfC52fx%3A11',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=gHJD0fg4Vz5tdc6yzCG9xJhstyKMCDdW; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=20250630209; sessionid=20250630209%3ARq0cfvo7bfvDsM%3A22',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=n8wB9LAiXLtN6h4r3w0PEuC4Jbr3ag8s; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=20296395013; sessionid=20296395013%3A9T4jn3837WSs7n%3A8',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=0QlUH2DKQaSckRLF6wf3pawdV67JAAfM; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=20251277674; sessionid=20251277674%3AjKg5GdqEwUUPIQ%3A25',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=B3wTeNr5Fg7YN8mH8xGuPzPLUqGVo00k; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=28878069841; sessionid=28878069841%3ALZRldEXYgS8CcV%3A16',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=tmJyZndMnELn6Byx05RJ84qDMeoQudbU; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=28694253617; sessionid=28694253617%3Al5FWPZ6vBgIwH0%3A28',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=cHGGIt52YwWUCZHVInGPDLUXWvrSvN4E; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=29067884570; sessionid=29067884570%3AlTk26WBs1XPQJ4%3A6',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=VaamVIDOXS73ejQEsvSmMZV2UDDUqhqG; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=29099456467; sessionid=29099456467%3AZvlIXMisOHdXgu%3A26',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=zLSrw1GcsZH7gq7ZkrCaNqnJ7Kd0pSD0; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=29076243614; sessionid=29076243614%3AqGEaHufL7g4LRx%3A12',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=QZxGYcaQYCuQ7sfayIdpSQvVzpkV6BoP; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=28514517496; sessionid=28514517496%3Ak2euuwRphNCBpI%3A29',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=wmRe9lv2F2GP6BbJ2cHaQQdI7kyR80hD; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=28683127656; sessionid=28683127656%3APJmCapkgP1Cs4v%3A3',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=o1JCCUNRhg17mn6KDB4CaUOHKLuWsqKc; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=28870662934; sessionid=28870662934%3AUSZzjytY6wgF29%3A19',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=64rKG5AB9O0vUQQkInETUIOw5eQlx0Ie; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=29062029694; sessionid=29062029694%3AsiI5BQ8znQSfOP%3A5',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=C2JXmESxShKKudfCapAeKw1kXyS5qlqu; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=29102216191; sessionid=29102216191%3AsorSZaC7pNXMQ9%3A28',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=bnBBqV9cOrWDpMVSNUG2kfaPB6iOe5Gr; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=29084834611; sessionid=29084834611%3Aj5TIJPs8g7EQjA%3A28',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=jWlIAJ0wj9txMerrZquFOOnTCJNdINeY; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=29068268874; sessionid=29068268874%3AafD3vXRpDOcuIx%3A8',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=UwHcGJBjfmtMEMjhnW1VerKydS9B3MXv; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=28888788623; sessionid=28888788623%3ACztpcwhrsb4xuB%3A15',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=0BKOvRT1AOhmT4F49rgLCFgqAFynwOYo; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=20271859208; sessionid=20271859208%3AkMhWOxdtG0j7oy%3A0',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=kyErXkjs6iVr8kvkZCxphnyUqDIXbm1H; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=20230623790; sessionid=20230623790%3AtYJNSknx73BytE%3A4',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=Rl9l5Sm4zYE4I83x6RkCTiIZUT89gGCW; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=20477224439; sessionid=20477224439%3Ap2VABKuoG1IVab%3A14',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=NZh1Iooc4dGutC28qnxNYYDvEHxvCt9u; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=20476600456; sessionid=20476600456%3AkE7LS95wqvJuav%3A25',
+    'ig_did=414B6125-6E04-416D-8F13-E84D3C0AAE64; csrftoken=28AgcxZLSqYLQ17pDa8si4iA96pJmqzY; rur=FRC; mid=W4mzAAALAAGfHuZyx_NZjzDM6FU-; ds_user_id=28729779488; sessionid=28729779488%3AHVf41ktUm8FAZg%3A10',
+
+
+
+
 ]
 
 COOKIES = cycle(cookie_value)
