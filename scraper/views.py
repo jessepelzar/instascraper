@@ -270,6 +270,8 @@ cookie_value = [
     
     'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=WaIzlKULuffrdIomegHCDSz2p21Rs7KE; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=39270679562; sessionid=39270679562%3Aauy0o6tEcMx4Ty%3A28',
 
+    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=A26cuuk1vCDgdfJAsW6Aqy6RKzmncrko; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=19582340696; sessionid=19582340696%3A5zVLQSyAw1xx2u%3A14',
+
 ]
 
 # cookie_value = [
