@@ -469,6 +469,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                     edges = data['graphql']['location']['edge_location_to_media']['edges']  # list with posts
 
                 for item in edges:
+                    global COOKIES, COOKIE
                     COOKIE = next(COOKIES)
                     if stop_thread is True:
                         return
