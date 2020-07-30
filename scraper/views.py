@@ -306,7 +306,7 @@ chosen_cookie = ''
 
 
 def get_user(user_id, user_info):
-    global PROXY, PROXIES, COOKIES, COOKIE
+    global PROXY, PROXIES
     user_url = "https://i.instagram.com/api/v1/users/" + user_id + "/info/"
     print(user_url)
     # switch_count = 0
@@ -434,6 +434,8 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     # sys.exit()
     if abort is False:
         for page in range(num_of_pages):
+            COOKIE = next(COOKIES)
+            print(COOKIE)
             entryChosen = ""
             try:
                 if page == 0:
@@ -469,8 +471,8 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                     edges = data['graphql']['location']['edge_location_to_media']['edges']  # list with posts
 
                 for item in edges:
-                    global COOKIES, COOKIE
                     COOKIE = next(COOKIES)
+                    print(COOKIE)
                     if stop_thread is True:
                         return
                     while pause_thread:
