@@ -327,7 +327,6 @@ def get_user(user_id, user_info):
 
     try:
         response = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-        break
     except:
         PROXY = next(PROXIES)
     user_data = json.loads(response.text)
@@ -360,7 +359,6 @@ def get_user(user_id, user_info):
     
     try: 
         data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
-        break
     except:
         PROXY = next(PROXIES)
     print(data_response.status_code)
