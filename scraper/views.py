@@ -175,7 +175,8 @@ def index(request):
             choice_r = "location"
             entry_r.clear()
             entry_r.append(location_r)
-        
+        else:
+            stop_scraping()
         if request.POST.get('startscraping'):
             global row_count
             row_count = 0
@@ -263,7 +264,7 @@ cookie_value = [
 
     # 'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
 
-    'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
+    # 'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
 
     # 'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
 
