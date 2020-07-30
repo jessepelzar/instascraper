@@ -309,21 +309,27 @@ def get_user(user_id, user_info):
     global PROXY, PROXIES, COOKIES, COOKIE
     user_url = "https://i.instagram.com/api/v1/users/" + user_id + "/info/"
     print(user_url)
-    switch_count = 0
-    # print('SWITCH COUNT SWITCH COUNT')
-    while switch_count < 5:
-        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+    # switch_count = 0
+    # # print('SWITCH COUNT SWITCH COUNT')
+    # while switch_count < 5:
+    #     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
 
-        try:
-            response = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent},
-                                timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-            break
-        except:
-            PROXY = next(PROXIES)
-            switch_count+=1
-    if switch_count == 5:
-        return user_info
-        print(cookie)
+    #     try:
+    #         response = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent},
+    #                             timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+    #         break
+    #     except:
+    #         PROXY = next(PROXIES)
+    #         switch_count+=1
+    # if switch_count == 5:
+    #     return user_info
+    #     print(cookie)
+
+    try:
+        response = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
+        break
+    except:
+        PROXY = next(PROXIES)
     user_data = json.loads(response.text)
     user_data_string = json.dumps(response.text)
 
@@ -339,18 +345,24 @@ def get_user(user_id, user_info):
     
     user_url_data = "https://www.instagram.com/" + username + "/?__a=1"
 
-    switch_count = 0
-    while switch_count < 5:
-        print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-        try: 
-            data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
-            break
-        except:
-            PROXY = next(PROXIES)
-            switch_count+=1
-    if switch_count == 5:
-        return user_info
-        # print(cookie)
+    # switch_count = 0
+    # while switch_count < 5:
+    #     print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
+    #     try: 
+    #         data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
+    #         break
+    #     except:
+    #         PROXY = next(PROXIES)
+    #         switch_count+=1
+    # if switch_count == 5:
+    #     return user_info
+    #     # print(cookie)
+    
+    try: 
+        data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
+        break
+    except:
+        PROXY = next(PROXIES)
     print(data_response.status_code)
     user_data_response = json.loads(data_response.text)
 
@@ -459,6 +471,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                     edges = data['graphql']['location']['edge_location_to_media']['edges']  # list with posts
 
                 for item in edges:
+                    COOKIE = next(COOKIES)
                     if stop_thread is True:
                         return
                     while pause_thread:
