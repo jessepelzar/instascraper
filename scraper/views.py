@@ -347,28 +347,29 @@ def get_user(user_id, user_info):
     except:
         PROXY = next(PROXIES)
     user_data = json.loads(response.text)
-    user_data_string = json.dumps(response.text)
 
     # ---------------------------------------------------------------------------
     # ---------------------------------------------------------------------------
 
     username = user_data['user']['username']
-    user_url_data = "https://www.instagram.com/" + username + "/?__a=1" 
-    COOKIE = next(COOKIES)
-    print(COOKIE)
-    try: 
-        data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
-    except:
-        PROXY = next(PROXIES)
-    # print(data_response.status_code)
-    user_data_response = json.loads(data_response.text)
-    userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
-    userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
-    numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
-    igURL = 'https://www.instagram.com/' + username + '/'
-    external_url = user_data_response['graphql']['user']['external_url']
-    followers = user_data_response['graphql']['user']['edge_followed_by']['count']
-    following = user_data_response['graphql']['user']['edge_follow']['count']
+    # user_url_data = "https://www.instagram.com/" + username + "/?__a=1" 
+    # COOKIE = next(COOKIES)
+    # print(COOKIE)
+    # try: 
+    #     data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
+    # except:
+    #     PROXY = next(PROXIES)
+    # # print(data_response.status_code)
+    # user_data_response = json.loads(data_response.text)
+
+
+    # userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
+    # userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
+    # numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
+    
+    # external_url = user_data_response['graphql']['user']['external_url']
+    # followers = user_data_response['graphql']['user']['edge_followed_by']['count']
+    # following = user_data_response['graphql']['user']['edge_follow']['count']
 
 
     follower_count = user_data['user']['follower_count']
@@ -377,8 +378,10 @@ def get_user(user_id, user_info):
     except:
         public_email = ' '
     full_name = user_data['user']['full_name']
+    igURL = 'https://www.instagram.com/' + username + '/'
 
-    user_info.extend([username, userFirstName, userLastName, public_email, followers, following, external_url, numberOfPosts, igURL])
+    # user_info.extend([username, userFirstName, userLastName, public_email, followers, following, external_url, numberOfPosts, igURL])
+    user_info.extend([username, full_name, public_email, follower_count, igURL])
     return user_info, username
         # print(
         #     "ID: " + user_id + " " + "Username : " + username + " " + str(score))
@@ -611,8 +614,9 @@ def move_to_excel(data, location, tag):
         if row_count % 100 == 0:
 
             # print("Storing data in bulk YOLO")
-            headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External URL', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
-
+            # headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External URL', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
+            headers = ['Location','Username','Full Name', 'Public Email', 'Followers', 'Profile URL', 'Due Date', 'Tag']
+            
             if row_count % 100000 == 0 and row_count > 0:
                 global counter
                 counter += 1
@@ -719,8 +723,8 @@ def stop_scraping():
 
     try:
 
-        headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External URL', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
-
+        # headers = ['Location','Username','First Name', 'Last Name', 'Public Email', 'Followers', 'Following', 'External URL', 'Number of Posts', 'Profile URL', 'Due Date', 'Tag']
+        headers = ['Location','Username','Full Name', 'Public Email', 'Followers', 'Profile URL', 'Due Date', 'Tag']
         global wb
         if os.path.isfile(workbook_name):
             wb = load_workbook(filename=workbook_name)
