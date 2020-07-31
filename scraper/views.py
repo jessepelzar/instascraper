@@ -468,6 +468,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                         print("--- %s seconds --- | Excel time" % round(time.time() - start_time2, 2))
 
                     except Exception as e:
+                        sys.exit()
                         # print(e)
 
                 if choice is "tag":
@@ -479,6 +480,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                     return
 
             except Exception as e:
+                sys.exit()
                 # print(e)
                 # stop_scraping()
 
