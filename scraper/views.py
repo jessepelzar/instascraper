@@ -392,9 +392,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
             # print(COOKIE)
             entryChosen = None
             try:
-                if entry == "" and location_id == None:
-                    print("scraping stopped")
-                    stop_scraping()
+                # if entry == "" and location_id == None:
+                #     print("scraping stopped")
+                #     stop_scraping()
 
                 if page == 0:
                     if choice is "tag":
