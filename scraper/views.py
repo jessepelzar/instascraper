@@ -418,7 +418,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                 if r.status_code != 200:
                     print(r.status_code)
                     print("No Posts found. Please Stop scraping before starting a new search")
-                    
+                    stop_scraping()
                     continue
 
                 # print(r.text)
