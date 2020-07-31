@@ -182,7 +182,8 @@ def index(request):
             row_count = 0
             create_text_file(filename_r)
            
-            for entry in entry_r:                
+            for entry in entry_r:
+                print("entry", entry)                
                 thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r))
                 thread_list.append(thread)
             
@@ -367,7 +368,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     row_count = 0
     end_cursor = ''
     location_id = None
-    
+    entryChosen = entry
     abort = False
     # if choice is 'tagAndLocation':
     #     print("tag and location chosen")
@@ -389,11 +390,14 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
         for page in range(num_of_pages):
             COOKIE = next(COOKIES)
             print(COOKIE)
-            entryChosen = ""
+            entryChosen = None
             try:
+                if entryChosen == None and location_id == None:
+                    stop_scraping()
+
                 if page == 0:
                     if choice is "tag":
-                        entryChosen = entry.replace(" ", "")
+                        entryChosen = entryChosen.replace(" ", "")
                         url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1"
 
                     else:
@@ -401,7 +405,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
                 else:
                     if choice is "tag":
-                        entryChosen = entry.replace(" ", "")
+                        entryChosen = entryChosen.replace(" ", "")
                         url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1&max_id=" + end_cursor
                     else:
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
@@ -413,8 +417,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                 if r.status_code != 200:
                     print(r.status_code)
                     print("No Posts found. Please Stop scraping before starting a new search")
-                    if entryChosen == "" and location_id == "":
-                        stop_scraping()
+                    
                     continue
 
                 # print(r.text)
