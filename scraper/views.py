@@ -262,15 +262,15 @@ cookie_value = [
 
     'ig_did=81AB47FF-F146-46C7-9FF9-79B8B937BAF9; csrftoken=9BPcjalXIC7uqOfZg3lVJBNSxuo3NSMJ; rur=ATN; mid=Xx4WcQAEAAF6wRWyp2IAzgtRj_E2; ds_user_id=18093461285; sessionid=18093461285%3AaRAeg11INfixvN%3A4',
     
-    'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
+    # 'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
 
     'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=kfKVi6vtYCH9jN2m2zS5KpWpSSe9NB7S; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=314946530; sessionid=314946530%3AIc4y0OrGbMf1Vl%3A29',
     
-    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=XHgtdBEjbTxNNvL3LZGLKc6owRWyH8Vd; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=32815208; sessionid=32815208%3A80gtJLAEJ6oC4H%3A27',
+    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=XHgtdBEjbTxNNvL3LZGLKc6owRWyH8Vd; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=32815208; sessionid=32815208%3A80gtJLAEJ6oC4H%3A27',
     
-    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=WaIzlKULuffrdIomegHCDSz2p21Rs7KE; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=39270679562; sessionid=39270679562%3Aauy0o6tEcMx4Ty%3A28',
+    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=WaIzlKULuffrdIomegHCDSz2p21Rs7KE; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=39270679562; sessionid=39270679562%3Aauy0o6tEcMx4Ty%3A28',
 
-    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=A26cuuk1vCDgdfJAsW6Aqy6RKzmncrko; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=19582340696; sessionid=19582340696%3A5zVLQSyAw1xx2u%3A14',
+    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=A26cuuk1vCDgdfJAsW6Aqy6RKzmncrko; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=19582340696; sessionid=19582340696%3A5zVLQSyAw1xx2u%3A14',
 
 ]
 
@@ -413,6 +413,8 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                 if r.status_code != 200:
                     print(r.status_code)
                     print("No Posts found. Please Stop scraping before starting a new search")
+                    if entryChosen == "" and location_id == "":
+                        stop_scraping()
                     continue
 
                 # print(r.text)
@@ -448,7 +450,6 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                             if str(tag_num_switch_r) == "true":
                                 # print("tag switch true")
                                 future_date = get_future_date(shortcode, entryChosen)
-                                print(COOKIE)
                                 info.extend([future_date, entryChosen])
                                 
                         print(info)
