@@ -368,7 +368,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     row_count = 0
     end_cursor = ''
     location_id = None
-    entryChosen = entry
+    # entryChosen = entry
     abort = False
     # if choice is 'tagAndLocation':
     #     print("tag and location chosen")
@@ -392,12 +392,13 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
             # print(COOKIE)
             entryChosen = None
             try:
-                if entryChosen == None and location_id == None:
+                if entry == "" and location_id == None:
+                    print("scraping stopped")
                     stop_scraping()
 
                 if page == 0:
                     if choice is "tag":
-                        entryChosen = entryChosen.replace(" ", "")
+                        entryChosen = entry.replace(" ", "")
                         url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1"
 
                     else:
@@ -405,7 +406,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
                 else:
                     if choice is "tag":
-                        entryChosen = entryChosen.replace(" ", "")
+                        entryChosen = entry.replace(" ", "")
                         url = "https://www.instagram.com/explore/tags/" + entryChosen + "/?__a=1&max_id=" + end_cursor
                     else:
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
