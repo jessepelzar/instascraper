@@ -389,7 +389,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     if abort is False:
         for page in range(num_of_pages):
             COOKIE = next(COOKIES)
-            print(COOKIE)
+            # print(COOKIE)
             entryChosen = None
             try:
                 if entryChosen == None and location_id == None:
@@ -447,7 +447,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                         user_info = []
                         # print(COOKIE)
                         info, username = get_user(user_id, user_info)
-                        print(COOKIE)
+                        # print(COOKIE)
                         if choice is "tag" or choice is "tagAndLocation":
                             # print("tag or tag and loc")
                             if str(tag_num_switch_r) == "true":
