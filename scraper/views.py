@@ -459,6 +459,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                                     if dateCounter > 5:
                                         stop_scraping()
                                     else:
+                                        print("continue triggered")
                                         continue
                                 else:
                                     dateCounter = 0
