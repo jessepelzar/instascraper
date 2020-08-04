@@ -259,46 +259,46 @@ stop_thread = False
 save_data = []
 user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 105.0.0.11.118 (iPhone11,8; iOS 12_3_1; en_US; en-US; scale=2.00; 828x1792; 165586599)"
 
-cookie_value = [
-
-    'ig_did=81AB47FF-F146-46C7-9FF9-79B8B937BAF9; csrftoken=9BPcjalXIC7uqOfZg3lVJBNSxuo3NSMJ; rur=ATN; mid=Xx4WcQAEAAF6wRWyp2IAzgtRj_E2; ds_user_id=18093461285; sessionid=18093461285%3AaRAeg11INfixvN%3A4',
-    
-    # 'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
-
-    'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=kfKVi6vtYCH9jN2m2zS5KpWpSSe9NB7S; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=314946530; sessionid=314946530%3AIc4y0OrGbMf1Vl%3A29',
-    
-    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=XHgtdBEjbTxNNvL3LZGLKc6owRWyH8Vd; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=32815208; sessionid=32815208%3A80gtJLAEJ6oC4H%3A27',
-    
-    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=WaIzlKULuffrdIomegHCDSz2p21Rs7KE; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=39270679562; sessionid=39270679562%3Aauy0o6tEcMx4Ty%3A28',
-
-    # 'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=A26cuuk1vCDgdfJAsW6Aqy6RKzmncrko; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=19582340696; sessionid=19582340696%3A5zVLQSyAw1xx2u%3A14',
-
-]
-
 # cookie_value = [
 
-#     'ig_did=E47FEC0C-30C6-472F-A9FC-0C1123F77B15; csrftoken=4NYlt3ps9weBjjQdupkFy7uGu3SYDImC; rur=ATN; mid=Xi9XzAALAAGmbiNZxhWMQWvdXAyw; ds_user_id=28683127656; sessionid=28683127656%3Arncw1sq26MLYf3%3A13',
+#     'ig_did=81AB47FF-F146-46C7-9FF9-79B8B937BAF9; csrftoken=9BPcjalXIC7uqOfZg3lVJBNSxuo3NSMJ; rur=ATN; mid=Xx4WcQAEAAF6wRWyp2IAzgtRj_E2; ds_user_id=18093461285; sessionid=18093461285%3AaRAeg11INfixvN%3A4',
+    
+#     'ig_did=0FF09810-2E7C-45B5-ADDB-63F5CA70A89D; csrftoken=gmQ96s0J7or5bCzSiqPByCVZfRCvaYvp; rur=ATN; mid=Xx8EQAAEAAEZt5Lc1m3-7k7zp5qB; ds_user_id=28683127656; sessionid=28683127656%3AHZ2catqnwqAMiJ%3A14',
 
-#     'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
+#     'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=kfKVi6vtYCH9jN2m2zS5KpWpSSe9NB7S; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=314946530; sessionid=314946530%3AIc4y0OrGbMf1Vl%3A29',
+    
+#     'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=XHgtdBEjbTxNNvL3LZGLKc6owRWyH8Vd; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=32815208; sessionid=32815208%3A80gtJLAEJ6oC4H%3A27',
+    
+#     'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=WaIzlKULuffrdIomegHCDSz2p21Rs7KE; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=39270679562; sessionid=39270679562%3Aauy0o6tEcMx4Ty%3A28',
 
-#     'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
+#     'ig_did=40840E02-2385-4458-91C7-F7E5658A3C2E; csrftoken=A26cuuk1vCDgdfJAsW6Aqy6RKzmncrko; rur=FRC; mid=XooWHgAEAAED4b4tv9gff5YRXyyT; ds_user_id=19582340696; sessionid=19582340696%3A5zVLQSyAw1xx2u%3A14',
 
-#     'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
-
-#     'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
-
-#     'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=5A34F528-75F7-4AD8-A12F-18170196F9A6; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18262161604; sessionid=18262161604%3Ah2E6yqnpMFDrD6%3A22',
-
-#     'ig_did=9B7995CC-5C24-4DF0-B9B7-1A28F251BF65; csrftoken=tdaenDZToxyAxJoZ0KTCiBz9gksye07Y; rur=ATN; mid=Xx4V5QAEAAEjeo-av5JgbF3VQfnJ; ds_user_id=18096204756; sessionid=18096204756%3AcuFRPIzYIM8eYh%3A7',
-
-#     'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=sVmflcfyctbPkhIm8r2EjZ8y8VBed26X; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=29067884570; sessionid=29067884570%3Ajxg4qRl8v94uuh%3A19',
-
-#     'ig_did=8F870CEE-1D2F-4D17-BE3A-02B2DFED542F; csrftoken=Jz4GWwnyJP3KsmZ8lkGonuQlMKHWBXbC; rur=FRC; mid=Xx8C6gAEAAGQznzPWuufxy_y5ATA; ds_user_id=29099456467; sessionid=29099456467%3AGNymkgrSfvhUxN%3A21',
-
-#     'ig_did=93637582-93A6-435E-B4FE-FB76B9CDB5E3; csrftoken=QKtF4LOElTNWF8Cs712ulpw3IvDAAfiw; rur=PRN; mid=Xx8DegAEAAEvi7UxslepSBPZTkUn; ds_user_id=29076243614; sessionid=29076243614%3AJjYOGcdwhtjdyV%3A22',
-
-#     'ig_did=46D8A77C-C7E6-4D62-A53E-538D40EA40F1; csrftoken=AeoWPxHtEqnfD3543JaJmtiskPjZ9vZW; rur=VLL; mid=Xx8D5gAEAAFUEHF6rt4Si4Tqw320; ds_user_id=28514517496; sessionid=28514517496%3AXEs5EHVxct6eFq%3A10',
 # ]
+
+cookie_value = [
+
+    'ig_did=E47FEC0C-30C6-472F-A9FC-0C1123F77B15; csrftoken=4NYlt3ps9weBjjQdupkFy7uGu3SYDImC; rur=ATN; mid=Xi9XzAALAAGmbiNZxhWMQWvdXAyw; ds_user_id=28683127656; sessionid=28683127656%3Arncw1sq26MLYf3%3A13',
+
+    'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
+
+    'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
+
+    'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
+
+    'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
+
+    'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=5A34F528-75F7-4AD8-A12F-18170196F9A6; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18262161604; sessionid=18262161604%3Ah2E6yqnpMFDrD6%3A22',
+
+    'ig_did=9B7995CC-5C24-4DF0-B9B7-1A28F251BF65; csrftoken=tdaenDZToxyAxJoZ0KTCiBz9gksye07Y; rur=ATN; mid=Xx4V5QAEAAEjeo-av5JgbF3VQfnJ; ds_user_id=18096204756; sessionid=18096204756%3AcuFRPIzYIM8eYh%3A7',
+
+    'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=sVmflcfyctbPkhIm8r2EjZ8y8VBed26X; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=29067884570; sessionid=29067884570%3Ajxg4qRl8v94uuh%3A19',
+
+    'ig_did=8F870CEE-1D2F-4D17-BE3A-02B2DFED542F; csrftoken=Jz4GWwnyJP3KsmZ8lkGonuQlMKHWBXbC; rur=FRC; mid=Xx8C6gAEAAGQznzPWuufxy_y5ATA; ds_user_id=29099456467; sessionid=29099456467%3AGNymkgrSfvhUxN%3A21',
+
+    'ig_did=93637582-93A6-435E-B4FE-FB76B9CDB5E3; csrftoken=QKtF4LOElTNWF8Cs712ulpw3IvDAAfiw; rur=PRN; mid=Xx8DegAEAAEvi7UxslepSBPZTkUn; ds_user_id=29076243614; sessionid=29076243614%3AJjYOGcdwhtjdyV%3A22',
+
+    'ig_did=46D8A77C-C7E6-4D62-A53E-538D40EA40F1; csrftoken=AeoWPxHtEqnfD3543JaJmtiskPjZ9vZW; rur=VLL; mid=Xx8D5gAEAAFUEHF6rt4Si4Tqw320; ds_user_id=28514517496; sessionid=28514517496%3AXEs5EHVxct6eFq%3A10',
+]
 
 COOKIES = cycle(cookie_value)
 # COOKIE = next(COOKIES)
@@ -531,6 +531,10 @@ def get_future_date(shortcode, tagwithnumber):
     fomatedDaysLeft = datetime.timedelta(days=daysLeft)
 
     dueDate = todaysDate + fomatedDaysLeft
+    dueDayOfYear = dayOfYear
+
+    if daysPreg > daysTotalPregnant:
+        stop_scraping()
     # projectedDueDayOfYear = todayDayOfYear + daysLeft
     # print(todayDayOfYear)
     # print(postDayOfYear)
