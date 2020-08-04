@@ -303,7 +303,7 @@ cookie_value = [
 COOKIES = cycle(cookie_value)
 # COOKIE = next(COOKIES)
 chosen_cookie = ''
-
+dateCounter = 0
 
 def get_user(user_id, user_info):
     global PROXY, PROXIES
@@ -358,7 +358,7 @@ def get_user(user_id, user_info):
 def start_scraping(entry, choice, filename_r, tag_num_switch_r):
     # print(choice)
     # print("switch", tag_num_switch_r)
-    global workbook_name, COOKIE
+    global workbook_name, COOKIE, dateCounter
     workbook_name = filename_r + ".xlsx"
     # if choice is 'tagAndLocation':
     #     workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
@@ -454,7 +454,16 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                             if str(tag_num_switch_r) == "true":
                                 # print("tag switch true")
                                 future_date = get_future_date(shortcode, entryChosen)
-                                info.extend([future_date, entryChosen])
+                                if future_date is None:
+                                    dateCounter += 1
+                                    if dateCounter > 5:
+                                        stop_scraping()
+                                    else:
+                                        continue
+                                else:
+                                    dateCounter = 0
+                                print("date counter", dateCounter)
+                                info.extend([future_date, entryChosen, dateCounter])
                                 
                         print(info)
                         print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
@@ -528,13 +537,15 @@ def get_future_date(shortcode, tagwithnumber):
     daysSincePost = todayDayOfYear - postDayOfYear
     daysPreg = daysSincePost + tagDays
     daysLeft = daysTotalPregnant - daysPreg
-    fomatedDaysLeft = datetime.timedelta(days=daysLeft)
+    formatedDaysLeft = datetime.timedelta(days=daysLeft)
 
-    dueDate = todaysDate + fomatedDaysLeft
+    dueDate = todaysDate + formatedDaysLeft
     dueDayOfYear = dayOfYear
 
-    if daysPreg > daysTotalPregnant:
-        stop_scraping()
+
+    daysRemaining = (dueDate - todaysDate).days
+    if daysRemaining < 0:
+        return None
     # projectedDueDayOfYear = todayDayOfYear + daysLeft
     # print(todayDayOfYear)
     # print(postDayOfYear)
