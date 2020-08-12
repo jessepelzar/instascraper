@@ -301,7 +301,6 @@ cookie_value = [
 ]
 
 COOKIES = cycle(cookie_value)
-# COOKIE = next(COOKIES)
 chosen_cookie = ''
 dateCounter = 0
 
@@ -461,7 +460,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                                 else:
                                     dateCounter = 0
                                 print("date counter", dateCounter)
-                                info.extend([future_date, entryChosen, dateCounter])
+                                info.extend([future_date, entryChosen])
                                 
                         print(info)
                         print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
