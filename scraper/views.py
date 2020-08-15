@@ -181,11 +181,13 @@ def index(request):
             global row_count
             row_count = 0
             create_text_file(filename_r)
-           
+
+            cookie_idx = 0
             for entry in entry_r:
                 print("entry", entry)                
-                thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r))
+                thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r, cookie_idx))
                 thread_list.append(thread)
+                cookie_idx += 1
             
             for thread in thread_list:
                 # thread.daemon = True
@@ -275,36 +277,10 @@ user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebK
 
 # ]
 
-cookie_value = [
 
-    'ig_did=E47FEC0C-30C6-472F-A9FC-0C1123F77B15; csrftoken=4NYlt3ps9weBjjQdupkFy7uGu3SYDImC; rur=ATN; mid=Xi9XzAALAAGmbiNZxhWMQWvdXAyw; ds_user_id=28683127656; sessionid=28683127656%3Arncw1sq26MLYf3%3A13',
-
-    'ig_did=33C11652-D6BA-4024-B66A-B54989AD7D4B; csrftoken=KRsKBnMKpZLkicXiFKq0xUnQZMEFxzOp; rur=FRC; mid=Xi9YcQALAAEwBFt_BXZeJ0Pvd7-P; ds_user_id=28870662934; sessionid=28870662934%3AnVnrQVTqTrT4nE%3A11',
-
-    'ig_did=0786D9EE-CD88-4F10-A7D3-F0D87130E4A8; csrftoken=ByB5JuP5vwfzQD46gorGEA7RtsdjAeEk; rur=FRC; mid=Xi9YxgALAAGc0eoDtILhDxgTuaQ2; ds_user_id=29083842507; sessionid=29083842507%3AvpsXr6YU9i9Bgt%3A18',
-
-    'ig_did=FB765A63-FF99-4A8D-AAED-0D249A55F3CE; csrftoken=3CG6Nf5MEJIPaQtNvEGeZVstlmsIPFtt; rur=FTW; mid=Xi9ZVQALAAF31DVcP2nUGkNy_nnH; ds_user_id=29062029694; sessionid=29062029694%3AKBq8O8JOeXnvxk%3A27',
-
-    'ig_did=A94986B1-983F-45F5-8D74-B2228BCC6322; csrftoken=GCFhI2A0Bjpnqj3kjVv2CVXFPxMt8ewC; rur=PRN; mid=Xi9ZgQALAAHZv2kCuAX9xQF0EaFH; ds_user_id=29102216191; sessionid=29102216191%3Aj7Dr1u5EeZ7dNH%3A4',
-
-    'ig_did=5A34F528-75F7-4AD8-A12F-18170196F9A6; csrftoken=5A34F528-75F7-4AD8-A12F-18170196F9A6; rur=FRC; mid=Xx4UswAEAAHQgKvi6Ukl2O2rIk3j; ds_user_id=18262161604; sessionid=18262161604%3Ah2E6yqnpMFDrD6%3A22',
-
-    'ig_did=9B7995CC-5C24-4DF0-B9B7-1A28F251BF65; csrftoken=tdaenDZToxyAxJoZ0KTCiBz9gksye07Y; rur=ATN; mid=Xx4V5QAEAAEjeo-av5JgbF3VQfnJ; ds_user_id=18096204756; sessionid=18096204756%3AcuFRPIzYIM8eYh%3A7',
-
-    'ig_did=7A91DFC7-A560-4C0D-B519-88DC615F7084; csrftoken=sVmflcfyctbPkhIm8r2EjZ8y8VBed26X; rur=ATN; mid=Xx4WywAEAAFqebQFz22GHXZuB7CT; ds_user_id=29067884570; sessionid=29067884570%3Ajxg4qRl8v94uuh%3A19',
-
-    'ig_did=8F870CEE-1D2F-4D17-BE3A-02B2DFED542F; csrftoken=Jz4GWwnyJP3KsmZ8lkGonuQlMKHWBXbC; rur=FRC; mid=Xx8C6gAEAAGQznzPWuufxy_y5ATA; ds_user_id=29099456467; sessionid=29099456467%3AGNymkgrSfvhUxN%3A21',
-
-    'ig_did=93637582-93A6-435E-B4FE-FB76B9CDB5E3; csrftoken=QKtF4LOElTNWF8Cs712ulpw3IvDAAfiw; rur=PRN; mid=Xx8DegAEAAEvi7UxslepSBPZTkUn; ds_user_id=29076243614; sessionid=29076243614%3AJjYOGcdwhtjdyV%3A22',
-
-    'ig_did=46D8A77C-C7E6-4D62-A53E-538D40EA40F1; csrftoken=AeoWPxHtEqnfD3543JaJmtiskPjZ9vZW; rur=VLL; mid=Xx8D5gAEAAFUEHF6rt4Si4Tqw320; ds_user_id=28514517496; sessionid=28514517496%3AXEs5EHVxct6eFq%3A10',
-]
-
-COOKIES = cycle(cookie_value)
-chosen_cookie = ''
 dateCounter = 0
 
-def get_user(user_id, user_info):
+def get_user(user_id, user_info, COOKIE):
     global PROXY, PROXIES
     user_url = "https://i.instagram.com/api/v1/users/" + user_id + "/info/"
    
@@ -314,30 +290,7 @@ def get_user(user_id, user_info):
         PROXY = next(PROXIES)
     user_data = json.loads(response.text)
 
-    # ---------------------------------------------------------------------------
-    # ---------------------------------------------------------------------------
-
     username = user_data['user']['username']
-    # user_url_data = "https://www.instagram.com/" + username + "/?__a=1" 
-    # COOKIE = next(COOKIES)
-    # print(COOKIE)
-    # try: 
-    #     data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
-    # except:
-    #     PROXY = next(PROXIES)
-    # # print(data_response.status_code)
-    # user_data_response = json.loads(data_response.text)
-
-
-    # userFirstName = user_data_response['graphql']['user']['full_name'].split()[0]
-    # userLastName = user_data_response['graphql']['user']['full_name'].split()[1]
-    # numberOfPosts = user_data_response['graphql']['user']['edge_owner_to_timeline_media']['count']
-    
-    # external_url = user_data_response['graphql']['user']['external_url']
-    # followers = user_data_response['graphql']['user']['edge_followed_by']['count']
-    # following = user_data_response['graphql']['user']['edge_follow']['count']
-
-
     follower_count = user_data['user']['follower_count']
     try:
         public_email = user_data['user']['public_email']
@@ -354,7 +307,129 @@ def get_user(user_id, user_info):
 
 
 
-def start_scraping(entry, choice, filename_r, tag_num_switch_r):
+def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
+    cookie_value = [
+        [
+            'csrftoken=dRTsYWvytntVWd95FuKdxrYDtn7PA5DC; ds_user_id=39486888671; sessionid=39486888671%3AZuNI7wSCeHb2Kd%3A6',
+            'csrftoken=smNb8Cc0KA3GeSPXdpPHm4lWrKvC7ubf; ds_user_id=39840629093; sessionid=39840629093%3AAfskgsIQWBtlsB%3A2',
+            'csrftoken=Rb3nutdMwMhny6hERsJezPpl6APEo1qo; ds_user_id=39446071257; sessionid=39446071257%3AruZi3w7OV1YRc6%3A19',
+            'csrftoken=5eyKyB44fL9X5RSzXQ7Pi859CIJUTnu7; ds_user_id=39662219772; sessionid=39662219772%3Aaenim4gUsEXDTW%3A11',
+            'csrftoken=UJt5EbhILZHM3OQZzNOQiOezOfwJaW9C; ds_user_id=39263989296; sessionid=39263989296%3AnZfa8BKqZlqZrA%3A6',
+            'csrftoken=L8dkxORCfKf0zofmrgBq8SgDDJM9oK1y; ds_user_id=39465292199; sessionid=39465292199%3Ai8WCvXZWqi7HfD%3A6',
+        ],
+        [
+            'csrftoken=QVwvyUNRpRyaVGvCWmzPZcsHMO4t4PNQ; ds_user_id=39054021672; sessionid=39054021672%3Au8ZkG0fwRrCIt2%3A20',
+            'csrftoken=XcBC3Ll6Xc8o9tu8GleErAZksKTeIrfz; ds_user_id=39857795293; sessionid=39857795293%3AuLfrdGiFTQ69oM%3A27',
+            'csrftoken=qwckkKm4Y2TJfXamIBID3IcNyeepdSAH; ds_user_id=39678472611; sessionid=39678472611%3AaMffztqoPSpTGN%3A5',
+            'csrftoken=KwMzi2N2WO9eR97qrO3HrjbfU3GxTH0u; ds_user_id=39866417292; sessionid=39866417292%3Av0ldVwyQLT3Tdo%3A22',
+            'csrftoken=2toSvJDqDHyPLjIjfFG7cTl3sJw2tBLM; ds_user_id=39267340409; sessionid=39267340409%3AWKSdrMW99rlkBO%3A7',
+            'csrftoken=UgxQOmiN2vapXUpKVk1KOz1rKCIEvxaV; ds_user_id=39472210860; sessionid=39472210860%3AXCGJJZMLxczC2g%3A27',
+        ],
+        [
+            'csrftoken=MrbhIadB1grwA3o36JrvTE3Ts3vFza1O; ds_user_id=39257878272; sessionid=39257878272%3AchtN56C0UMPxwM%3A5',
+            'csrftoken=DG1HgyV56sMDEQoHCtgcdHjTDHI66wq0; ds_user_id=39279928812; sessionid=39279928812%3A8gLBysJStnV2RI%3A3',
+            'csrftoken=dV5QwJCF2vykCirJxUuX384HFZoLGhCH; ds_user_id=39069634614; sessionid=39069634614%3Arq92KZJWUfALYq%3A17',
+            'csrftoken=y7I0FOXIMrbJSeC8EaLXrpX1Cv3WNcVa; ds_user_id=39842644448; sessionid=39842644448%3A81SmZdsfwxv6UY%3A22',
+            'csrftoken=k91DCQzgF3uXnoG75EyLlQ3cmB2V3FRD; ds_user_id=39471579390; sessionid=39471579390%3AnPEeJEVZx4Bj2L%3A21',
+            'csrftoken=nwm3lfeqQhi5vx93CdVwMosvsSuJAe8K; ds_user_id=39065259163; sessionid=39065259163%3AzjiqNblcazL7xt%3A1',
+        ],
+        # [
+        #     'csrftoken=Q7L5HPRjQnOnzYFD4T6buXsNXdEH3fsq; ds_user_id=39855219675; sessionid=39855219675%3AxipHZOd9q9Y8RR%3A23',
+        #     'csrftoken=kq6Cgn0xgQyoZe4FBucjwvcMsLtgnlkY; ds_user_id=39861002518; sessionid=39861002518%3ADv2Hd1oowRHt9Y%3A16',
+        #     'csrftoken=yhANPWS0s2kVVibreN3ONqUMVCWXDBS6; ds_user_id=39064067168; sessionid=39064067168%3AnRIhC5zG9IHZOe%3A9',
+        #     'csrftoken=jvuGItawYgl3QIVN4xjYbIk7TAXptIYF; ds_user_id=39449198551; sessionid=39449198551%3A2ZL3pp4L9XFFvS%3A27',
+        #     'csrftoken=BLNAkvsksxnH2ZtpCGi24VFXNQHBNAQ2; ds_user_id=39844036345; sessionid=39844036345%3AXIcYZWSOWmxdT1%3A2',
+        #     'csrftoken=HYOuPVDt8cR2aq6hgTe4KfST0vdfwVUA; ds_user_id=39660588055; sessionid=39660588055%3Aazb9UFJj4aEK3x%3A27',
+        # ],
+        # [
+        #     'csrftoken=fRAUYpcLxaGMWfDKpEmeuRmI2pRfQIgg; ds_user_id=39069778187; sessionid=39069778187%3AX1qoTROSbLdiiP%3A22',
+        #     'csrftoken=oHje4nsG76djd6WAyNVb7c6qFeiqEc39; ds_user_id=39647230311; sessionid=39647230311%3A6ZBA1KfJ3UedVh%3A2',
+        #     'csrftoken=UdNr6Hnk1emJQud4EKZ45unp3SiLTivP; ds_user_id=39655580572; sessionid=39655580572%3ARIf4YBOm2MUkBU%3A29',
+        #     'csrftoken=hTHVk9e41tFsjP28yNRaMWWAaeKXylqh; ds_user_id=39669609943; sessionid=39669609943%3APNvcwmH86OAsHN%3A5',
+        #     'csrftoken=SiU6H9WibnKVKW0iA3k3qkAJ7sJ2bDGY; ds_user_id=39455549808; sessionid=39455549808%3AmAmHXE8RxdKcJX%3A17',
+        #     'csrftoken=QnWHe1r8j3WdW83wXQytzDfih1F4jIOg; ds_user_id=39667578984; sessionid=39667578984%3AfkdBiWuwa9JmKx%3A2',
+        # ],
+        # [
+        #     'csrftoken=t7jPJ7fSZ6WaV2IMGAUTahu8ElO4lxFB; ds_user_id=39451598641; sessionid=39451598641%3ABvhNle9CPS9JlY%3A4',
+        #     'csrftoken=s6a1mhmUXi3X8p4YC7DkUXb7va6wFPPG; ds_user_id=39284536589; sessionid=39284536589%3AXX5tAgdYdbJNcC%3A15',
+        #     'csrftoken=2BpiQdr69qbTuPPPJi5QVzkrKqkGLyFB; ds_user_id=39669058838; sessionid=39669058838%3AEfW2OJOgSvFsl1%3A5',
+        #     'csrftoken=A90LqZ0TndNcngrw7lqaPhe0Bg3uwQNZ; ds_user_id=39465012861; sessionid=39465012861%3AODs2NtQRrnIfg9%3A8',
+        #     'csrftoken=uVdfA16BHoMcHKKaGBwUGM1HR7c1ivqi; ds_user_id=39047823261; sessionid=39047823261%3AYiALLuIBda3oEj%3A7',
+        #     'csrftoken=FWsbltPD7W4iLm1PIzWosYFlsLQz1yzn; ds_user_id=39655637062; sessionid=39655637062%3AezwGIfwBkznbBm%3A12',
+        # ],
+        # [
+        #     'csrftoken=heiu3WMQIWAilPYiRs6ieMdYQrEnaaeD; ds_user_id=39670066342; sessionid=39670066342%3AKOuVF4qOaBB6eM%3A14',
+        #     'csrftoken=3Ib6pA54N6Vr4S1usPx58PeQXVqBKe5g; ds_user_id=39278361521; sessionid=39278361521%3ALqbIPWZf5ncH45%3A11',
+        #     'csrftoken=uriCRD19tQubr0wo1OoY3vwWCt8Ib5Yh; ds_user_id=39859787060; sessionid=39859787060%3AllsvUZuYgnrRWA%3A15',
+        #     'csrftoken=w9wn4H37hvL9yTZ4ZyvEKpaQ8A7Ug9fl; ds_user_id=39279057474; sessionid=39279057474%3AaOauIBCZWMONWF%3A14',
+        #     'csrftoken=Ll9telbYOKBP3Y3hw4iKaItJdNOYt2dy; ds_user_id=39487384591; sessionid=39487384591%3AUcJRvwAwWOCfVz%3A18',
+        #     'csrftoken=I2wnEP11tYkU03JfQbS5hNAxA9rUWRtj; ds_user_id=39865729360; sessionid=39865729360%3Agg2EiQ4MrQ0tku%3A20',
+        # ],
+        # [
+        #     'csrftoken=KTheciU22YaBwq17mQ16b5dExa7gDHUv; ds_user_id=39254575000; sessionid=39254575000%3Am5JTYF3An2AUFm%3A10',
+        #     'csrftoken=dV3ColH9l26LyPxKZXd9yhoft9sCCDr4; ds_user_id=39669570334; sessionid=39669570334%3A9iQhHT0WamnALj%3A26',
+        #     'csrftoken=6fp8pOzkOageySphTXFJiIYgRA9ojgbf; ds_user_id=39068898101; sessionid=39068898101%3AoyisXJgaE8NHm5%3A13',
+        #     'csrftoken=vPvef30ibbAC0MTSefd4XOI7GLlkw3q8; ds_user_id=39063259489; sessionid=39063259489%3A1k4IMeYhznyAt3%3A28',
+        #     'csrftoken=AvkSZDaCANaur0VXdn3alHbuDoE9GxIw; ds_user_id=39460549353; sessionid=39460549353%3ABiSFpoANcnKTh1%3A25',
+        #     'csrftoken=gXmZhgK9VRTeJjG5xECw2DvaWU96v6FF; ds_user_id=39649101802; sessionid=39649101802%3AbrL4bWJw4apRt2%3A29',
+        # ],
+        # [
+        #     'csrftoken=AggA1ZVy3qnZ0IkhPrdWF8TdOptkrgBR; ds_user_id=39457741774; sessionid=39457741774%3Acga3xqEdr3r17d%3A8',
+        #     'csrftoken=5bx0Z7VcucnWMBty5iaYHxUVmWHTFK1w; ds_user_id=39855963639; sessionid=39855963639%3A83tXUoLVGuKWJV%3A11',
+        #     'csrftoken=6DA39i3VW8hi28kvTXyq7IepCLkMw0I8; ds_user_id=39456469887; sessionid=39456469887%3AypWXH5Y9RnPaMx%3A7',
+        #     'csrftoken=uYI6N54pL2kXQxejuhTO5k4KWhVM6Kcr; ds_user_id=39051238222; sessionid=39051238222%3AE5qHGnix5nDxn8%3A1',
+        #     'csrftoken=ea698pp13dIlxamRjAMctE8vuEDHGBMH; ds_user_id=39872704378; sessionid=39872704378%3AUWXbGTG4rpx3W0%3A26',
+        #     'csrftoken=qUHuyfjbu79Mfnj2uYYixoNKA79rJw7H; ds_user_id=39857091061; sessionid=39857091061%3AqOnwqQs1DXsErE%3A6',
+        # ],
+        # [
+        #     'csrftoken=5BFl3rlvdYF33D1xjvpVao2pKD5DcHxd; ds_user_id=39472026907; sessionid=39472026907%3AMt2mOdJC6dSAZw%3A21',
+        #     'csrftoken=Fq1IdTT3BFLUI21Lxbngeci6uaFJ5Pnr; ds_user_id=39487272621; sessionid=39487272621%3APKJ0OMxUY0gKrH%3A1',
+        #     'csrftoken=DMJdawaQvmTnGTWXjvbZQRyhS7pNpA56; ds_user_id=39250847597; sessionid=39250847597%3AA61HMyjlQoWfRK%3A20',
+        #     'csrftoken=mPdrYaWfiDRMtsqF1NpvWJRkf5HcfwwA; ds_user_id=39050254424; sessionid=39050254424%3AH3bTuhxSmZ2Pxm%3A15',
+        #     'csrftoken=8XGyx6T5yR1gucRpbM6BxRPEfhXEtoBf; ds_user_id=39841829113; sessionid=39841829113%3A4Q94q9xghVVxUa%3A16',
+        #     'csrftoken=SmYpjm20NN9W7GB17PYZvTKv2Vfk2MfM; ds_user_id=39264005111; sessionid=39264005111%3AtEWhqNgnWBbmuL%3A5',
+        # ],
+        # [
+        #     'csrftoken=AqFM7aipU7OulBgYzTUhokwz8gNw4VqE; ds_user_id=39448830531; sessionid=39448830531%3Az3YlYSXvkcAIlZ%3A14',
+        #     'csrftoken=KB5iD86WNWBxRNS04wtbwI0Jf7OJTmKc; ds_user_id=39272330864; sessionid=39272330864%3Aad2rmewRzaK815%3A26',
+        #     'csrftoken=taYLqWZc041jMO7Xv2oIHKHIu80qmZo5; ds_user_id=39634999781; sessionid=39634999781%3AOxksWcaOHjInkW%3A18',
+        #     'csrftoken=51Y1daX1QQMtO6gwOdFAlsik4HxGzZFV; ds_user_id=39470115359; sessionid=39470115359%3AzcZmEEG6gCHDH2%3A14',
+        #     'csrftoken=iKshrJoucI2Su4UvPRMkjPmvhWgmy7tI; ds_user_id=39640791110; sessionid=39640791110%3AedPChQVSDKc7N2%3A7',
+        #     'csrftoken=DOoGgdbvNEnyb7MlPoVBuNWa4IzhBdN4; ds_user_id=39056125350; sessionid=39056125350%3ASqaiPCcI9HbTsZ%3A25',
+        # ],
+        # [
+        #     'csrftoken=XyupD9RQoIebQYcVtxNEspMv7MWFiOzy; ds_user_id=39487520914; sessionid=39487520914%3AzWwICSyPh0p59y%3A3',
+        #     'csrftoken=bAbWIo7hDed6k0QYoOoeitKJyYqD9B7z; ds_user_id=39449310383; sessionid=39449310383%3AlfEXUnd8volHXg%3A28',
+        #     'csrftoken=luuCslrvDnYePdaldrav04lhv3q1b6MH; ds_user_id=39069794204; sessionid=39069794204%3Ay3WABa8Bkl9RGn%3A28',
+        #     'csrftoken=jmhPZoAbn9LOsBKyCcbLgJw4A0djCIRg; ds_user_id=39052006215; sessionid=39052006215%3A8baapjGJZ6bhWr%3A14',
+        #     'csrftoken=2MRdRtEB8DCHoE9VFTH8hyr4yFoRPdip; ds_user_id=39056069749; sessionid=39056069749%3A5ZeEwhh9OhdoKf%3A0',
+        #     'csrftoken=qxOogADgm6gbE9UHR42SQrYrVV7emRXc; ds_user_id=39644006622; sessionid=39644006622%3AiMY4HaQg4iXJNz%3A21',
+        # ],
+        # [
+        #     'csrftoken=Zm4w7SFDjA1exCGlDn2GKpBd5Xj2BN0e; ds_user_id=39637367591; sessionid=39637367591%3AyotgmN44NvObMl%3A5',
+        #     'csrftoken=hTEgbMTxv953pcbk1GcrHARx0jsqbHo0; ds_user_id=39486808617; sessionid=39486808617%3AiBBuFlwOZsJPi5%3A16',
+        #     'csrftoken=4crFiu06r2QI5NRVLwoPlISNCqkwafjd; ds_user_id=39251463602; sessionid=39251463602%3Al5zoLZuYvgs8eK%3A3',
+        #     'csrftoken=wApRLMFLrArwp3dhKzjnzcOr5x0zgHwq; ds_user_id=39060500155; sessionid=39060500155%3AwahheyOcBqHmwj%3A5',
+        #     'csrftoken=NMYiI1J5GdxsUJIq3xjDzQrSTEnllAdm; ds_user_id=39044015985; sessionid=39044015985%3AsyPDqdzLUJEeqZ%3A22',
+        #     'csrftoken=fcxEG6rsI7usmmlzrRu0LGnzu2gZA6PX; ds_user_id=39047679093; sessionid=39047679093%3AnMYecZkVtnOjAC%3A26',
+        # ],
+        # [
+        #     'csrftoken=diLnfozPgfvgMg4eGytCivFa5004NFXn; ds_user_id=39070690139; sessionid=39070690139%3AzATOaT1LLCSoG7%3A25',
+        #     'csrftoken=90y2stI6cgwluwv4L1SHlDgzId27WVIH; ds_user_id=39467883648; sessionid=39467883648%3A3pYlfYKiBqOmmn%3A10',
+        #     'csrftoken=Am8ANuKoGK2UagiNmWSrwfBjxL70Z9cu; ds_user_id=39678088451; sessionid=39678088451%3APGdR0aQCe0DgUm%3A3',
+        #     'csrftoken=sMWHmF6eUlFvr4vYn33ssHSgIyXAfUqV; ds_user_id=39843972795; sessionid=39843972795%3AZIklqQZujSJMSL%3A12',
+        #     'csrftoken=PrFuDg5BXwoetJg3fN61M7R4cWu7jrLl; ds_user_id=39272963183; sessionid=39272963183%3ApQE6F6TOJmwBgR%3A10',
+        #     'csrftoken=bdKk66h8bJ3DRwX2kyOaIXykj6ANBqmK; ds_user_id=39643534571; sessionid=39643534571%3ANdCW8JgsSagp8I%3A8',
+        # ],
+        # [
+        #     'csrftoken=oW3NeGHNFwuUd5IAI6sTXil2WpmbM5vY; ds_user_id=39253303204; sessionid=39253303204%3A0QkdKeVTH64Gtw%3A27',
+        #     'csrftoken=xOKG0R9ora4WRBd6zYerBLYwwv310AKl; ds_user_id=39674992869; sessionid=39674992869%3AqSbDTQVVjlh6bM%3A23',
+        #     'csrftoken=s3l91ks3c9QLJJJ5BaKDGEePIJxMQjVu; ds_user_id=39259566268; sessionid=39259566268%3AE3i3kN9Roqfl9B%3A29',
+        #     'csrftoken=e0COTm5AZEZCcWczNAJqZcoDH4r2mRW3; ds_user_id=39257902405; sessionid=39257902405%3A0T61ACIzO9pMn5%3A15',
+        # ]
+    ]
+
+    COOKIES = cycle(cookie_value[cookie_idx])
     # print(choice)
     # print("switch", tag_num_switch_r)
     global workbook_name, COOKIE, dateCounter
@@ -446,13 +521,13 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
 
                         user_info = []
                         print(COOKIE)
-                        info, username = get_user(user_id, user_info)
+                        info, username = get_user(user_id, user_info, COOKIE)
                         # print(COOKIE)
                         if choice is "tag" or choice is "tagAndLocation":
                             # print("tag or tag and loc")
                             if str(tag_num_switch_r) == "true":
                                 # print("tag switch true")
-                                future_date = get_future_date(shortcode, entryChosen)
+                                future_date = get_future_date(shortcode, entryChosen, COOKIE)
                                 if future_date is None:
                                     dateCounter += 1
                                     if dateCounter > 5:
@@ -493,7 +568,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r):
                 # stop_scraping()
 
 
-def get_future_date(shortcode, tagwithnumber):
+def get_future_date(shortcode, tagwithnumber, COOKIE):
 
     print("get future date")
     user_url_data = "https://www.instagram.com/p/" + shortcode + "/?__a=1"

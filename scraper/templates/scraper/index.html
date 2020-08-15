@@ -72,8 +72,14 @@
                         let exportList = [];
                         function addTag() {  
                             
+                            const listItems = document.querySelectorAll('.tag-list-class li');
+                            if (listItems.length === 3) {
+                                alert("Max Hashtags Reached");
+                                return;
+                            }
                             let tagList = document.getElementById('tag-list');
                             let tag = document.getElementById('hashtag').value;
+                            
                             // check if field is empty
                             if (tag === "") {
                                 alert("Please add a Hashtag in the Text Field")
@@ -85,7 +91,7 @@
                             tagList.appendChild(newlistelement);
 
 
-                            const listItems = document.querySelectorAll('.tag-list-class li');
+                            // const listItems = document.querySelectorAll('.tag-list-class li');
                             exportList = [];
                             for (let i = 0; i < listItems.length; i++) {
                                 exportList.push(listItems[i].textContent)
