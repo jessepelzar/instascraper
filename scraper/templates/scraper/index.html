@@ -72,7 +72,7 @@
                         let exportList = [];
                         function addTag() {  
                             
-                            const listItems = document.querySelectorAll('.tag-list-class li');
+                            let listItems = document.querySelectorAll('.tag-list-class li');
                             if (listItems.length === 3) {
                                 alert("Max Hashtags Reached");
                                 return;
@@ -92,6 +92,7 @@
 
 
                             // const listItems = document.querySelectorAll('.tag-list-class li');
+                            listItems = document.querySelectorAll('.tag-list-class li');
                             exportList = [];
                             for (let i = 0; i < listItems.length; i++) {
                                 exportList.push(listItems[i].textContent)
