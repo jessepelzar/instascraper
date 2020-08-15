@@ -486,7 +486,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
 
                 # print(url)
-                
+                print("REQUEST COOKIE", COOKIE)
                 r = requests.get(url, headers={"cookie": COOKIE, "User-Agent": user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
 
                 if r.status_code != 200:
@@ -520,13 +520,15 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
                         location = get_location(shortcode)
 
                         user_info = []
-                        print(COOKIE)
+                        print("USER INFO COOKIE", COOKIE)
                         info, username = get_user(user_id, user_info, COOKIE)
                         # print(COOKIE)
                         if choice is "tag" or choice is "tagAndLocation":
                             # print("tag or tag and loc")
                             if str(tag_num_switch_r) == "true":
                                 # print("tag switch true")
+                                COOKIE = next(COOKIES)
+                                print("FUTURE DATE COOKIE", COOKIE)
                                 future_date = get_future_date(shortcode, entryChosen, COOKIE)
                                 if future_date is None:
                                     dateCounter += 1
@@ -576,7 +578,6 @@ def get_future_date(shortcode, tagwithnumber, COOKIE):
     # switch_count = 0
     # while switch_count < 5:
     # print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
-    COOKIE = next(COOKIES)
     try: 
         data_response = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
         # break
