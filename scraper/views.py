@@ -310,9 +310,9 @@ def get_user(user_id, user_info, COOKIE):
 def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
     cookie_value = [
         [
-            'csrftoken=dRTsYWvytntVWd95FuKdxrYDtn7PA5DC; ds_user_id=39486888671; sessionid=39486888671%3AZuNI7wSCeHb2Kd%3A6',
-            'csrftoken=smNb8Cc0KA3GeSPXdpPHm4lWrKvC7ubf; ds_user_id=39840629093; sessionid=39840629093%3AAfskgsIQWBtlsB%3A2',
-            'csrftoken=Rb3nutdMwMhny6hERsJezPpl6APEo1qo; ds_user_id=39446071257; sessionid=39446071257%3AruZi3w7OV1YRc6%3A19',
+            # 'csrftoken=dRTsYWvytntVWd95FuKdxrYDtn7PA5DC; ds_user_id=39486888671; sessionid=39486888671%3AZuNI7wSCeHb2Kd%3A6',
+            # 'csrftoken=smNb8Cc0KA3GeSPXdpPHm4lWrKvC7ubf; ds_user_id=39840629093; sessionid=39840629093%3AAfskgsIQWBtlsB%3A2',
+            # 'csrftoken=Rb3nutdMwMhny6hERsJezPpl6APEo1qo; ds_user_id=39446071257; sessionid=39446071257%3AruZi3w7OV1YRc6%3A19',
             'csrftoken=5eyKyB44fL9X5RSzXQ7Pi859CIJUTnu7; ds_user_id=39662219772; sessionid=39662219772%3Aaenim4gUsEXDTW%3A11',
             'csrftoken=UJt5EbhILZHM3OQZzNOQiOezOfwJaW9C; ds_user_id=39263989296; sessionid=39263989296%3AnZfa8BKqZlqZrA%3A6',
             'csrftoken=L8dkxORCfKf0zofmrgBq8SgDDJM9oK1y; ds_user_id=39465292199; sessionid=39465292199%3Ai8WCvXZWqi7HfD%3A6',
@@ -324,9 +324,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
             'csrftoken=HYOuPVDt8cR2aq6hgTe4KfST0vdfwVUA; ds_user_id=39660588055; sessionid=39660588055%3Aazb9UFJj4aEK3x%3A27',
         ],
         [
-            'csrftoken=QVwvyUNRpRyaVGvCWmzPZcsHMO4t4PNQ; ds_user_id=39054021672; sessionid=39054021672%3Au8ZkG0fwRrCIt2%3A20',
-            'csrftoken=XcBC3Ll6Xc8o9tu8GleErAZksKTeIrfz; ds_user_id=39857795293; sessionid=39857795293%3AuLfrdGiFTQ69oM%3A27',
-            'csrftoken=qwckkKm4Y2TJfXamIBID3IcNyeepdSAH; ds_user_id=39678472611; sessionid=39678472611%3AaMffztqoPSpTGN%3A5',
+            # 'csrftoken=QVwvyUNRpRyaVGvCWmzPZcsHMO4t4PNQ; ds_user_id=39054021672; sessionid=39054021672%3Au8ZkG0fwRrCIt2%3A20',
+            # 'csrftoken=XcBC3Ll6Xc8o9tu8GleErAZksKTeIrfz; ds_user_id=39857795293; sessionid=39857795293%3AuLfrdGiFTQ69oM%3A27',
+            # 'csrftoken=qwckkKm4Y2TJfXamIBID3IcNyeepdSAH; ds_user_id=39678472611; sessionid=39678472611%3AaMffztqoPSpTGN%3A5',
             'csrftoken=KwMzi2N2WO9eR97qrO3HrjbfU3GxTH0u; ds_user_id=39866417292; sessionid=39866417292%3Av0ldVwyQLT3Tdo%3A22',
             'csrftoken=2toSvJDqDHyPLjIjfFG7cTl3sJw2tBLM; ds_user_id=39267340409; sessionid=39267340409%3AWKSdrMW99rlkBO%3A7',
             'csrftoken=UgxQOmiN2vapXUpKVk1KOz1rKCIEvxaV; ds_user_id=39472210860; sessionid=39472210860%3AXCGJJZMLxczC2g%3A27',
@@ -338,9 +338,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
             'csrftoken=QnWHe1r8j3WdW83wXQytzDfih1F4jIOg; ds_user_id=39667578984; sessionid=39667578984%3AfkdBiWuwa9JmKx%3A2',
         ],
         [
-            'csrftoken=MrbhIadB1grwA3o36JrvTE3Ts3vFza1O; ds_user_id=39257878272; sessionid=39257878272%3AchtN56C0UMPxwM%3A5',
-            'csrftoken=DG1HgyV56sMDEQoHCtgcdHjTDHI66wq0; ds_user_id=39279928812; sessionid=39279928812%3A8gLBysJStnV2RI%3A3',
-            'csrftoken=dV5QwJCF2vykCirJxUuX384HFZoLGhCH; ds_user_id=39069634614; sessionid=39069634614%3Arq92KZJWUfALYq%3A17',
+            # 'csrftoken=MrbhIadB1grwA3o36JrvTE3Ts3vFza1O; ds_user_id=39257878272; sessionid=39257878272%3AchtN56C0UMPxwM%3A5',
+            # 'csrftoken=DG1HgyV56sMDEQoHCtgcdHjTDHI66wq0; ds_user_id=39279928812; sessionid=39279928812%3A8gLBysJStnV2RI%3A3',
+            # 'csrftoken=dV5QwJCF2vykCirJxUuX384HFZoLGhCH; ds_user_id=39069634614; sessionid=39069634614%3Arq92KZJWUfALYq%3A17',
             'csrftoken=y7I0FOXIMrbJSeC8EaLXrpX1Cv3WNcVa; ds_user_id=39842644448; sessionid=39842644448%3A81SmZdsfwxv6UY%3A22',
             'csrftoken=k91DCQzgF3uXnoG75EyLlQ3cmB2V3FRD; ds_user_id=39471579390; sessionid=39471579390%3AnPEeJEVZx4Bj2L%3A21',
             'csrftoken=nwm3lfeqQhi5vx93CdVwMosvsSuJAe8K; ds_user_id=39065259163; sessionid=39065259163%3AzjiqNblcazL7xt%3A1',
