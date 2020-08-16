@@ -608,7 +608,9 @@ def get_future_date(shortcode, tagwithnumber, COOKIE):
     for i in range(len(tagwithnumber)):
         if tagwithnumber[i].isdigit():
             numberStr += tagwithnumber[i]
-
+    if numberStr == "":
+        return None
+        
     tagWeek = int(numberStr)
     tagDays = tagWeek * 7
 
