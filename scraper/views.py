@@ -588,6 +588,16 @@ def get_future_date(shortcode, tagwithnumber, COOKIE):
     print("get future date")
     user_url_data = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
     daysTotalPregnant = 280
+
+    numberStr = ""
+    for i in range(len(tagwithnumber)):
+        if tagwithnumber[i].isdigit():
+            numberStr += tagwithnumber[i]
+    if numberStr == "":
+        return None
+        
+    tagWeek = int(numberStr)
+    tagDays = tagWeek * 7
     # switch_count = 0
     # while switch_count < 5:
     # print(f'SWITCH COUNT SWITCH COUNT {switch_count}')
@@ -604,15 +614,8 @@ def get_future_date(shortcode, tagwithnumber, COOKIE):
     data = json.loads(data_response.text)
     timestamp = data['graphql']['shortcode_media']['taken_at_timestamp']
 
-    numberStr = ""
-    for i in range(len(tagwithnumber)):
-        if tagwithnumber[i].isdigit():
-            numberStr += tagwithnumber[i]
-    if numberStr == "":
-        return None
-        
-    tagWeek = int(numberStr)
-    tagDays = tagWeek * 7
+    
+    
 
     postDate = datetime.datetime.fromtimestamp(timestamp)
     postDateList = [postDate.month, postDate.day, postDate.year]
