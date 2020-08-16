@@ -36,12 +36,41 @@ from .utils import create_text_file
 
 
 PROXIES = [
-    # 'p.webshare.io:19999',
+    # 'p.webshare.io:20012',
+    # 'p.webshare.io:20013',
+    # 'p.webshare.io:20014',
+    # 'p.webshare.io:20015',
+    'p.webshare.io:20000',
+    'p.webshare.io:20001',
+    'p.webshare.io:20002',
+    'p.webshare.io:20003',
+    'p.webshare.io:20004',
+    'p.webshare.io:20005',
+    'p.webshare.io:20006',
+    'p.webshare.io:20007',
+    'p.webshare.io:20008',
+    'p.webshare.io:20009',
+    'p.webshare.io:20010',
+    'p.webshare.io:20011',
     'p.webshare.io:20012',
     'p.webshare.io:20013',
     'p.webshare.io:20014',
     'p.webshare.io:20015',
-    ]
+    'p.webshare.io:20016',
+    'p.webshare.io:20017',
+    'p.webshare.io:20018',
+    'p.webshare.io:20019',
+    'p.webshare.io:20020',
+    'p.webshare.io:20021',
+    'p.webshare.io:20022',
+    'p.webshare.io:20023',
+    'p.webshare.io:20024',
+    'p.webshare.io:20025',
+    'p.webshare.io:20026',
+    'p.webshare.io:20027',
+    'p.webshare.io:20028',
+    'p.webshare.io:20029',
+]
 PROXIES = cycle(PROXIES)
 PROXY = next(PROXIES)
 # Create your views here.
