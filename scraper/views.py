@@ -217,7 +217,7 @@ def index(request):
                 print("entry", entry)                
                 thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r, cookie_idx, thread_idx))
                 thread_list.append(thread)
-                cookie_idx += 1
+                cookie_idx += 1 # just keeping separate for cookie and thread for now
                 thread_idx += 1
             
             for thread in thread_list:
@@ -549,8 +549,12 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                                     dateCounter += 1
                                     if dateCounter > 5:
                                         print("thread idx", thread_idx)
-                                        thread_list[thread_idx].join()
-                                        thread_list[thread_idx] = None
+                                        if len(thread_list) == 1:
+                                            stop_scraping()
+                                        else:
+                                            thread_list[thread_idx].join()
+                                            del thread_list[thread_idx]
+                                        # thread_list[thread_idx] = None
                                         # stop_scraping()
                                 else:
                                     dateCounter = 0
