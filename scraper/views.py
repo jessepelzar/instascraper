@@ -536,7 +536,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                         location = get_location(shortcode)
 
                         user_info = []
-                        print("USER INFO COOKIE", COOKIE)
+                        # print("USER INFO COOKIE", COOKIE)
                         info, username = get_user(user_id, user_info, COOKIE)
                         # print(COOKIE)
                         if choice is "tag" or choice is "tagAndLocation":
@@ -544,13 +544,14 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                             if str(tag_num_switch_r) == "true":
                                 # print("tag switch true")
                                 COOKIE = next(COOKIES)
-                                print("FUTURE DATE COOKIE", COOKIE)
+                                # print("FUTURE DATE COOKIE", COOKIE)
                                 future_date = get_future_date(shortcode, entryChosen, COOKIE)
                                 if future_date is None:
                                     dateCounter += 1
+                                    print(thread_list)
                                     if dateCounter > 5:
                                         print("-----------------------------------")
-                                        print(thread_list)
+                                        # print(thread_list)
                                         dateCounter = 0
                                         kill_single_thread(thread_idx)
                                         abort = True
@@ -561,11 +562,11 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                                         # stop_scraping()
                                 else:
                                     dateCounter = 0
-                                print("date counter", dateCounter)
+                                # print("date counter", dateCounter)
                                 info.extend([future_date, entryChosen])
                                 
                         print(info)
-                        print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
+                        # print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
                         start_time2 = time.time()
                         # print("test 11")
                         if len(info) != 0:
