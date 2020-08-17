@@ -309,7 +309,7 @@ user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebK
 # ]
 
 
-dateCounter = 0
+
 
 def get_user(user_id, user_info, COOKIE):
     global PROXY, PROXIES
@@ -444,6 +444,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
     ]
 
     COOKIES = cycle(cookie_value[cookie_idx])
+    dateCounter = 0
     # print(choice)
     # print("switch", tag_num_switch_r)
     global workbook_name, COOKIE, dateCounter
