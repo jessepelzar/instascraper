@@ -444,7 +444,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
     ]
 
     COOKIES = cycle(cookie_value[cookie_idx])
-    dateCounter = 0
+    
     # print(choice)
     # print("switch", tag_num_switch_r)
     global workbook_name, COOKIE
@@ -476,6 +476,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
 
     # sys.exit()
     if abort is False:
+        dateCounter = 0
         for page in range(num_of_pages):
             COOKIE = next(COOKIES)
             # print(COOKIE)
@@ -590,16 +591,16 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                 # stop_scraping()
 
 def kill_single_thread(thread_list, thread_idx):
-    global stop_thread
+    # global stop_thread
     
     print("thread idx", thread_idx)
     if len(thread_list) == 1:
         print("last thread")
         stop_scraping()
     else:
-        stop_thread = True
+        # stop_thread = True
         thread_list[thread_idx].join()
-        stop_thread = False
+        # stop_thread = False
     return 
 
 def get_future_date(shortcode, tagwithnumber, COOKIE):
