@@ -591,10 +591,13 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                 # stop_scraping()
 
 def kill_single_thread(thread_list, thread_idx):
+    global stop_thread
+    stop_thread = True
     thread_list[thread_idx].join()
-    del thread_list[thread_idx]
+    # del thread_list[thread_idx]
+    stop_thread = False
     return 
-    
+
 def get_future_date(shortcode, tagwithnumber, COOKIE):
 
     print("get future date")
