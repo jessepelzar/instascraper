@@ -599,10 +599,10 @@ def kill_single_thread(thread_list, thread_idx):
         print("last thread")
         stop_scraping()
     else:
-        # stop_thread = True
+        stop_thread = True
         thread_list[thread_idx].join()
         thread_list[thread_idx] = None
-        # stop_thread = False
+        stop_thread = False
     return 
 
 def get_future_date(shortcode, tagwithnumber, COOKIE):
