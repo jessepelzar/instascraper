@@ -212,11 +212,13 @@ def index(request):
             create_text_file(filename_r)
 
             cookie_idx = 0
+            thread_idx = 0
             for entry in entry_r:
                 print("entry", entry)                
-                thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r, cookie_idx))
+                thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r, cookie_idx, thread_idx))
                 thread_list.append(thread)
                 cookie_idx += 1
+                thread_idx += 1
             
             for thread in thread_list:
                 # thread.daemon = True
@@ -336,7 +338,7 @@ def get_user(user_id, user_info, COOKIE):
 
 
 
-def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
+def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thread_idx):
     cookie_value = [
         [
             # 'csrftoken=dRTsYWvytntVWd95FuKdxrYDtn7PA5DC; ds_user_id=39486888671; sessionid=39486888671%3AZuNI7wSCeHb2Kd%3A6',
@@ -546,7 +548,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx):
                                 if future_date is None:
                                     dateCounter += 1
                                     if dateCounter > 5:
-                                        stop_scraping()
+                                        thread_list[thread_idx].join()
+                                        thread_list[thread_idx] = None
+                                        # stop_scraping()
                                 else:
                                     dateCounter = 0
                                 print("date counter", dateCounter)
