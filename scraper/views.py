@@ -214,7 +214,8 @@ def index(request):
             cookie_idx = 0
             thread_idx = 0
             for entry in entry_r:
-                print("entry", entry)                
+                print("entry", entry)   
+                stop_thread.append(False)             
                 thread = threading.Thread(target=start_scraping, args=(entry, choice_r, filename_r, tag_num_switch_r, cookie_idx, thread_idx))
                 thread_list.append(thread)
                 cookie_idx += 1 # just keeping separate for cookie and thread for now
@@ -287,7 +288,7 @@ def index(request):
 
 num_of_pages = 500000
 row_count = 0
-stop_thread = False
+stop_thread = []
 
 save_data = []
 user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 105.0.0.11.118 (iPhone11,8; iOS 12_3_1; en_US; en-US; scale=2.00; 828x1792; 165586599)"
@@ -522,7 +523,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                 for item in edges:
                     COOKIE = next(COOKIES)
                     # print(COOKIE)
-                    if stop_thread is True:
+                    if stop_thread[thread_idx] is True:
                         return
                     while pause_thread:
                         pass
@@ -603,10 +604,12 @@ def kill_single_thread(thread_idx):
         stop_scraping()
     else:
         print("stop single thread")
-        stop_thread = True
+        stop_thread[thread_idx] = True
+        sleep(1)
         thread_list[thread_idx].join()
         thread_list[thread_idx] = None
-        stop_thread = False
+        sleep(1)
+        stop_thread[thread_idx] = False
      
 
 def get_future_date(shortcode, tagwithnumber, COOKIE):
@@ -819,7 +822,8 @@ def get_location_list(entry, choice):
 def stop_scraping():
     
     global stop_thread
-    stop_thread = True
+    # stop_thread = True
+    stop_thread.fill(True)
     for thread in thread_list:
         if thread is None:
             continue
@@ -863,7 +867,8 @@ def stop_scraping():
 
         wb.save(filename=workbook_name)
         save_data.clear()
-        stop_thread = False
+        # stop_thread = False
+        stop_thread.fill(False)
     except:
         print("Save failed")
 
