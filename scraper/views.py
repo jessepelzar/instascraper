@@ -823,7 +823,8 @@ def stop_scraping():
     
     global stop_thread
     # stop_thread = True
-    stop_thread.fill(True)
+    stop_thread_len = len(stop_thread)
+    stop_thread = [True] * stop_thread_len
     for thread in thread_list:
         if thread is None:
             continue
@@ -868,7 +869,7 @@ def stop_scraping():
         wb.save(filename=workbook_name)
         save_data.clear()
         # stop_thread = False
-        stop_thread.fill(False)
+        stop_thread = [False] * stop_thread_len
     except:
         print("Save failed")
 
