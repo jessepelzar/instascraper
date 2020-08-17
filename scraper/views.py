@@ -593,6 +593,7 @@ def kill_single_thread(thread_list, thread_idx):
     
     print("thread idx", thread_idx)
     if len(thread_list) == 1:
+        print("last thread")
         stop_scraping()
     else:
         stop_thread = True
