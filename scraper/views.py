@@ -551,6 +551,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                                     if dateCounter > 5:
                                         print("-----------------------------------")
                                         print(thread_list)
+                                        dateCounter = 0
                                         kill_single_thread(thread_idx)
                                         abort = True
                                         return
@@ -606,7 +607,7 @@ def kill_single_thread(thread_idx):
         thread_list[thread_idx].join()
         thread_list[thread_idx] = None
         stop_thread = False
-    return 
+     
 
 def get_future_date(shortcode, tagwithnumber, COOKIE):
 
