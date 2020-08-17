@@ -596,9 +596,8 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
 
 def kill_single_thread(thread_idx):
     global stop_thread
-    global thread_list
     print("thread idx", thread_idx)
-    if len(thread_list) - thread_list.count(None) == 1:
+    if len(thread_list) - thread_list.count(None) == 1 or len(thread_list) == 1:
         print("last thread")
         stop_scraping()
     else:
