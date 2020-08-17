@@ -547,6 +547,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                                 if future_date is None:
                                     dateCounter += 1
                                     if dateCounter > 5:
+                                        print("thread idx", thread_idx)
                                         thread_list[thread_idx].join()
                                         thread_list[thread_idx] = None
                                         # stop_scraping()
