@@ -551,8 +551,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                                     if dateCounter > 5:
                                         print("-----------------------------------")
                                         print(thread_list)
-                                        print(thread_list.index(entryChosen))
-                                        kill_single_thread(thread_list, thread_list.index(entryChosen))
+                                        kill_single_thread(thread_list, thread_idx)
                                         dateCounter = 0
                                         return
                                         # thread_list[thread_idx] = None
@@ -602,8 +601,7 @@ def kill_single_thread(thread_list, thread_idx):
     else:
         # stop_thread = True
         thread_list[thread_idx].join()
-        del thread_list[thread_idx]
-
+        thread_list[thread_idx] = None
         # stop_thread = False
     return 
 
@@ -819,7 +817,10 @@ def stop_scraping():
     global stop_thread
     stop_thread = True
     for thread in thread_list:
-        thread.join()
+        if thread is None:
+            continue
+        else:
+            thread.join()
     thread_list.clear()
     # deleting the location file - location.txt
     if os.path.isfile('entry.txt'):
