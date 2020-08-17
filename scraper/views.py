@@ -550,7 +550,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                                     dateCounter += 1
                                     if dateCounter > 5:
                                         print("-----------------------------------")
-                                        kill_single_thread(thread_list, thread_idx)
+                                        print(thread_list)
+                                        print(thread_list.index(entryChosen))
+                                        kill_single_thread(thread_list, thread_list.index(entryChosen))
                                         dateCounter = 0
                                         return
                                         # thread_list[thread_idx] = None
@@ -600,6 +602,8 @@ def kill_single_thread(thread_list, thread_idx):
     else:
         # stop_thread = True
         thread_list[thread_idx].join()
+        del thread_list[thread_idx]
+
         # stop_thread = False
     return 
 
