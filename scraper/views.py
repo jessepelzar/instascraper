@@ -447,7 +447,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
     dateCounter = 0
     # print(choice)
     # print("switch", tag_num_switch_r)
-    global workbook_name, COOKIE, dateCounter
+    global workbook_name, COOKIE
     workbook_name = filename_r + ".xlsx"
     # if choice is 'tagAndLocation':
     #     workbook_name = entry[0] + "_" + entry[1] + ".xlsx"
