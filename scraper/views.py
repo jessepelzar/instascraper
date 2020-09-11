@@ -373,6 +373,7 @@ def get_user(user_id, user_info):
     elif api.LastResponse.status_code == 400:
         stop_scraping()
     user_data = json.loads(api.LastResponse.text)
+    # print(user_data)
     username = user_data['user']['username']
     follower_count = user_data['user']['follower_count']
     try:
@@ -519,7 +520,13 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                         owner = post['owner']
                         user_id = owner['id']
                         shortcode = post['shortcode']
-                        location = get_location(shortcode)
+                        location, country_code = get_location(shortcode)
+                        if location == "": 
+                            continue
+
+                        if country_code != "US": 
+                            continue
+
                         timestamp = post['taken_at_timestamp']
                         user_info = []
                         sleep(random.randint(5,6))
@@ -542,6 +549,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                                 info.extend([future_date, entryChosen])
                                 
                         print(info)
+                        print(location)
                         print("--- %s seconds | User Time ---" % round(time.time() - start_time1, 2))
                         start_time2 = time.time()
                         if len(info) != 0:
@@ -675,6 +683,7 @@ def dayOfYear(month, day, year):
 
 def get_location(shortcode):
     global cookie, proxy
+    country_code = ""
     r = ""
     try:
         url = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
@@ -685,14 +694,19 @@ def get_location(shortcode):
             get_location(shortcode)
 
         data = json.loads(r.text)
+        # print(data)
         try:
             location = data['graphql']['shortcode_media']['location']['name']  # get location for a post
+            location2 = data['graphql']['shortcode_media']['location']['address_json']
+            location3 = json.loads(location2)
+            country_code = location3['country_code']
+            print(f'>>>>>>>>>>>>>>{country_code}<<<<<<<<<<<<<')
         except:
             location = ''  # if location is NULL
     except:
         location = ''
 
-    return location
+    return location, country_code
 
 
 def move_to_excel(data, location, tag):
