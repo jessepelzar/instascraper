@@ -47,12 +47,12 @@ def update_cookie():
 
 
 accounts = [
-    'milanauston12:76859oti',
-    'VitoMaurin:76859oti',
-    'parissedberry356:76859oti',
-    'calebacker75:76859oti',
-    'ronniewohlwend94:76859oti',
-    'matthewschempp8:76859oti',
+    # 'milanauston12:76859oti',
+    # 'VitoMaurin:76859oti',
+    # 'parissedberry356:76859oti',
+    # 'calebacker75:76859oti',
+    # 'ronniewohlwend94:76859oti',
+    # 'matthewschempp8:76859oti',
     
     # 'burtdones55:76859oti',
     # 'humbertoblagg:76859oti',
@@ -103,16 +103,16 @@ accounts = [
     # 'gilbertoparish3:76859oti',
     
     
-    # 'santiagozuk99:76859oti',
-    # 'timmycastanon38:76859oti',
-    # 'chasedyer91:76859oti',
-    # 'VitoMaurin:76859oti',
-    # 'parissedberry356:76859oti',
-    # 'bryceblain24:76859oti',
-    # 'burtonkessel3:76859oti',
-    # 'mohammedvillalvazo:76859oti',
-    # 'orvalguillaume:76859oti',
-    # 'reynaldohenline:76859oti',
+    'santiagozuk99:76859oti',
+    'timmycastanon38:76859oti',
+    'chasedyer91:76859oti',
+    'VitoMaurin:76859oti',
+    'parissedberry356:76859oti',
+    'bryceblain24:76859oti',
+    'burtonkessel3:76859oti',
+    'mohammedvillalvazo:76859oti',
+    'orvalguillaume:76859oti',
+    'reynaldohenline:76859oti',
 ]
 
 PROXIES = [
