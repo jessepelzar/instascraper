@@ -522,9 +522,11 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                         shortcode = post['shortcode']
                         location, country_code = get_location(shortcode)
                         if location == "": 
+                            print("skip")
                             continue
 
                         if country_code != "US": 
+                            print("not us")
                             continue
 
                         timestamp = post['taken_at_timestamp']
