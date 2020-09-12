@@ -145,11 +145,6 @@ PROXIES = [
     'p.webshare.io:20022',
     'p.webshare.io:20023',
     'p.webshare.io:20024',
-    'p.webshare.io:20025',
-    'p.webshare.io:20026',
-    'p.webshare.io:20027',
-    'p.webshare.io:20028',
-    'p.webshare.io:20029',
 ]
 accounts = cycle(accounts)
 PROXIES = cycle(PROXIES)
