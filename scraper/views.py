@@ -490,10 +490,12 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                         location, country_code = get_location(shortcode)
                         if location == "": 
                             print("skip")
+                            sleep(random.randint(2,3))
                             continue
 
                         if country_code != "US": 
                             print("not us")
+                            sleep(random.randint(2,3))
                             continue
 
                         timestamp = post['taken_at_timestamp']
