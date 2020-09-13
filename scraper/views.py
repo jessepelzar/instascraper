@@ -334,7 +334,7 @@ def get_user(user_id, user_info):
 
     api.getUsernameInfo(user_id)
     if api.LastResponse.status_code == 429:
-        time.sleep(86400)
+        sleep(86400)
         update_cookie()
         return user_info
     elif api.LastResponse.status_code == 400:
@@ -356,37 +356,6 @@ def get_user(user_id, user_info):
         # print(
         #     "ID: " + user_id + " " + "Username : " + username + " " + str(score))
 
-# def get_user_with_shortcode(user_id, user_info, shortcode):
-#     global PROXY, PROXIES
-
-#     user_url_data = "https://www.instagram.com/p/" + shortcode + "/?__a=1"
-#     r = requests.get(user_url_data, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
-#     user_data = json.loads(r.text)
-    
-#     username = user_data['graphql']['shortcode_media']['owner']['username']
-#     print('username', username)
-#     user_url = "https://www.instagram.com/"+username+"/?__a=1"
-#     r2 = requests.get(user_url, headers={"cookie": COOKIE, 'User-Agent': user_agent}, timeout=10)
-#     user_data = json.loads(r2.text)
-#     # print(user_data)
-
-#     try:
-#         business_email = user_data['graphql']['user']['business_email']
-#     except:
-#         business_email = ''
-    
-#     print("business email", business_email)
-
-#     follower_count = user_data['user']['follower_count']
-#     try:
-#         public_email = user_data['user']['public_email']
-#     except:
-#         public_email = ' '
-#     full_name = user_data['user']['full_name']
-#     igURL = 'https://www.instagram.com/' + username + '/'
-  
-#     user_info.extend([username, full_name, public_email, follower_count, igURL])
-#     return user_info, username
 
 
 def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thread_idx):
@@ -450,23 +419,15 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
 
                 while True:
                     r = requests.get(url, headers={"cookie": cookie, "User-Agent": user_agent}, timeout=60)
+                    if ("char 0" in r):
+                        stop_scraping()
                     if r.status_code == 200:
                         break
-                    elif r.status_code in [400, 429]:
-                        time.sleep(random.randint(30, 60))
+                    elif r.status_code in [400, 429] or "char 0" in r:
+                        print("error char 0")
+                        sleep(random.randint(30, 60))
                         update_cookie()
-                # print(url)
-                # print("REQUEST COOKIE", COOKIE)
-                # r = requests.get(url, headers={"cookie": COOKIE, "User-Agent": user_agent}, timeout=10, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
-                # r = requests.get(url, headers={"cookie": COOKIE, "User-Agent": user_agent}, timeout=10)
 
-                # if r.status_code != 200:
-                #     print(r.status_code)
-                #     print("No Posts found. Please Stop scraping before starting a new search")
-                #     sys.exit()
-                #     continue
-
-                # print(r.text)
                 print(f'>>>>>>>>>>>>>> {r.status_code} <<<<<<<<<<<<<<<')
                 data = json.loads(r.text)
                 
@@ -530,7 +491,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                             if api_call_count >= random.randint(150, 250):
                                 api_call_count = 0
                                 print('>>>>>>>>> Updating Cookie <<<<<<<<<')
-                                time.sleep(random.randint(30, 60))
+                                sleep(random.randint(30, 60))
                                 update_cookie()
                             print(row_count)
 
@@ -663,6 +624,7 @@ def get_location(shortcode):
         except Exception as e:
             print(e)
             get_location(shortcode)
+            stop_scraping()
 
         data = json.loads(r.text)
         # print(data)
