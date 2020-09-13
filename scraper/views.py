@@ -622,8 +622,8 @@ def get_location(shortcode):
             r = requests.get(url, headers={"cookie": cookie}, timeout=60)
         except Exception as e:
             print(e)
-            if ("char 0" in e):
-                print("fuck")
+            # if ("char 0" in e):
+            print("fuck")
             get_location(shortcode)
             stop_scraping()
 
