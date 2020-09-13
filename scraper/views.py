@@ -419,12 +419,11 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
 
                 while True:
                     r = requests.get(url, headers={"cookie": cookie, "User-Agent": user_agent}, timeout=60)
-                    if ("char 0" in r):
-                        stop_scraping()
+                    
                     if r.status_code == 200:
                         break
-                    elif r.status_code in [400, 429] or "char 0" in r:
-                        print("error char 0")
+                    elif r.status_code in [400, 429]:
+                        print("cookie update")
                         sleep(random.randint(30, 60))
                         update_cookie()
 
@@ -623,6 +622,8 @@ def get_location(shortcode):
             r = requests.get(url, headers={"cookie": cookie}, timeout=60)
         except Exception as e:
             print(e)
+            if ("char 0" in e):
+                print("fuck")
             get_location(shortcode)
             stop_scraping()
 
