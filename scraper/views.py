@@ -418,8 +418,10 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                         url = "https://www.instagram.com/explore/locations/" + location_id + "/?__a=1&max_id=" + end_cursor
 
                 while True:
-                    r = requests.get(url, headers={"cookie": cookie, "User-Agent": user_agent}, timeout=60)
-                    
+                    try:
+                        r = requests.get(url, headers={"cookie": cookie, "User-Agent": user_agent}, timeout=60)
+                    except Exception as e:
+                        print("fuck2")
                     if r.status_code == 200:
                         break
                     elif r.status_code in [400, 429]:
@@ -461,7 +463,9 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
                         timestamp = post['taken_at_timestamp']
                         user_info = []
                         sleep(random.randint(5,6))
+                        print("before get user")
                         info, username = get_user(user_id, user_info)
+                        print("after get user")
                         if choice is "tag":
                             if str(tag_num_switch_r) == "true":
                                 future_date = get_future_date(timestamp, entryChosen)
@@ -623,7 +627,7 @@ def get_location(shortcode):
         except Exception as e:
             print(e)
             # if ("char 0" in e):
-            print("fuck")
+            print("fuck1")
             get_location(shortcode)
             stop_scraping()
 
