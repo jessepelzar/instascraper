@@ -331,7 +331,7 @@ user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebK
 def get_user(user_id, user_info):
     global PROXY, PROXIES
     global api
-
+    print("---------- get user ----------")
     api.getUsernameInfo(user_id)
     if api.LastResponse.status_code == 429:
         sleep(86400)
@@ -361,7 +361,7 @@ def get_user(user_id, user_info):
 def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thread_idx):
 
     # COOKIES = cycle(cookie_value[cookie_idx])
-    
+    print("---------- start scraping ----------")
     # print(choice)
     # print("switch", tag_num_switch_r)
     global workbook_name, cookie, proxy
@@ -395,9 +395,11 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
     if abort is False:
         dateCounter = 0
         for page in range(num_of_pages):
+            print("---------- pages loop ----------")
             # print(COOKIE)
             entryChosen = None
             try:
+                print("---------- try get page ----------")
                 # if entry == "" and location_id == None:
                 #     print("scraping stopped")
                 #     stop_scraping()
@@ -515,6 +517,7 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
 
             except Exception as e:
                 # sys.exit()
+                print("---------- pages failed ----------")
                 print(e)
                 # stop_scraping()
 
