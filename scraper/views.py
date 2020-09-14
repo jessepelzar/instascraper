@@ -421,10 +421,11 @@ def start_scraping(entry, choice, filename_r, tag_num_switch_r, cookie_idx, thre
 
                 while True:
                     try:
-                        r = requests.get(url, headers={"cookie": cookie, "User-Agent": user_agent}, timeout=60)
+                        r = requests.get(url, headers={"cookie": cookie, "User-Agent": user_agent}, timeout=60, proxies={'http': f'http:{PROXY}', 'https': f'https:{PROXY}'})
                     except Exception as e:
                         print("fuck2")
                     if r.status_code == 200:
+                        print("code is 200 fuck")
                         break
                     elif r.status_code in [400, 429]:
                         print("cookie update")
